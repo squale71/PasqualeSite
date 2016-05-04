@@ -154,6 +154,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\app.css" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
@@ -168,11 +169,32 @@
     <Content Include="css\bootstrap.css.map" />
     <Content Include="css\bootstrap-theme.min.css.map" />
     <Content Include="css\bootstrap-theme.css.map" />
+    <Content Include="js\app.coffee" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="js\jquery-1.9.1.intellisense.js" />
+    <Content Include="img\keyboard.jpg" />
+    <Content Include="img\office.jpg" />
+    <Content Include="js\app.js">
+      <DependentUpon>app.coffee</DependentUpon>
+    </Content>
+    <Content Include="js\app.min.js">
+      <DependentUpon>app.js</DependentUpon>
+    </Content>
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery-1.9.1.js" />
     <Content Include="js\jquery-1.9.1.min.js" />
+    <Content Include="js\plugins\jqueryui\jquery-ui.css" />
+    <Content Include="js\plugins\jqueryui\jquery-ui.js" />
+    <Content Include="js\plugins\jqueryui\jquery-ui.min.css" />
+    <Content Include="js\plugins\jqueryui\jquery-ui.min.js" />
+    <Content Include="js\plugins\jqueryui\jquery-ui.structure.css" />
+    <Content Include="js\plugins\jqueryui\jquery-ui.structure.min.css" />
+    <Content Include="js\plugins\jqueryui\jquery-ui.theme.css" />
+    <Content Include="js\plugins\jqueryui\jquery-ui.theme.min.css" />
     <Content Include="Views\Shared\_DefaultLayout.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -206,7 +228,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="js\plugins\jqueryui\images\" />
     <Folder Include="Views\Account\" />
+    <Folder Include="Views\Shared\Partials\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PasqualeSite.Data\PasqualeSite.Data.csproj">

@@ -126,10 +126,38 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\Configuration.cs" />
     <Compile Include="Database\MyDbContext.cs" />
+    <Compile Include="Entities\Post.cs" />
+    <Compile Include="Entities\PostImage.cs" />
+    <Compile Include="Entities\PostTag.cs" />
+    <Compile Include="Entities\Tag.cs" />
     <Compile Include="Identity\AppRole.cs" />
     <Compile Include="Identity\AppUser.cs" />
+    <Compile Include="Migrations\201605041447397_Initial.cs" />
+    <Compile Include="Migrations\201605041447397_Initial.Designer.cs">
+      <DependentUpon>201605041447397_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605041449567_BlogEntities.cs" />
+    <Compile Include="Migrations\201605041449567_BlogEntities.Designer.cs">
+      <DependentUpon>201605041449567_BlogEntities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605041454582_Fixes.cs" />
+    <Compile Include="Migrations\201605041454582_Fixes.Designer.cs">
+      <DependentUpon>201605041454582_Fixes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201605041447397_Initial.resx">
+      <DependentUpon>201605041447397_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605041449567_BlogEntities.resx">
+      <DependentUpon>201605041449567_BlogEntities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605041454582_Fixes.resx">
+      <DependentUpon>201605041454582_Fixes.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
