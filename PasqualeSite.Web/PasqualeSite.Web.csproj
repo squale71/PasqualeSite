@@ -169,6 +169,11 @@
     <Content Include="css\bootstrap.css.map" />
     <Content Include="css\bootstrap-theme.min.css.map" />
     <Content Include="css\bootstrap-theme.css.map" />
+    <Content Include="img\1462426344_facebook.png" />
+    <Content Include="img\1462426362_twitter_2.png" />
+    <Content Include="img\1462426377_github.png" />
+    <Content Include="img\me.jpg" />
+    <Content Include="img\melondon.jpg" />
     <Content Include="js\app.coffee" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
@@ -195,6 +200,10 @@
     <Content Include="js\plugins\jqueryui\jquery-ui.structure.min.css" />
     <Content Include="js\plugins\jqueryui\jquery-ui.theme.css" />
     <Content Include="js\plugins\jqueryui\jquery-ui.theme.min.css" />
+    <Content Include="js\plugins\owl\assets\owl.carousel.css" />
+    <Content Include="js\plugins\owl\assets\owl.theme.css" />
+    <Content Include="js\plugins\owl\owl.carousel.js" />
+    <Content Include="js\plugins\owl\owl.carousel.min.js" />
     <Content Include="Views\Shared\_DefaultLayout.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -219,6 +228,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="js\jquery-1.9.1.min.map" />
+    <Content Include="Views\Shared\Partials\_BlogCarousel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -230,7 +240,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="js\plugins\jqueryui\images\" />
     <Folder Include="Views\Account\" />
-    <Folder Include="Views\Shared\Partials\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PasqualeSite.Data\PasqualeSite.Data.csproj">

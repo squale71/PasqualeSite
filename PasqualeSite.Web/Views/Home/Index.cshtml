@@ -2,3 +2,63 @@
 @{
     ViewBag.Title = "Index";
 }
+
+@{
+    Html.RenderPartial("Partials/_BlogCarousel");
+}
+
+<div class="container">
+    <div class="well">
+        <div class="row">
+            <div class="col-md-3">
+                <img class="img-responsive" id="me" src="~/img/me.jpg" />
+            </div>
+            <div class="col-md-5">
+                <div class="row">
+                    <h3>Hello.</h3>
+                    <p>
+                        My name is Pasquale, but people call me Squalls. This website is intended to be a way for you to get to know me better. It's also an outlet for me in which I
+                        talk about all the things I love, whether it be development, movies, music, video games, sports, travel, etc. I hope that one day this place can be much more
+                        than that, but until then, I will use this to showcase my skills and rant or rave but things that I find interesting. I hope that you find something interesting here as well,
+                        and feel free to email me with any questions!
+                    </p>
+                </div>
+                <div class="row social-media">
+                    <img src="~/img/1462426362_twitter_2.png" />
+                    <img src="~/img/1462426377_github.png" />
+                </div>                
+            </div>
+            <div class="col-md-4">
+                <h3>Things I like: </h3>
+                <ul>
+                    <li>Computers</li>
+                    <li>Video Games</li>
+                    <li>App Development</li>
+                    <li>Jaguars Football</li>
+                    <li>Friends and Family</li>
+                    <li>Places to go</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row headlines">
+        <div class="col-md-4">
+            <img class="img-circle center-block" src="http://placehold.it/200x200?text=Slide%200" />
+            <br /><br />
+            <h2 class="text-center">The Blog</h2>
+            <p>Feel free to read my latests posts (or go back in time). I write about just about anything that comes to mind. Mostly nerdy stuff, like what's going on in the world of tech, video games, etc. Or maybe I'll talk about sports.</p>
+        </div>
+        <div class="col-md-4">
+            <img class="img-circle center-block" src="http://placehold.it/200x200?text=Slide%200" />
+            <br /><br />
+            <h2 class="text-center">My Skills</h2>
+            <p>I like to hit buttons on a keyboard and make the computer do things for me. I have created some pretty cool stuff. Check out my portfolio for a quick look at what I've done. Or, if you'd prefer, continue using this site, as I built it too!</p>
+        </div>
+        <div class="col-md-4">
+            <img class="img-circle center-block" src="http://placehold.it/200x200?text=Slide%200" />
+            <br /><br />
+            <h2 class="text-center">Resources</h2>
+            <p>Just starting up and want to create some cool apps? Dream of one day working at your favorite video game company? One of the most important parts about learning to be a developer is finding the right resources to get your started. Here you can find a few places that helped me get started.  </p>
+        </div>
+    </div>
+</div>

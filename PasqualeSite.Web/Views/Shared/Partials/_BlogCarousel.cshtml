@@ -1,0 +1,162 @@
+﻿<script>
+    $(document).ready(function () {
+        var owl = $('.owl-carousel');
+        var $sync1 = $("#owlArticle");
+        var $sync2 = $("#owlThumb");
+        var flag = false;
+		var duration = 300;
+
+        $sync1
+            .owlCarousel({
+                items: 1,
+                margin: 10,
+                dots: true,
+                lazyLoad: true
+            })
+            .on('changed.owl.carousel', function (e) {
+                if (!flag) {
+                    flag = true;
+                    $sync2.trigger('to.owl.carousel', [e.item.index, duration, true]);
+                    flag = false;
+                }
+            });
+
+        $('.right-arrow').click(function () {
+            $sync1.trigger('next.owl.carousel');
+        })
+        // Go to the previous item
+        $('.left-arrow').click(function () {
+            // With optional speed parameter
+            // Parameters has to be in square bracket '[]'
+            $sync1.trigger('prev.owl.carousel');
+        })
+
+        $sync2
+            .owlCarousel({
+                margin: 20,
+                items: 6,
+                dots: true,
+            })
+            .on('click', '.owl-item', function () {
+                $sync1.trigger('to.owl.carousel', [$(this).index(), duration, true]);
+
+            })
+            .on('changed.owl.carousel', function (e) {
+                if (!flag) {
+                    flag = true;
+                    $sync1.trigger('to.owl.carousel', [e.item.index, duration, true]);
+                    flag = false;
+                }
+            });
+
+        
+    });
+</script>
+
+<div class="well">
+    <div id="owl" class="container">
+        <div class="row">
+            <div class="col-md-1 left-arrow"><span class="glyphicon glyphicon-chevron-left"></span></div>
+            <div class="col-md-10">
+                <div id="owlArticle" class="owl-carousel">
+                    <div class="carousel-item">
+                        <div class="carousel-img">
+                            <img src="~/img/keyboard.jpg" />
+                        </div>
+                        <div class="side">
+                            <h1>Title</h1>
+                            <p>Description</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-img">
+                            <img src="~/img/office.jpg" />
+                        </div>
+                        <div class="side">
+                            <h1>Title</h1>
+                            <p>Description</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-img">
+                            <img src="~/img/office.jpg" />
+                        </div>
+                        <div class="side">
+                            <h1>Title</h1>
+                            <p>Description</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-img">
+                            <img src="~/img/office.jpg" />
+                        </div>
+                        <div class="side">
+                            <h1>Title</h1>
+                            <p>Description</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-img">
+                            <img src="~/img/office.jpg" />
+                        </div>
+                        <div class="side">
+                            <h1>Title</h1>
+                            <p>Description</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-img">
+                            <img src="~/img/office.jpg" />
+                        </div>
+                        <div class="side">
+                            <h1>Title</h1>
+                            <p>Description</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-img">
+                            <img src="~/img/office.jpg" />
+                        </div>
+                        <div class="side">
+                            <h1>Title</h1>
+                            <p>Description</p>
+                        </div>
+                    </div>
+                </div>               
+            </div>
+            <div class="col-md-1 right-arrow"><span class="glyphicon glyphicon-chevron-right"></span></div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <div id="owlThumb" class="owl-carousel">
+                    <div>
+                        <img src="http://placehold.it/200x200?text=Slide%200">
+                    </div>
+                    <div>
+                        <img src="http://placehold.it/200x200?text=Slide%200">
+                    </div>
+                    <div>
+                        <img src="http://placehold.it/200x200?text=Slide%200">
+                    </div>
+                    <div>
+                        <img src="http://placehold.it/200x200?text=Slide%200">
+                    </div>
+                    <div>
+                        <img src="http://placehold.it/200x200?text=Slide%200">
+                    </div>
+                    <div>
+                        <img src="http://placehold.it/200x200?text=Slide%200">
+                    </div>
+                    <div>
+                        <img src="http://placehold.it/200x200?text=Slide%200">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -1,8 +1,10 @@
 ﻿/*
  * Globals
+ * Main Color: #19153b
+ * Accent1: 
  */
 
-body { font-family: "Californian FB", Georgia, Times, serif; color: #555; }
+body { font-family: "Californian FB", Georgia, Times, serif; color: #555; font-size: 14pt; }
 
 h1, .h1,
 h2, .h2,
@@ -11,23 +13,46 @@ h4, .h4,
 h5, .h5,
 h6, .h6 { margin-top: 0; font-family: "Californian FB", Helvetica, Arial, sans-serif; font-weight: normal; color: #333; }
 
-@media (min-width:1600px) {
+@media (min-width:1200px) {
     .container { width: 1200px; }
 }
 
+@media (min-width:1600px) {
+    .container { width: 1500px; }
+}
+
 @media (min-width:1920px) {
-    .container { width: 1600px; }
+    .container { width: 1800px; }
+}
+
+/*
+    Top Banner
+*/
+
+.top-banner { background-color: #162c69; min-height: 100px;}
+
+.right-arrow { width: 70px; margin-top: 80px; display: none; cursor: pointer; color: #19153b; }
+    .right-arrow:hover { color: #162c69; }
+    .right-arrow span { font-size: 60pt; margin-right: 15px; vertical-align: middle;}
+
+.left-arrow { width: 70px; margin-top: 80px;  display: none; cursor: pointer; color: #19153b  }
+    .left-arrow:hover { color: #162c69; }
+    .left-arrow { font-size: 60pt; margin-right: 15px; }
+
+@media (min-width:1920px) {
+    .right-arrow { display: inline-block }
+    .left-arrow { display: inline-block }
 }
 
 
 .shadow { border-radius: 50%; display: inline-block; position: relative; }
-    .shadow img { border-radius: 50%; display: block; border: 1px solid #eee;  }
-    .shadow:after { content: ""; display: block; width: 100%; height: 100%; border-radius: 50%; position: absolute; top: 0; left: 0; box-shadow: inset 10px 24px 40px 0px #eee, inset -10px -24px 40px 0px #eee, inset 20px -10px 40px 0px white, inset -20px 10px 40px 0px #eee;  }
+    .shadow img { border-radius: 50%; display: block; border: 1px solid #eee; }
+    .shadow:after { content: ""; display: block; width: 100%; height: 100%; border-radius: 50%; position: absolute; top: 0; left: 0; box-shadow: inset 10px 24px 40px 0px #eee, inset -10px -24px 40px 0px #eee, inset 20px -10px 40px 0px white, inset -20px 10px 40px 0px #eee; }
 /*
  * Masthead for nav
  */
 
-.blog-masthead { background-color: #19153b; -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1); box-shadow: inset 0 -2px 5px rgba(0,0,0,.1); }
+.blog-masthead { background-color: #19153b; -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1); box-shadow: inset 0 -2px 5px rgba(0,0,0,.1); font-size: 13pt; }
 
 /* Nav links */
 .blog-nav-item { position: relative; display: inline-block; padding: 10px; font-weight: 500; color: #cdddeb; }
@@ -55,7 +80,24 @@ h6, .h6 { margin-top: 0; font-family: "Californian FB", Helvetica, Arial, sans-s
 /*
  * Main column and sidebar layout
  */
+#main { padding-top: 10px; }
 
+/* Owl Carousel */
+.owl-carousel { }
+    .owl-carousel .owl-nav { padding-top: .4em; font-family: sans-serif; font-size: .8em; }
+        .owl-carousel .owl-nav > div { padding: .4em 1.4em; border: 1px solid #333; background: #000; color: white; border-radius: .4em; background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.2)); box-shadow: 0.1em 0.1em 0.4em rgba(0, 0, 0, 0.5); }
+            .owl-carousel .owl-nav > div:hover { background-color: #333; }
+        .owl-carousel .owl-nav .owl-prev { float: left; }
+        .owl-carousel .owl-nav .owl-next { float: right; }
+
+
+.carousel-item { text-align: left; }
+    .carousel-item .side { color: black; margin-left: 0; min-width: 100%; min-height: 100%; text-align: left; }
+        .carousel-img .side p { margin-left: 40px; }
+    .carousel-item .carousel-img { padding-right: 15px; float: left; }
+.carousel-img img { max-width: 900px; margin-right: 0px; }
+
+#owlThumb img { max-width: 200px; }
 .blog-main { font-size: 18px; line-height: 1.5; }
 
 /* Sidebar modules for boxing content */
@@ -65,11 +107,18 @@ h6, .h6 { margin-top: 0; font-family: "Californian FB", Helvetica, Arial, sans-s
     .sidebar-module-inset ul:last-child,
     .sidebar-module-inset ol:last-child { margin-bottom: 0; }
 
+ #me { display:none;}
+ .social-media { margin-bottom: 40px; margin-top: 40px; text-align: center;}
+ @media (min-width:990px) {
+    #me { display: inline-block; max-height: 400px; padding-left: 50px; }
+    .social-media { margin-bottom: 0px; margin-top: 0px; text-align: left;}
+}
 
 /* Pagination */
 .pager { margin-bottom: 60px; text-align: left; }
     .pager > li > a { width: 140px; padding: 10px 20px; text-align: center; border-radius: 30px; }
 
+.headlines {margin-top: 100px; }
 
 /*
  * Blog posts
@@ -84,5 +133,4 @@ h6, .h6 { margin-top: 0; font-family: "Californian FB", Helvetica, Arial, sans-s
  * Footer
  */
 
-.blog-footer { padding: 40px 0; color: #999; text-align: center; background-color: #f9f9f9; border-top: 1px solid #e5e5e5; }
-    .blog-footer p:last-child { margin-bottom: 0; }
+.footer { background-color: #19153b; min-height: 120px; margin-top: 40px; padding-top: 30px; color: #cdddeb; }
