@@ -6,12 +6,36 @@
 @{
     Html.RenderPartial("Partials/_BlogCarousel");
 }
+<script>
+    $(document).ready(function () {
+        $('.pictureCarousel').owlCarousel({
+            items: 1,
+            loop: true,
+            margin: 10,
+            dots: true,
+            autoplay: true
+        })
+    })
+    
+</script>
+
 
 <div class="container">
     <div class="well">
         <div class="row">
             <div class="col-md-3">
-                <img class="img-responsive" id="me" src="~/img/me.jpg" />
+                <div id="me" class="pictureCarousel">
+                    <div class="item">
+                        <img class="img-responsive" src="~/img/GoJags.jpg" />
+                    </div>
+                    <div class="item">
+                        <img class="img-responsive" src="~/img/melondon.jpg" />
+                    </div>
+                    <div class="item">
+                        <img class="img-responsive" src="~/img/meandfriends.jpg" />
+                    </div>
+                 
+                </div>                
             </div>
             <div class="col-md-5">
                 <div class="row">
@@ -23,7 +47,9 @@
                         and feel free to email me with any questions!
                     </p>
                 </div>
+                <br /><br />
                 <div class="row social-media">
+                    <h4>Check out some of my other pages: </h4>
                     <img src="~/img/1462426362_twitter_2.png" />
                     <img src="~/img/1462426377_github.png" />
                 </div>                

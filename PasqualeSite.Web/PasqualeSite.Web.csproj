@@ -172,7 +172,9 @@
     <Content Include="img\1462426344_facebook.png" />
     <Content Include="img\1462426362_twitter_2.png" />
     <Content Include="img\1462426377_github.png" />
+    <Content Include="img\GoJags.jpg" />
     <Content Include="img\me.jpg" />
+    <Content Include="img\meandfriends.jpg" />
     <Content Include="img\melondon.jpg" />
     <Content Include="js\app.coffee" />
     <None Include="compilerconfig.json" />
@@ -204,12 +206,14 @@
     <Content Include="js\plugins\owl\assets\owl.theme.css" />
     <Content Include="js\plugins\owl\owl.carousel.js" />
     <Content Include="js\plugins\owl\owl.carousel.min.js" />
+    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_DefaultLayout.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="Global.asax.cs">
@@ -239,7 +243,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="js\plugins\jqueryui\images\" />
-    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PasqualeSite.Data\PasqualeSite.Data.csproj">
