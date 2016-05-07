@@ -30,6 +30,49 @@
     function PostsViewModel() {
       this.Posts = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostViewModel, true);
       this.SelectedPost = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostViewModel, true);
+      this.NewPost = ko.observable(new PasqualeSite.ViewModels.PostViewModel());
+      this.GridOptions = {
+        data: this.Posts,
+        columnDefs: [
+          {
+            field: 'Id',
+            displayName: 'Id',
+            width: 90
+          }, {
+            field: 'Title',
+            displayName: 'Title',
+            width: 80
+          }, {
+            field: 'Teaser',
+            cellClass: 'Teaser',
+            headerClass: 'Teaser'
+          }, {
+            field: 'DateCreated',
+            displayName: 'Date Created'
+          }, {
+            field: 'DateModified',
+            displayName: 'Date Modified'
+          }, {
+            field: 'isFeatured',
+            displayName: 'Featured'
+          }, {
+            field: 'Priority',
+            displayName: 'Priority'
+          }
+        ],
+        enablePaging: true,
+        selectedItems: this.SelectedPost,
+        multiSelect: false,
+        afterSelectionChange: (function(_this) {
+          return function() {};
+        })(this),
+        pagingOptions: {
+          currentPage: ko.observable(1),
+          pageSize: ko.observable(30),
+          pageSizes: ko.observableArray([30, 60, 90]),
+          totalServerItems: ko.observable(0)
+        }
+      };
     }
 
     return PostsViewModel;
@@ -41,13 +84,23 @@
       this.Id = ko.observable();
       this.Title = ko.observable();
       this.Teaser = ko.observable();
-      this.PostContent = ko.observable();
+      this.PostContent = ko.observable("");
       this.DateCreated = ko.observable();
       this.DateModified = ko.observable();
       this.isFeatured = ko.observable();
       this.Priority = ko.observable();
       this.User = ko.observable();
       this.Image = ko.observable();
+      this.FeaturePost = (function(_this) {
+        return function() {
+          return _this.isFeatured(true);
+        };
+      })(this);
+      this.UnfeaturePost = (function(_this) {
+        return function() {
+          return _this.isFeatured(false);
+        };
+      })(this);
     }
 
     return PostViewModel;

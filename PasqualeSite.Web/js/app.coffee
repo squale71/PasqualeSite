@@ -25,13 +25,35 @@ class PasqualeSite.ViewModels.PostsViewModel
         @Posts = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostViewModel, true)  
 
         @SelectedPost = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostViewModel, true)  
+        @NewPost = ko.observable(new PasqualeSite.ViewModels.PostViewModel())
+        @GridOptions = 
+            data: @Posts
+            columnDefs: [
+                { field: 'Id', displayName: 'Id', width: 90 }
+                { field: 'Title', displayName: 'Title', width: 80 }
+                { field: 'Teaser', cellClass: 'Teaser', headerClass: 'Teaser' }
+                { field: 'DateCreated', displayName: 'Date Created'}
+                { field: 'DateModified', displayName: 'Date Modified'}
+                { field: 'isFeatured', displayName: 'Featured'}
+                { field: 'Priority', displayName: 'Priority'}
+            ]
+            enablePaging: true
+            selectedItems: @SelectedPost
+            multiSelect: false   
+            afterSelectionChange: =>
+                #CKEDITOR.replace('content');  
+            pagingOptions: 
+                currentPage: ko.observable(1)
+                pageSize: ko.observable(30)
+                pageSizes: ko.observableArray([30, 60, 90])
+                totalServerItems: ko.observable(0) 
 
 class PasqualeSite.ViewModels.PostViewModel
     constructor: () ->
         @Id = ko.observable()
         @Title = ko.observable()
         @Teaser = ko.observable()
-        @PostContent = ko.observable()
+        @PostContent = ko.observable("")
         @DateCreated = ko.observable()
         @DateModified = ko.observable()
         @isFeatured = ko.observable()
@@ -39,5 +61,11 @@ class PasqualeSite.ViewModels.PostViewModel
 
         @User = ko.observable()
         @Image = ko.observable()
+
+        @FeaturePost = () =>
+            @isFeatured(true)
+
+        @UnfeaturePost = () =>
+            @isFeatured(false)
 
 $ ->

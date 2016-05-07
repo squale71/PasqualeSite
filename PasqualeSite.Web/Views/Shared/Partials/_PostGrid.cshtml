@@ -1,0 +1,30 @@
+﻿
+
+<div class="gridStyle" data-bind="koGrid: GridOptions"></div>
+<div class="well" data-bind="with: SelectedPost()[0]">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input data-bind="textInput: Title" class="form-control" id="title" placeholder="Title">
+    </div>
+    <div class="form-group">
+        <label for="teaser">Teaser</label>
+        <input data-bind="textInput: Teaser" class="form-control" id="teaser" placeholder="Teaser">
+    </div>
+    <div class="form-group">
+        <label for="content">Content</label>
+        <textarea data-bind="CKEDITOR: PostContent" class="form-control" id="content" placeholder="Content"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="featured">Is Featured (on homepage): </label>
+        <!--ko if: isFeatured() != true -->
+        <button data-bind="click: function() { FeaturePost() }" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-remove-circle"></span> Post Not Featured</button>
+        <!--/ko-->
+        <!--ko if: isFeatured() == true -->
+        <button data-bind="click: function() { UnfeaturePost() }" style="background-color: black; border-color:black;" type="button" class="btn btn-info"><span class="glyphicon glyphicon-ok-circle"></span> Post Featured</button>
+        <!--/ko-->  
+    </div>
+    <div class="form-group">
+        <label for="priority">Priority (the higher the number, the higher it appears on home page)</label>
+        <input data-bind="textInput: Priority" class="form-control" id="priority" placeholder="Priority">
+    </div>
+</div>
