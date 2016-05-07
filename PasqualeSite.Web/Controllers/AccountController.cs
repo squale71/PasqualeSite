@@ -108,13 +108,15 @@ namespace PasqualeSite.Web.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult Register()
         {
             return View();
         }
 
-        [AllowAnonymous]
+        //TODO: Change back to Allow Anon when we are ready to allow other users to register.
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> Register(RegisterModel model)
         {
