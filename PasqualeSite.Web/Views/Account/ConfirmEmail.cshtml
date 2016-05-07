@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "ConfirmEmail";
+}
+
+<br /><br />
+<div class="container">
+    @if (ViewBag.Success)
+    {
+        <div>
+            <p>
+                Thank you for confirming your email. Please @Html.ActionLink("Click here to Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+            </p>
+        </div>
+    }
+    else
+    {
+        <div>
+            <p>
+                There was a problem confirming your account. Please try again later.
+            </p>
+        </div>
+    }
+
+</div>
+

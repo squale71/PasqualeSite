@@ -31,34 +31,33 @@
 
 </head>
 <body>
-    <div class="top-banner">
+    <div class="wrapper">
+        <div class="header">
+            <div class="top-banner">
 
-    </div>
-    <div class="blog-masthead">
-        <div class="container">
-            <nav class="blog-nav">
-                <a class="blog-nav-item active" href="#">Home</a>
-                <a class="blog-nav-item" href="#">Blog</a>
-                <a class="blog-nav-item" href="#">Portfolio</a>
-            </nav>
+            </div>
+            <div class="blog-masthead">
+                <div class="container">
+                    <nav class="blog-nav">
+                        <a class="blog-nav-item active" href="#">Home</a>
+                        <a class="blog-nav-item" href="#">Blog</a>
+                        <a class="blog-nav-item" href="#">Portfolio</a>
+                    </nav>
+                </div>
+            </div> 
         </div>
-    </div>   
-
-    <div id="main" class="container-fluid">
-        <div class="row">
-                @RenderBody()
-        </div>
-    </div>
-
-    <footer>
-        <div class="footer">
-            <div class="container">
+        <div class="content">
+            <div id="main" class="container-fluid">
                 <div class="row">
-                    <div class="col-md-4">
-                        <p>&copy; @DateTime.Now.Year thesqualls.com</p>
-                    </div>
+                    @RenderBody()
                 </div>
             </div>
+        </div>  
+        <div class="push"></div>      
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; @DateTime.Now.Year thesqualls.com</p>
         </div>
     </footer>
 </body>

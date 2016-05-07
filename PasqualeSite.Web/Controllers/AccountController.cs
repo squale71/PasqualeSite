@@ -114,7 +114,7 @@ namespace PasqualeSite.Web.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Manager")]
+        [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult> Register(RegisterModel model)
         {
@@ -232,7 +232,7 @@ namespace PasqualeSite.Web.Controllers
             string code = await userManager.GenerateEmailConfirmationTokenAsync(userID);
             var callbackUrl = Url.Action("ConfirmEmail", "Account",
                new { userId = userID, code = code }, protocol: Request.Url.Scheme);
-            await userManager.SendEmailAsync(userID, "Confirm your account", "<p>You have been granted access to the NWBHS Patient Case Tracker application. Please click <a href=\"" + callbackUrl + "\">here</a> to confirm your account in order to access the application.</p><p>Once you have confirmed your account, be sure to reset your password.</p>");
+            await userManager.SendEmailAsync(userID, "Confirm your account", "<p>In order to completed your registration to thesqualls.com, you will need to confirm your email. Please click <a href=\"" + callbackUrl + "\">here</a> to confirm your account.</p>");
 
             return callbackUrl;
         }
@@ -241,7 +241,7 @@ namespace PasqualeSite.Web.Controllers
         {
             if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
             {
-                return Url.Action("List", "Case");
+                return Url.Action("Index", "Home");
             }
 
             return returnUrl;

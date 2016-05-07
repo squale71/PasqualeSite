@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Attention";
+}
+
+<br /><br />
+<div class="container">
+    @{
+        if (String.IsNullOrEmpty(ViewBag.Information))
+        {
+            <p>Your information has been updated.</p>
+        }
+        else
+        {
+            <p>@ViewBag.Information</p>
+        }
+    }
+</div>
