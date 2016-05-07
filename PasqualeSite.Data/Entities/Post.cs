@@ -21,10 +21,13 @@ namespace PasqualeSite.Data.Entities
         public DateTime DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
         public bool IsFeatured { get; set; }
+        public int Priority { get; set; }
 
         [ForeignKey("UserId")]
         public virtual AppUser User { get; set; }
         [ForeignKey("ImageId")]
         public virtual PostImage Image { get; set; }
+
+        public ICollection<Comment> Comments { get; set; }
     }
 }

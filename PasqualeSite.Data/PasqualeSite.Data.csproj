@@ -128,10 +128,12 @@
   <ItemGroup>
     <Compile Include="Database\Configuration.cs" />
     <Compile Include="Database\MyDbContext.cs" />
+    <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Entities\PostImage.cs" />
     <Compile Include="Entities\PostTag.cs" />
     <Compile Include="Entities\Tag.cs" />
+    <Compile Include="Entities\UserLikes.cs" />
     <Compile Include="Identity\AppRole.cs" />
     <Compile Include="Identity\AppUser.cs" />
     <Compile Include="Migrations\201605041447397_Initial.cs" />
@@ -150,6 +152,10 @@
     <Compile Include="Migrations\201605071412462_NewSeed.Designer.cs">
       <DependentUpon>201605071412462_NewSeed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605071454026_AddedComments.cs" />
+    <Compile Include="Migrations\201605071454026_AddedComments.Designer.cs">
+      <DependentUpon>201605071454026_AddedComments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605071412462_NewSeed.resx">
       <DependentUpon>201605071412462_NewSeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605071454026_AddedComments.resx">
+      <DependentUpon>201605071454026_AddedComments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
