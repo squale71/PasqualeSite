@@ -1,8 +1,31 @@
-﻿
+﻿<script>
+    $(document).ready(function () {
+        $('#uploader').submit(function () {
+            var formdata = new FormData(); //FormData object
+            var fileInput = document.getElementById('file');
+            var fileName = document.getElementById('imageName');
 
-@using (Html.BeginForm("UploadImage", "Image", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <input type="text" name="imageName" />
-    <input type="file" name="file" />
-    <input type="submit" />
-}
+            formdata.append(fileName.name, fileName.value);
+            formdata.append(fileInput.files[0].name, fileInput.files[0]);
+            //Creating an XMLHttpRequest and sending
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', "@Url.Action("UploadImage", "Image")");
+            xhr.send(formdata);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert(xhr.responseText);
+                }
+            }
+            return false;
+        })
+    })
+    
+</script>
+
+
+<form id="uploader">
+    <input type="text" id="imageName" name="imageName" />
+    <input id="file" name="file" type="file">
+    <input type="submit" value="Upload file" />
+</form>
+

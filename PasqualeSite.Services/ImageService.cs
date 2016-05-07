@@ -29,6 +29,7 @@ namespace PasqualeSite.Services
         public async Task<string> UploadImage(string imageName, HttpPostedFileBase photoToUpload)
         {         
             string fullPath = null;
+            imageName = imageName.ToLower();
             try
             {
                 CloudBlockBlob blockBlob = container.GetBlockBlobReference(imageName);
