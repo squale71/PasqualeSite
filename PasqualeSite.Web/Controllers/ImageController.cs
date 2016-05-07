@@ -27,7 +27,8 @@ namespace PasqualeSite.Web.Controllers
                 urlPath = await imgService.UploadImage(imageName, file);
             }
 
-            return Content(Newtonsoft.Json.JsonConvert.SerializeObject(urlPath, new Newtonsoft.Json.JsonSerializerSettings() { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore, ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore }));
+            return RedirectToAction("Index", "Admin");
+            //return Content(Newtonsoft.Json.JsonConvert.SerializeObject(urlPath, new Newtonsoft.Json.JsonSerializerSettings() { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore, ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore }));
         }
     }
 }
