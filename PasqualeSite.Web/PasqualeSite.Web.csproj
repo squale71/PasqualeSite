@@ -592,6 +592,7 @@
     <Content Include="js\plugins\owl\owl.carousel.js" />
     <Content Include="js\plugins\owl\owl.carousel.min.js" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_DefaultLayout.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -600,11 +601,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ForgotPasswordViewModel.cs" />
+    <Compile Include="Models\ImageModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\ResetPasswordViewModel.cs" />
@@ -625,7 +628,6 @@
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\PasswordChanged.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Account\Unauthorized.cshtml" />
     <Content Include="Views\Shared\Partials\_PostGrid.cshtml" />
     <Content Include="Views\Shared\Partials\_AddPost.cshtml" />
@@ -646,6 +648,7 @@
     <Content Include="js\plugins\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="js\plugins\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="js\plugins\ckeditor\skins\moono\readme.md" />
+    <Content Include="Views\Shared\Partials\_UploadImage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -656,6 +659,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="js\plugins\jqueryui\images\" />
+    <Folder Include="Views\Image\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PasqualeSite.Data\PasqualeSite.Data.csproj">
