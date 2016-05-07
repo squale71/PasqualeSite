@@ -35,7 +35,23 @@ namespace PasqualeSite.Data.Database
 
         private void InitializeIdentityForEF(MyDbContext context)
         {
-           
+            if (!context.Roles.Any(r => r.Name == "Admin"))
+            {
+                var store = new RoleStore<IdentityRole>(context);
+                var manager = new RoleManager<IdentityRole>(store);
+                var role = new IdentityRole { Name = "Manager" };
+
+                manager.Create(role);
+            }
+
+            if (!context.Roles.Any(r => r.Name == "Active"))
+            {
+                var store = new RoleStore<IdentityRole>(context);
+                var manager = new RoleManager<IdentityRole>(store);
+                var role = new IdentityRole { Name = "Active" };
+
+                manager.Create(role);
+            }
         }
     }
 }

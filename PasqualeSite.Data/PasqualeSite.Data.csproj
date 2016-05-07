@@ -146,6 +146,10 @@
     <Compile Include="Migrations\201605041454582_Fixes.Designer.cs">
       <DependentUpon>201605041454582_Fixes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605071412462_NewSeed.cs" />
+    <Compile Include="Migrations\201605071412462_NewSeed.Designer.cs">
+      <DependentUpon>201605071412462_NewSeed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605041454582_Fixes.resx">
       <DependentUpon>201605041454582_Fixes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605071412462_NewSeed.resx">
+      <DependentUpon>201605071412462_NewSeed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using PasqualeSite.Data.Identity;
+using PasqualeSite.Services;
 using PasqualeSite.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -138,6 +139,12 @@ namespace PasqualeSite.Web.Controllers
 
             if (result.Succeeded && model.Password == model.PasswordConfirm)
             {
+                // Adds user to Active role upon creation of account.
+                using (var us = new UserService())
+                {
+                    await us.AddRoleToUser(user.Id, "Active");
+                }
+
                 await SendEmailConfirmationTokenAsync(user.Id, "");
                 await SignIn(user);
                 return RedirectToAction("Index", "Home");
