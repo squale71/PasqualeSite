@@ -207,6 +207,9 @@
     <Content Include="js\plugins\jqueryui\jquery-ui.structure.min.css" />
     <Content Include="js\plugins\jqueryui\jquery-ui.theme.css" />
     <Content Include="js\plugins\jqueryui\jquery-ui.theme.min.css" />
+    <Content Include="js\plugins\kogrid\koGrid-2.1.1.debug.js" />
+    <Content Include="js\plugins\kogrid\koGrid-2.1.1.js" />
+    <Content Include="js\plugins\kogrid\KoGrid.css" />
     <Content Include="js\plugins\owl\assets\owl.carousel.css" />
     <Content Include="js\plugins\owl\assets\owl.theme.css" />
     <Content Include="js\plugins\owl\owl.carousel.js" />

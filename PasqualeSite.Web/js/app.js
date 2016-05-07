@@ -12,19 +12,45 @@
   namespace("ViewModels");
 
   PasqualeSite.KnockoutModel = (function() {
-    function KnockoutModel(JSON, ChangeCallback, ViewModel, SkipRebind, SkipValidation, IncludeDirtyFlag) {
+    function KnockoutModel(JSON, ViewModel) {
       JSON.binding = true;
       if (ViewModel) {
         this.Model = ViewModel;
       }
       ko.mapping.merge.fromJS(this.Model, JSON);
-      if (!SkipRebind) {
-        ko.applyBindings(this.Model);
-      }
+      ko.applyBindings(this.Model);
       this.Model;
     }
 
     return KnockoutModel;
+
+  })();
+
+  PasqualeSite.ViewModels.PostsViewModel = (function() {
+    function PostsViewModel() {
+      this.Posts = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostViewModel, true);
+      this.SelectedPost = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostViewModel, true);
+    }
+
+    return PostsViewModel;
+
+  })();
+
+  PasqualeSite.ViewModels.PostViewModel = (function() {
+    function PostViewModel() {
+      this.Id = ko.observable();
+      this.Title = ko.observable();
+      this.Teaser = ko.observable();
+      this.PostContent = ko.observable();
+      this.DateCreated = ko.observable();
+      this.DateModified = ko.observable();
+      this.isFeatured = ko.observable();
+      this.Priority = ko.observable();
+      this.User = ko.observable();
+      this.Image = ko.observable();
+    }
+
+    return PostViewModel;
 
   })();
 
