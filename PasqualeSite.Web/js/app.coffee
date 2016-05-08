@@ -41,6 +41,7 @@ class PasqualeSite.ViewModels.PostsViewModel
             selectedItems: @SelectedPost
             multiSelect: false   
             afterSelectionChange: =>
+                CKEDITOR.instances['content'].setData(@SelectedPost()[0].PostContent()) #Populates CKEditor with content.
                 #CKEDITOR.replace('content');  
             pagingOptions: 
                 currentPage: ko.observable(1)
@@ -56,16 +57,60 @@ class PasqualeSite.ViewModels.PostViewModel
         @PostContent = ko.observable("")
         @DateCreated = ko.observable()
         @DateModified = ko.observable()
-        @isFeatured = ko.observable()
+        @IsFeatured = ko.observable()
+        @IsActive = ko.observable()
         @Priority = ko.observable()
 
-        @User = ko.observable()
-        @Image = ko.observable()
+        @User = ko.observable(new PasqualeSite.ViewModels.AppUser())
+        @Image = ko.observable(new PasqualeSite.ViewModels.PostImageViewModel())
 
         @FeaturePost = () =>
-            @isFeatured(true)
+            @IsFeatured(true)
 
         @UnfeaturePost = () =>
-            @isFeatured(false)
+            @IsFeatured(false)
 
+        @EnablePost = () =>
+            @IsActive(true)
+
+        @DisablePost = () =>
+            @IsActive(false)
+
+        @SavePost = () =>
+            newPost = 
+                Id: @Id()
+                Title: @Title()
+                Teaser: @Teaser()
+                PostContent: @PostContent()
+                DateCreated: @DateCreated()
+                DateModified: @DateModified()
+                IsFeatured: @IsFeatured()
+                IsActive: @IsActive()
+                Priority: @Priority()
+                ImageId: if @Image() then @Image().Id() else null
+            $.ajax({
+                url: approot + "Admin/SavePost"
+                data: newPost: newPost
+                type: "POST",
+                success: (data) =>
+                    console.log(data)
+            }) 
+
+
+class PasqualeSite.ViewModels.PostImageViewModel
+    constructor: () ->
+        @Id = ko.observable()
+        @Path = ko.observable()
+        @Description = ko.observable()
+
+
+class PasqualeSite.ViewModels.AppUser
+    constructor: () ->
+        @Id = ko.observable()
+        @FirstName = ko.observable()
+        @LastName = ko.observable()
+        @UserName = ko.observable()
+        @Email = ko.observable()
+        @EmailConfirmed = ko.observable()
+        @Roles = ko.observableArray([])
 $ ->

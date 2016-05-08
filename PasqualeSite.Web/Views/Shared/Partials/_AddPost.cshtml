@@ -14,15 +14,27 @@
     </div>
     <div class="form-group">
         <label for="featured">Is Featured (on homepage): </label>
-        <!--ko if: isFeatured() != true -->
+        <!--ko if: IsFeatured() != true -->
         <button data-bind="click: function() { FeaturePost() }" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-remove-circle"></span> Post Not Featured</button>
         <!--/ko-->
-        <!--ko if: isFeatured() == true -->
-        <button data-bind="click: function() { UnfeaturePost() }" style="background-color: black; border-color:black;" type="button" class="btn btn-info"><span class="glyphicon glyphicon-ok-circle"></span> Post Featured</button>
+        <!--ko if: IsFeatured() == true -->
+        <button data-bind="click: function() { UnfeaturePost() }" style="background-color: darkgreen; border-color:darkgreen;" type="button" class="btn btn-info"><span class="glyphicon glyphicon-ok-circle"></span> Post Featured</button>
+        <!--/ko-->
+    </div>
+    <div class="form-group">
+        <label for="featured">Is Active (shows up on blog): </label>
+        <!--ko if: IsActive() != true -->
+        <button data-bind="click: function() { EnablePost() }" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-remove-circle"></span> Post Not Active</button>
+        <!--/ko-->
+        <!--ko if: IsActive() == true -->
+        <button data-bind="click: function() { DisablePost() }" style="background-color: darkgreen; border-color: darkgreen;" type="button" class="btn btn-info"><span class="glyphicon glyphicon-ok-circle"></span> Post Active</button>
         <!--/ko-->
     </div>
     <div class="form-group">
         <label for="priority">Priority (the higher the number, the higher it appears on home page)</label>
         <input data-bind="textInput: Priority" class="form-control" id="priority" placeholder="Priority">
+    </div>
+    <div class="form-group">
+        <button data-bind="click: function() { SavePost() }" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Save Post</button>
     </div>
 </div>

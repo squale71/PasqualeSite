@@ -16,11 +16,12 @@ namespace PasqualeSite.Data.Entities
         [MaxLength(500)]
         public string Teaser { get; set; }
         public string PostContent { get; set; }
-        public int ImageId { get; set; }
+        public int? ImageId { get; set; }
         public string UserId { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
         public bool IsFeatured { get; set; }
+        public bool IsActive { get; set; }
         public int Priority { get; set; }
 
         [ForeignKey("UserId")]

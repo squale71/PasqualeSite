@@ -156,6 +156,14 @@
     <Compile Include="Migrations\201605071454026_AddedComments.Designer.cs">
       <DependentUpon>201605071454026_AddedComments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605081332296_AddedActive.cs" />
+    <Compile Include="Migrations\201605081332296_AddedActive.Designer.cs">
+      <DependentUpon>201605081332296_AddedActive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605081433027_ImageNullable.cs" />
+    <Compile Include="Migrations\201605081433027_ImageNullable.Designer.cs">
+      <DependentUpon>201605081433027_ImageNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +181,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605071454026_AddedComments.resx">
       <DependentUpon>201605071454026_AddedComments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605081332296_AddedActive.resx">
+      <DependentUpon>201605081332296_AddedActive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605081433027_ImageNullable.resx">
+      <DependentUpon>201605081433027_ImageNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

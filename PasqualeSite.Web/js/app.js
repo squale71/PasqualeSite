@@ -64,7 +64,9 @@
         selectedItems: this.SelectedPost,
         multiSelect: false,
         afterSelectionChange: (function(_this) {
-          return function() {};
+          return function() {
+            return CKEDITOR.instances['content'].setData(_this.SelectedPost()[0].PostContent());
+          };
         })(this),
         pagingOptions: {
           currentPage: ko.observable(1),
@@ -87,23 +89,87 @@
       this.PostContent = ko.observable("");
       this.DateCreated = ko.observable();
       this.DateModified = ko.observable();
-      this.isFeatured = ko.observable();
+      this.IsFeatured = ko.observable();
+      this.IsActive = ko.observable();
       this.Priority = ko.observable();
-      this.User = ko.observable();
-      this.Image = ko.observable();
+      this.User = ko.observable(new PasqualeSite.ViewModels.AppUser());
+      this.Image = ko.observable(new PasqualeSite.ViewModels.PostImageViewModel());
       this.FeaturePost = (function(_this) {
         return function() {
-          return _this.isFeatured(true);
+          return _this.IsFeatured(true);
         };
       })(this);
       this.UnfeaturePost = (function(_this) {
         return function() {
-          return _this.isFeatured(false);
+          return _this.IsFeatured(false);
+        };
+      })(this);
+      this.EnablePost = (function(_this) {
+        return function() {
+          return _this.IsActive(true);
+        };
+      })(this);
+      this.DisablePost = (function(_this) {
+        return function() {
+          return _this.IsActive(false);
+        };
+      })(this);
+      this.SavePost = (function(_this) {
+        return function() {
+          var newPost;
+          newPost = {
+            Id: _this.Id(),
+            Title: _this.Title(),
+            Teaser: _this.Teaser(),
+            PostContent: _this.PostContent(),
+            DateCreated: _this.DateCreated(),
+            DateModified: _this.DateModified(),
+            IsFeatured: _this.IsFeatured(),
+            IsActive: _this.IsActive(),
+            Priority: _this.Priority(),
+            ImageId: _this.Image() ? _this.Image().Id() : null
+          };
+          return $.ajax({
+            url: approot + "Admin/SavePost",
+            data: {
+              newPost: newPost
+            },
+            type: "POST",
+            success: function(data) {
+              return console.log(data);
+            }
+          });
         };
       })(this);
     }
 
     return PostViewModel;
+
+  })();
+
+  PasqualeSite.ViewModels.PostImageViewModel = (function() {
+    function PostImageViewModel() {
+      this.Id = ko.observable();
+      this.Path = ko.observable();
+      this.Description = ko.observable();
+    }
+
+    return PostImageViewModel;
+
+  })();
+
+  PasqualeSite.ViewModels.AppUser = (function() {
+    function AppUser() {
+      this.Id = ko.observable();
+      this.FirstName = ko.observable();
+      this.LastName = ko.observable();
+      this.UserName = ko.observable();
+      this.Email = ko.observable();
+      this.EmailConfirmed = ko.observable();
+      this.Roles = ko.observableArray([]);
+    }
+
+    return AppUser;
 
   })();
 

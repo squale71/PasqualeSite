@@ -16,19 +16,16 @@
 
 <script>
     $(document).ready(function () {
-        var posts = [
-            {
-                Title: "test"
-            },
-            { 
-                Title: "test2" 
-            },
-        { 
-        Title: "test3" 
-    }
-        ]
-
-        model = new PasqualeSite.KnockoutModel({ Posts: posts }, new PasqualeSite.ViewModels.PostsViewModel())
+        console.log('test');
+        $.ajax({
+            url: approot + "Admin/GetAdminPosts",
+            type: "POST",
+            success: function (data) {
+                console.log(data);
+                var posts = JSON.parse(data);
+                model = new PasqualeSite.KnockoutModel({ Posts: posts }, new PasqualeSite.ViewModels.PostsViewModel())
+            }
+        }) 
     })
 </script>
 
