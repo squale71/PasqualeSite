@@ -659,6 +659,7 @@
     <Content Include="js\plugins\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="js\plugins\ckeditor\skins\moono\readme.md" />
     <Content Include="Views\Shared\Partials\_UploadImage.cshtml" />
+    <Content Include="Views\Shared\Partials\_TagGrid.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

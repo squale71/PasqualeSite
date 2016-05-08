@@ -12,18 +12,48 @@
     .kgGroupIcon { right: -20px; top: 5px; }
     .kgGroupedByIcon { right: -20px; top: 5px; }
     .kgGroupingNumber { right: -30px; top: 0px; }
+    .kgViewport { min-width: 100%; }
+    .kgTopPanel { min-width: 100%; }
+    .kgFooterPanel { min-width: 100%; }
 </style>
 
 <script>
     $(document).ready(function () {
-        $.ajax({
-            url: approot + "Admin/GetAdminPosts",
-            type: "POST",
-            success: function (data) {
-                var posts = JSON.parse(data);
-                model = new PasqualeSite.KnockoutModel({ Posts: posts }, new PasqualeSite.ViewModels.PostsViewModel())
-            }
-        }) 
+        var deferredPosts = LoadBlogPosts();
+        var deferredTags = LoadTags();
+
+        var posts, tags;
+
+        $.when(deferredPosts, deferredTags).then(PopulateModel);
+
+        function LoadBlogPosts() {
+            var res = $.ajax({
+                url: approot + "Admin/GetAdminPosts",
+                type: "GET",
+                success: function (data) {
+                    posts = JSON.parse(data);
+                }
+            })
+
+            return res;
+        }
+
+        function LoadTags() {
+            var res = $.ajax({
+                url: approot + "Admin/GetAllTags",
+                type: "GET",
+                success: function (data) {
+                    tags = JSON.parse(data);
+                }
+            })
+
+            return res;
+        }
+
+        function PopulateModel() {
+            model = new PasqualeSite.KnockoutModel({ Posts: posts, Tags: tags }, new PasqualeSite.ViewModels.PostsViewModel())
+        }
+
     })
 </script>
 
@@ -35,6 +65,7 @@
                 <li role="presentation" class="active"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">Posts</a></li>
                 <li role="presentation"><a href="#editpost" aria-controls="editpost" role="tab" data-toggle="tab">Add/Edit Post</a></li>
                 <li role="presentation"><a href="#library" aria-controls="library" role="tab" data-toggle="tab">Library</a></li>
+                <li role="presentation"><a href="#tags" aria-controls="tags" role="tab" data-toggle="tab">Tags</a></li>
             </ul>
 
             <!-- Tab panes -->
@@ -47,6 +78,9 @@
                 </div>
                 <div role="tabpanel" class="tab-pane" id="library">
                     @Html.Partial("Partials/_UploadImage")
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tags">
+                    @Html.Partial("Partials/_TagGrid")
                 </div>
             </div>
 

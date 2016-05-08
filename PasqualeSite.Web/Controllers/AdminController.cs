@@ -30,6 +30,17 @@ namespace PasqualeSite.Web.Controllers
             return Content(Newtonsoft.Json.JsonConvert.SerializeObject(posts, new Newtonsoft.Json.JsonSerializerSettings() { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore, ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore }));
         }
 
+        public async Task<ActionResult> GetAllTags()
+        {
+            List<Tag> tags = new List<Tag>();
+            using (var ts = new TagService())
+            {
+                tags = await ts.GetAllTags();
+            }
+
+            return Content(Newtonsoft.Json.JsonConvert.SerializeObject(tags, new Newtonsoft.Json.JsonSerializerSettings() { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore, ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore }));
+        }
+
         [HttpPost]
         [ValidateInput(false)]
         public async Task<ActionResult> SavePost(Post newPost)

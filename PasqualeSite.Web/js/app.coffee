@@ -23,10 +23,13 @@ class PasqualeSite.KnockoutModel
 class PasqualeSite.ViewModels.PostsViewModel
     constructor: () ->
         @Posts = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostViewModel, true)  
+        @Tags = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.TagViewModel, true)  
 
         @SelectedPost = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostViewModel, true)  
+
+        @SelectedTag = ko.observableArray() 
         @NewPost = ko.observable(new PasqualeSite.ViewModels.PostViewModel())
-        @GridOptions = 
+        @PostGridOptions = 
             data: @Posts
             columnDefs: [
                 { field: 'Id', displayName: 'Id', width: 90 }
@@ -48,6 +51,23 @@ class PasqualeSite.ViewModels.PostsViewModel
                 pageSize: ko.observable(30)
                 pageSizes: ko.observableArray([30, 60, 90])
                 totalServerItems: ko.observable(0) 
+
+        @TagGridOptions =
+            data: @Tags
+            columnDefs: [
+                { field: 'Id', displayName: 'Id', width: 100}
+                { field: 'Name', displayName: 'Name', width: 200}
+            ]
+            enablePaging: true
+            selectedItems: @SelectedTag
+            multiSelect: false  
+            disableTextSelection: false 
+            pagingOptions: 
+                currentPage: ko.observable(1)
+                pageSize: ko.observable(30)
+                pageSizes: ko.observableArray([30, 60, 90])
+                totalServerItems: ko.observable(0) 
+
 
 class PasqualeSite.ViewModels.PostViewModel
     constructor: () ->
@@ -94,6 +114,8 @@ class PasqualeSite.ViewModels.PostViewModel
                 type: "POST",
                 success: (data) =>
                     if isExistingPost
+                        model.Model.Posts.push({})
+                        model.Model.Posts.pop()
                         PasqualeSite.notify("Success Updating Post", "success")
                     else
                         model.Model.NewPost(new PasqualeSite.ViewModels.PostViewModel())
@@ -101,6 +123,11 @@ class PasqualeSite.ViewModels.PostViewModel
                 error: (err) =>
                     PasqualeSite.notify("There was a problem saving the post", "error")
             }) 
+
+class PasqualeSite.ViewModels.TagViewModel
+    constructor: () ->
+        @Id = ko.observable()
+        @Name = ko.observable()
 
 
 class PasqualeSite.ViewModels.PostImageViewModel
@@ -119,4 +146,9 @@ class PasqualeSite.ViewModels.AppUser
         @Email = ko.observable()
         @EmailConfirmed = ko.observable()
         @Roles = ko.observableArray([])
+
+
+
+
+
 $ ->

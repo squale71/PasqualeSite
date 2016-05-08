@@ -41,5 +41,6 @@ namespace PasqualeSite.Services
             await db.SaveChangesAsync();
             return await GetBlogPost(newPost.Id);
         }
+
     }
 }

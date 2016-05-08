@@ -29,9 +29,11 @@
   PasqualeSite.ViewModels.PostsViewModel = (function() {
     function PostsViewModel() {
       this.Posts = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostViewModel, true);
+      this.Tags = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.TagViewModel, true);
       this.SelectedPost = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostViewModel, true);
+      this.SelectedTag = ko.observableArray();
       this.NewPost = ko.observable(new PasqualeSite.ViewModels.PostViewModel());
-      this.GridOptions = {
+      this.PostGridOptions = {
         data: this.Posts,
         columnDefs: [
           {
@@ -68,6 +70,30 @@
             return CKEDITOR.instances['content'].setData(_this.SelectedPost()[0].PostContent());
           };
         })(this),
+        pagingOptions: {
+          currentPage: ko.observable(1),
+          pageSize: ko.observable(30),
+          pageSizes: ko.observableArray([30, 60, 90]),
+          totalServerItems: ko.observable(0)
+        }
+      };
+      this.TagGridOptions = {
+        data: this.Tags,
+        columnDefs: [
+          {
+            field: 'Id',
+            displayName: 'Id',
+            width: 100
+          }, {
+            field: 'Name',
+            displayName: 'Name',
+            width: 200
+          }
+        ],
+        enablePaging: true,
+        selectedItems: this.SelectedTag,
+        multiSelect: false,
+        disableTextSelection: false,
         pagingOptions: {
           currentPage: ko.observable(1),
           pageSize: ko.observable(30),
@@ -137,6 +163,8 @@
             type: "POST",
             success: function(data) {
               if (isExistingPost) {
+                model.Model.Posts.push({});
+                model.Model.Posts.pop();
                 return PasqualeSite.notify("Success Updating Post", "success");
               } else {
                 model.Model.NewPost(new PasqualeSite.ViewModels.PostViewModel());
@@ -152,6 +180,16 @@
     }
 
     return PostViewModel;
+
+  })();
+
+  PasqualeSite.ViewModels.TagViewModel = (function() {
+    function TagViewModel() {
+      this.Id = ko.observable();
+      this.Name = ko.observable();
+    }
+
+    return TagViewModel;
 
   })();
 
