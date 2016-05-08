@@ -16,12 +16,10 @@
 
 <script>
     $(document).ready(function () {
-        console.log('test');
         $.ajax({
             url: approot + "Admin/GetAdminPosts",
             type: "POST",
             success: function (data) {
-                console.log(data);
                 var posts = JSON.parse(data);
                 model = new PasqualeSite.KnockoutModel({ Posts: posts }, new PasqualeSite.ViewModels.PostsViewModel())
             }

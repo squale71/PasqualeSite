@@ -76,7 +76,7 @@ class PasqualeSite.ViewModels.PostViewModel
         @DisablePost = () =>
             @IsActive(false)
 
-        @SavePost = () =>
+        @SavePost = (isExistingPost) =>
             newPost = 
                 Id: @Id()
                 Title: @Title()
@@ -93,7 +93,13 @@ class PasqualeSite.ViewModels.PostViewModel
                 data: newPost: newPost
                 type: "POST",
                 success: (data) =>
-                    console.log(data)
+                    if isExistingPost
+                        PasqualeSite.notify("Success Updating Post", "success")
+                    else
+                        model.Model.NewPost(new PasqualeSite.ViewModels.PostViewModel())
+                        PasqualeSite.notify("Success Adding New Post", "success")
+                error: (err) =>
+                    PasqualeSite.notify("There was a problem saving the post", "error")
             }) 
 
 

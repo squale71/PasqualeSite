@@ -36,4 +36,7 @@
         <label for="priority">Priority (the higher the number, the higher it appears on home page)</label>
         <input data-bind="textInput: Priority" class="form-control" id="priority" placeholder="Priority">
     </div>
+    <div class="form-group">
+        <button data-bind="click: function() { SavePost(true) }" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Save Post</button>
+    </div>
 </div>

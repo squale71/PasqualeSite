@@ -115,7 +115,7 @@
         };
       })(this);
       this.SavePost = (function(_this) {
-        return function() {
+        return function(isExistingPost) {
           var newPost;
           newPost = {
             Id: _this.Id(),
@@ -136,7 +136,15 @@
             },
             type: "POST",
             success: function(data) {
-              return console.log(data);
+              if (isExistingPost) {
+                return PasqualeSite.notify("Success Updating Post", "success");
+              } else {
+                model.Model.NewPost(new PasqualeSite.ViewModels.PostViewModel());
+                return PasqualeSite.notify("Success Adding New Post", "success");
+              }
+            },
+            error: function(err) {
+              return PasqualeSite.notify("There was a problem saving the post", "error");
             }
           });
         };

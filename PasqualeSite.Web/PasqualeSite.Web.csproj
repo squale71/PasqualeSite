@@ -584,6 +584,7 @@
     <Content Include="js\plugins\ckeditor\skins\moono\images\refresh.png" />
     <Content Include="js\plugins\ckeditor\skins\moono\images\spinner.gif" />
     <Content Include="js\plugins\ckeditor\styles.js" />
+    <Content Include="js\plugins\datejs\date.js" />
     <Content Include="js\plugins\jqueryui\jquery-ui.css" />
     <Content Include="js\plugins\jqueryui\jquery-ui.js" />
     <Content Include="js\plugins\jqueryui\jquery-ui.min.css" />
@@ -595,6 +596,7 @@
     <Content Include="js\plugins\kogrid\koGrid-2.1.1.debug.js" />
     <Content Include="js\plugins\kogrid\koGrid-2.1.1.js" />
     <Content Include="js\plugins\kogrid\KoGrid.css" />
+    <Content Include="js\plugins\notify\notify.min.js" />
     <Content Include="js\plugins\owl\assets\owl.carousel.css" />
     <Content Include="js\plugins\owl\assets\owl.theme.css" />
     <Content Include="js\plugins\owl\owl.carousel.js" />
