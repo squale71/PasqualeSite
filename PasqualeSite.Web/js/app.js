@@ -33,6 +33,7 @@
       this.SelectedPost = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostViewModel, true);
       this.SelectedTag = ko.observableArray();
       this.NewPost = ko.observable(new PasqualeSite.ViewModels.PostViewModel());
+      this.NewTag = ko.observable();
       this.PostGridOptions = {
         data: this.Posts,
         columnDefs: [
@@ -101,6 +102,27 @@
           totalServerItems: ko.observable(0)
         }
       };
+      this.AddTag = (function(_this) {
+        return function() {
+          if (_this.NewTag() && _this.NewTag().trim() !== "") {
+            return $.ajax({
+              url: approot + "Admin/AddTag",
+              data: {
+                name: _this.NewTag()
+              },
+              type: "POST",
+              success: function(data) {
+                return PasqualeSite.notify("Success Adding New Tag", "success");
+              },
+              error: function(err) {
+                return PasqualeSite.notify("There was a problem saving the tag", "error");
+              }
+            });
+          } else {
+            return PasqualeSite.notify("You need to fill in a value in order to add a tag.", "info");
+          }
+        };
+      })(this);
     }
 
     return PostsViewModel;
@@ -162,11 +184,14 @@
             },
             type: "POST",
             success: function(data) {
+              var json, post;
               if (isExistingPost) {
                 model.Model.Posts.push({});
                 model.Model.Posts.pop();
                 return PasqualeSite.notify("Success Updating Post", "success");
               } else {
+                json = JSON.parse(data);
+                post = new PasqualeSite.ViewModels.PostViewModel();
                 model.Model.NewPost(new PasqualeSite.ViewModels.PostViewModel());
                 return PasqualeSite.notify("Success Adding New Post", "success");
               }
@@ -175,6 +200,28 @@
               return PasqualeSite.notify("There was a problem saving the post", "error");
             }
           });
+        };
+      })(this);
+      this.DeletePost = (function(_this) {
+        return function() {
+          var confirmation;
+          confirmation = confirm("Are you sure you want to delete the post? This action cannot be undone.");
+          if (confirmation) {
+            return $.ajax({
+              url: approot + "Admin/DeletePost",
+              data: {
+                id: _this.Id()
+              },
+              type: "POST",
+              success: function(data) {
+                model.Model.Posts.remove(_this);
+                return PasqualeSite.notify("Success Removing Post", "success");
+              },
+              error: function(err) {
+                return PasqualeSite.notify("There was a problem removing the post", "error");
+              }
+            });
+          }
         };
       })(this);
     }
@@ -187,6 +234,30 @@
     function TagViewModel() {
       this.Id = ko.observable();
       this.Name = ko.observable();
+      this.SaveTag = (function(_this) {
+        return function() {
+          var newTag;
+          newTag = {
+            Id: _this.Id(),
+            Name: _this.Name()
+          };
+          return $.ajax({
+            url: approot + "Admin/SaveTag",
+            data: {
+              newTag: newTag
+            },
+            type: "POST",
+            success: function(data) {
+              model.Model.Tags.push({});
+              model.Model.Tags.pop();
+              return PasqualeSite.notify("Success Updating Tag", "success");
+            },
+            error: function(err) {
+              return PasqualeSite.notify("There was a problem saving the tag", "error");
+            }
+          });
+        };
+      })(this);
     }
 
     return TagViewModel;

@@ -15,5 +15,21 @@ namespace PasqualeSite.Services
             var tags = await db.Tags.ToListAsync();
             return tags;
         }
+
+        public async Task<Tag> SaveTag(Tag newTag)
+        {
+            var tag = await db.Tags.Where(x => x.Id == newTag.Id).FirstOrDefaultAsync();
+            if (tag != null)
+            {
+                db.Entry(tag).CurrentValues.SetValues(newTag);
+            }
+            else
+            {
+                db.Tags.Add(newTag);
+            }
+
+            await db.SaveChangesAsync();
+            return newTag;
+        }
     }
 }

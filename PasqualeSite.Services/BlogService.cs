@@ -42,5 +42,18 @@ namespace PasqualeSite.Services
             return await GetBlogPost(newPost.Id);
         }
 
+        public async Task<Post> DeletePost(int id)
+        {
+            var post = db.Posts.Where(x => x.Id == id).FirstOrDefault();
+            if (post != null)
+            {
+                db.Posts.Remove(post);
+                await db.SaveChangesAsync();
+                return post;
+            }
+
+            return null;
+        }
+
     }
 }

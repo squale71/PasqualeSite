@@ -1,12 +1,21 @@
 ﻿
+<br />
+<div class="form-inline">
+    <button data-bind="click: function() { AddTag() }" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add Tag</button>
+    <input data-bind="textInput: NewTag" class="form-control" id="newname" placeholder="Name">
+</div>
 
+<br />
 <div class="gridStyle" data-bind="koGrid: TagGridOptions"></div>
+
+<!--ko if: SelectedTag().length > 0-->
 <div class="well" data-bind="with: SelectedTag()[0]">
     <div class="form-group">
         <label for="title">Name</label>
-        <input data-bind="textInput: Name" class="form-control" id="title" placeholder="Name">
+        <input data-bind="textInput: Name" class="form-control" id="name" placeholder="Name">
     </div>
     <div class="form-group">
         <button data-bind="click: function() { SaveTag(true) }" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Save Tag</button>
     </div>
 </div>
+<!--/ko-->

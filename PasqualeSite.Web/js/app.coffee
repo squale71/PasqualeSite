@@ -29,6 +29,7 @@ class PasqualeSite.ViewModels.PostsViewModel
 
         @SelectedTag = ko.observableArray() 
         @NewPost = ko.observable(new PasqualeSite.ViewModels.PostViewModel())
+        @NewTag = ko.observable()
         @PostGridOptions = 
             data: @Posts
             columnDefs: [
@@ -67,6 +68,20 @@ class PasqualeSite.ViewModels.PostsViewModel
                 pageSize: ko.observable(30)
                 pageSizes: ko.observableArray([30, 60, 90])
                 totalServerItems: ko.observable(0) 
+
+        @AddTag = () =>
+            if @NewTag() && @NewTag().trim() != ""
+                $.ajax({
+                    url: approot + "Admin/AddTag"
+                    data: name: @NewTag()
+                    type: "POST",
+                    success: (data) =>
+                        PasqualeSite.notify("Success Adding New Tag", "success")
+                    error: (err) =>
+                        PasqualeSite.notify("There was a problem saving the tag", "error")
+                }) 
+            else 
+                PasqualeSite.notify("You need to fill in a value in order to add a tag.", "info")
 
 
 class PasqualeSite.ViewModels.PostViewModel
@@ -118,17 +133,49 @@ class PasqualeSite.ViewModels.PostViewModel
                         model.Model.Posts.pop()
                         PasqualeSite.notify("Success Updating Post", "success")
                     else
+                        json = JSON.parse(data)
+                        post = new PasqualeSite.ViewModels.PostViewModel()
+    
                         model.Model.NewPost(new PasqualeSite.ViewModels.PostViewModel())
                         PasqualeSite.notify("Success Adding New Post", "success")
                 error: (err) =>
                     PasqualeSite.notify("There was a problem saving the post", "error")
             }) 
 
+        @DeletePost = () =>
+            confirmation = confirm "Are you sure you want to delete the post? This action cannot be undone."
+            if confirmation
+                $.ajax({
+                    url: approot + "Admin/DeletePost"
+                    data: id: @Id()
+                    type: "POST",
+                    success: (data) =>
+                        model.Model.Posts.remove(@)
+                        PasqualeSite.notify("Success Removing Post", "success")
+                    error: (err) =>
+                        PasqualeSite.notify("There was a problem removing the post", "error")
+                }) 
+
 class PasqualeSite.ViewModels.TagViewModel
     constructor: () ->
         @Id = ko.observable()
         @Name = ko.observable()
 
+        @SaveTag = () =>
+            newTag = 
+                Id: @Id()
+                Name: @Name()
+            $.ajax({
+                url: approot + "Admin/SaveTag"
+                data: newTag: newTag
+                type: "POST",
+                success: (data) =>
+                    model.Model.Tags.push({})
+                    model.Model.Tags.pop()
+                    PasqualeSite.notify("Success Updating Tag", "success")
+                error: (err) =>
+                    PasqualeSite.notify("There was a problem saving the tag", "error")
+            }) 
 
 class PasqualeSite.ViewModels.PostImageViewModel
     constructor: () ->

@@ -42,6 +42,31 @@ namespace PasqualeSite.Web.Controllers
         }
 
         [HttpPost]
+        public async Task<ActionResult> AddTag(string name)
+        {
+            Tag tag = new Tag();
+            tag.Name = name;
+            using (var ts = new TagService())
+            {
+                tag = await ts.SaveTag(tag);
+            }
+
+            return Content(Newtonsoft.Json.JsonConvert.SerializeObject(tag, new Newtonsoft.Json.JsonSerializerSettings() { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore, ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore }));
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> SaveTag(Tag newTag)
+        {
+            Tag tag = new Tag();
+            using (var ts = new TagService())
+            {
+                tag = await ts.SaveTag(newTag);
+            }
+
+            return Content(Newtonsoft.Json.JsonConvert.SerializeObject(tag, new Newtonsoft.Json.JsonSerializerSettings() { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore, ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore }));
+        }
+
+        [HttpPost]
         [ValidateInput(false)]
         public async Task<ActionResult> SavePost(Post newPost)
         {
@@ -53,6 +78,18 @@ namespace PasqualeSite.Web.Controllers
             }
 
             return Content(Newtonsoft.Json.JsonConvert.SerializeObject(blogPost, new Newtonsoft.Json.JsonSerializerSettings() { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore, ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore }));
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> DeletePost(int id)
+        {
+            Post deletedPost = new Post();
+            using (var bs = new BlogService())
+            {
+                deletedPost = await bs.DeletePost(id);
+            }
+
+            return Content(Newtonsoft.Json.JsonConvert.SerializeObject(deletedPost, new Newtonsoft.Json.JsonSerializerSettings() { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore, ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore }));
         }
     }
 }
