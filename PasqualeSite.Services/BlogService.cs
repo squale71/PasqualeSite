@@ -70,10 +70,7 @@ namespace PasqualeSite.Services
             if (post != null)
             {
                 // Remove all relationships between post and tag.
-                foreach (var postTag in post.PostTags)
-                {
-                    db.PostTags.Remove(postTag);
-                }
+                db.PostTags.RemoveRange(post.PostTags);
                 db.Posts.Remove(post);
                 await db.SaveChangesAsync();
                 return post;
