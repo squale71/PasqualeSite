@@ -70,6 +70,8 @@
         multiSelect: false,
         afterSelectionChange: (function(_this) {
           return function() {
+            $('#postGrid').hide();
+            $('#editPost').show();
             return CKEDITOR.instances['content'].setData(_this.SelectedPost()[0].PostContent());
           };
         })(this),
@@ -96,6 +98,12 @@
         enablePaging: true,
         selectedItems: this.SelectedTag,
         multiSelect: false,
+        afterSelectionChange: (function(_this) {
+          return function() {
+            $('#tagGrid').hide();
+            return $('#editTag').show();
+          };
+        })(this),
         disableTextSelection: false,
         pagingOptions: {
           currentPage: ko.observable(1),
@@ -137,6 +145,18 @@
           totalServerItems: ko.observable(0)
         }
       };
+      this.BackToPostGrid = (function(_this) {
+        return function() {
+          $('#editPost').hide();
+          return $('#postGrid').show();
+        };
+      })(this);
+      this.BackToTagGrid = (function(_this) {
+        return function() {
+          $('#editTag').hide();
+          return $('#tagGrid').show();
+        };
+      })(this);
       this.AddTag = (function(_this) {
         return function() {
           if (_this.NewTag() && _this.NewTag().trim() !== "") {
@@ -229,6 +249,7 @@
                 model.Model.Posts.push({});
                 model.Model.Posts.pop();
                 model.Model.SelectedPost.removeAll();
+                model.Model.BackToPostGrid();
                 return PasqualeSite.notify("Success Updating Post", "success");
               } else {
                 json = JSON.parse(data);
@@ -293,6 +314,7 @@
             success: function(data) {
               model.Model.Tags.push({});
               model.Model.Tags.pop();
+              model.Model.BackToTagGrid();
               return PasqualeSite.notify("Success Updating Tag", "success");
             },
             error: function(err) {
@@ -311,6 +333,7 @@
             type: "POST",
             success: function(data) {
               model.Model.Tags.remove(_this);
+              model.Model.BackToTagGrid();
               return PasqualeSite.notify("Success Deleting Tag", "success");
             },
             error: function(err) {

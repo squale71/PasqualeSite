@@ -47,6 +47,9 @@ class PasqualeSite.ViewModels.PostsViewModel
             selectedItems: @SelectedPost
             multiSelect: false   
             afterSelectionChange: =>
+                $('#postGrid').hide()
+                $('#editPost').show()
+                
                 CKEDITOR.instances['content'].setData(@SelectedPost()[0].PostContent()) #Populates CKEditor with content.
                 #CKEDITOR.replace('content');  
             pagingOptions: 
@@ -64,6 +67,9 @@ class PasqualeSite.ViewModels.PostsViewModel
             enablePaging: true
             selectedItems: @SelectedTag
             multiSelect: false  
+            afterSelectionChange: =>
+                $('#tagGrid').hide()
+                $('#editTag').show()
             disableTextSelection: false 
             pagingOptions: 
                 currentPage: ko.observable(1)
@@ -90,6 +96,13 @@ class PasqualeSite.ViewModels.PostsViewModel
                 pageSizes: ko.observableArray([5, 10, 15])
                 totalServerItems: ko.observable(0) 
 
+        @BackToPostGrid = () =>            
+            $('#editPost').hide()
+            $('#postGrid').show()
+
+        @BackToTagGrid = () =>
+            $('#editTag').hide()
+            $('#tagGrid').show()
 
         @AddTag = () =>
             if @NewTag() && @NewTag().trim() != ""
@@ -160,6 +173,7 @@ class PasqualeSite.ViewModels.PostViewModel
                         model.Model.Posts.pop()
 
                         model.Model.SelectedPost.removeAll()
+                        model.Model.BackToPostGrid()
                         PasqualeSite.notify("Success Updating Post", "success")
                     else
                         json = JSON.parse(data)
@@ -203,6 +217,7 @@ class PasqualeSite.ViewModels.TagViewModel
                 success: (data) =>
                     model.Model.Tags.push({})
                     model.Model.Tags.pop()
+                    model.Model.BackToTagGrid()
                     PasqualeSite.notify("Success Updating Tag", "success")
                 error: (err) =>
                     PasqualeSite.notify("There was a problem saving the tag", "error")
@@ -215,6 +230,7 @@ class PasqualeSite.ViewModels.TagViewModel
                 type: "POST",
                 success: (data) =>
                     model.Model.Tags.remove(@)
+                    model.Model.BackToTagGrid()
                     PasqualeSite.notify("Success Deleting Tag", "success")
                 error: (err) =>
                     PasqualeSite.notify("There was a problem deleting the tag", "error")
