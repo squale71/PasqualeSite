@@ -208,6 +208,8 @@
     <Content Include="js\knockout.mapping-latest.js" />
     <Content Include="js\knockout.mapping.merge.js" />
     <Content Include="js\knockouthandlers.js" />
+    <Content Include="js\plugins\bootstrap-multiselect\bootstrap-multiselect.css" />
+    <Content Include="js\plugins\bootstrap-multiselect\bootstrap-multiselect.js" />
     <Content Include="js\plugins\ckeditor\adapters\jquery.js" />
     <Content Include="js\plugins\ckeditor\build-config.js" />
     <Content Include="js\plugins\ckeditor\ckeditor.js" />
