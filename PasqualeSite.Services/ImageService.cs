@@ -55,6 +55,12 @@ namespace PasqualeSite.Services
             }          
         }
 
+        public async Task<List<PostImage>> GetImages()
+        {
+            var images = await db.PostImages.ToListAsync();
+            return images;
+        }
+
         public async Task<PostImage> SaveImageToDb(string imageName)
         {
             var image = await db.PostImages.Where(x => x.Name == imageName).FirstOrDefaultAsync();

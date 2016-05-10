@@ -30,8 +30,10 @@
     function PostsViewModel() {
       this.Posts = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostViewModel, true);
       this.Tags = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.TagViewModel, true);
+      this.Images = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostImageViewModel, true);
       this.SelectedPost = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostViewModel, true);
-      this.SelectedTag = ko.observableArray();
+      this.SelectedTag = ko.observableArray([]);
+      this.SelectedImage = ko.observableArray([]);
       this.NewPost = ko.observable(new PasqualeSite.ViewModels.PostViewModel());
       this.NewTag = ko.observable();
       this.PostGridOptions = {
@@ -99,6 +101,39 @@
           currentPage: ko.observable(1),
           pageSize: ko.observable(30),
           pageSizes: ko.observableArray([30, 60, 90]),
+          totalServerItems: ko.observable(0)
+        }
+      };
+      this.ImageGridOptions = {
+        data: this.Images,
+        columnDefs: [
+          {
+            field: 'Name',
+            displayName: 'Name',
+            width: 500
+          }, {
+            field: 'PathHtml',
+            displayName: 'Path',
+            width: 500
+          }, {
+            field: 'CopyButton',
+            displayName: 'Copy',
+            width: 50
+          }, {
+            field: 'Link',
+            displayName: 'Link',
+            width: 50
+          }
+        ],
+        enablePaging: true,
+        multiSelect: false,
+        disableTextSelection: false,
+        rowHeight: 50,
+        selectWithCheckboxOnly: true,
+        pagingOptions: {
+          currentPage: ko.observable(1),
+          pageSize: ko.observable(5),
+          pageSizes: ko.observableArray([5, 10, 15]),
           totalServerItems: ko.observable(0)
         }
       };
@@ -293,7 +328,23 @@
   PasqualeSite.ViewModels.PostImageViewModel = (function() {
     function PostImageViewModel() {
       this.Id = ko.observable();
+      this.Name = ko.observable();
       this.Path = ko.observable();
+      this.PathHtml = ko.computed((function(_this) {
+        return function() {
+          return "<input class='form-control' type='text' value='" + _this.Path() + "' id='link-" + _this.Name() + "' />";
+        };
+      })(this), this);
+      this.Link = ko.computed((function(_this) {
+        return function() {
+          return "<a target='_blank' href='" + _this.Path() + "'><span class='glyphicon glyphicon-picture'></span></a>";
+        };
+      })(this), this);
+      this.CopyButton = ko.computed((function(_this) {
+        return function() {
+          return "<button class='btn btn-default' data-copytarget='#link-" + _this.Name() + "'><span class='glyphicon glyphicon-copy'></span></button>";
+        };
+      })(this), this);
       this.Description = ko.observable();
     }
 

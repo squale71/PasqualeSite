@@ -1,6 +1,44 @@
 ﻿
+<style>
+    .item { width: 200px; height: 200px; }
+</style>
+
+<script>
+    (function () {
+        'use strict';
+        // click events
+        document.body.addEventListener('click', copy, true);
+        // event handler
+        function copy(e) {
+            // find target element
+            var
+              t = e.target,
+              c = t.dataset.copytarget,
+              inp = (c ? document.querySelector(c) : null);
+            // is element selectable?
+            if (inp && inp.select) {
+                // select text
+                inp.select();
+                try {
+                    // copy text
+                    document.execCommand('copy');
+                    inp.blur();
+
+                    // copied animation
+                    PasqualeSite.notify("Link copied successfully", "success");
+                }
+                catch (err) {
+                    alert('please press Ctrl/Cmd+C to copy');
+                }
+            }
+        }
+    })();
+</script>
+
 <br /><br />
-<div class="container">
+<div class="gridStyle" data-bind="koGrid: ImageGridOptions"></div>
+<div class="container">        
+    <hr />
     <div class="row">
         @using (Html.BeginForm("UploadImage", "Image", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
@@ -11,13 +49,10 @@
 
             <div class="form-group">
                 <input type="file" name="file" />
-                <p class="help-block">Upload an image to the site for use in the blog.</p>
+                <p class="help-block">Upload an image to the site for use in the blog. Uploading an image of the same name will overwrite the current image.</p>
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
         }
     </div>
     <hr />
-    <div class="row">
-
-    </div>
 </div>

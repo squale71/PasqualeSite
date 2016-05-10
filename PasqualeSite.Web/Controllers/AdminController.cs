@@ -41,6 +41,17 @@ namespace PasqualeSite.Web.Controllers
             return Content(Newtonsoft.Json.JsonConvert.SerializeObject(tags, new Newtonsoft.Json.JsonSerializerSettings() { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore, ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore }));
         }
 
+        public async Task<ActionResult> GetAllImages()
+        {
+            List<PostImage> images = new List<PostImage>();
+            using (var imgService = new ImageService())
+            {
+                images = await imgService.GetImages();
+            }
+
+            return Content(Newtonsoft.Json.JsonConvert.SerializeObject(images, new Newtonsoft.Json.JsonSerializerSettings() { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore, ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore }));
+        }
+
         [HttpPost]
         public async Task<ActionResult> AddTag(string name)
         {

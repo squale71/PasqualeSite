@@ -15,16 +15,19 @@
     .kgViewport { min-width: 100%; }
     .kgTopPanel { min-width: 100%; }
     .kgFooterPanel { min-width: 100%; }
+    .kgCanvas { min-width: 100%; }
+    .kgRow { min-width: 100% !important; }
 </style>
 
 <script>
     $(document).ready(function () {
         var deferredPosts = LoadBlogPosts();
         var deferredTags = LoadTags();
+        var deferredImages = LoadImages();
 
-        var posts, tags;
+        var posts, tags, images;
 
-        $.when(deferredPosts, deferredTags).then(PopulateModel);
+        $.when(deferredPosts, deferredTags, deferredImages).then(PopulateModel);
 
         function LoadBlogPosts() {
             var res = $.ajax({
@@ -50,8 +53,20 @@
             return res;
         }
 
+        function LoadImages() {
+            var res = $.ajax({
+                url: approot + "Admin/GetAllImages",
+                type: "GET",
+                success: function (data) {
+                    images = JSON.parse(data);
+                }
+            })
+
+            return res;
+        }
+
         function PopulateModel() {
-            model = new PasqualeSite.KnockoutModel({ Posts: posts, Tags: tags }, new PasqualeSite.ViewModels.PostsViewModel())
+            model = new PasqualeSite.KnockoutModel({ Posts: posts, Tags: tags, Images: images }, new PasqualeSite.ViewModels.PostsViewModel())
         }
 
     })

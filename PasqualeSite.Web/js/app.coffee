@@ -24,10 +24,12 @@ class PasqualeSite.ViewModels.PostsViewModel
     constructor: () ->
         @Posts = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostViewModel, true)  
         @Tags = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.TagViewModel, true)  
+        @Images = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostImageViewModel, true) 
 
         @SelectedPost = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostViewModel, true)  
+        @SelectedTag = ko.observableArray([]) 
+        @SelectedImage = ko.observableArray([])
 
-        @SelectedTag = ko.observableArray() 
         @NewPost = ko.observable(new PasqualeSite.ViewModels.PostViewModel())
         @NewTag = ko.observable()
         @PostGridOptions = 
@@ -68,6 +70,26 @@ class PasqualeSite.ViewModels.PostsViewModel
                 pageSize: ko.observable(30)
                 pageSizes: ko.observableArray([30, 60, 90])
                 totalServerItems: ko.observable(0) 
+
+        @ImageGridOptions = 
+            data: @Images
+            columnDefs: [
+                { field: 'Name', displayName: 'Name', width: 500}
+                { field: 'PathHtml', displayName: 'Path', width: 500}
+                { field: 'CopyButton', displayName: 'Copy', width: 50 }
+                { field: 'Link', displayName: 'Link', width: 50 }                
+            ]
+            enablePaging: true
+            multiSelect: false  
+            disableTextSelection: false 
+            rowHeight: 50
+            selectWithCheckboxOnly: true
+            pagingOptions: 
+                currentPage: ko.observable(1)
+                pageSize: ko.observable(5)
+                pageSizes: ko.observableArray([5, 10, 15])
+                totalServerItems: ko.observable(0) 
+
 
         @AddTag = () =>
             if @NewTag() && @NewTag().trim() != ""
@@ -201,7 +223,21 @@ class PasqualeSite.ViewModels.TagViewModel
 class PasqualeSite.ViewModels.PostImageViewModel
     constructor: () ->
         @Id = ko.observable()
+        @Name = ko.observable()
         @Path = ko.observable()
+
+        @PathHtml = ko.computed( =>
+            return "<input class='form-control' type='text' value='" + @Path() + "' id='link-" + @Name() + "' />"
+        ,this)
+
+        @Link = ko.computed( =>
+            return "<a target='_blank' href='" + @Path() + "'><span class='glyphicon glyphicon-picture'></span></a>"
+        ,this)
+
+        @CopyButton = ko.computed( =>
+            return "<button class='btn btn-default' data-copytarget='#link-" + @Name() + "'><span class='glyphicon glyphicon-copy'></span></button>"
+        ,this)
+
         @Description = ko.observable()
 
 
