@@ -112,6 +112,11 @@
               },
               type: "POST",
               success: function(data) {
+                var json, theTag;
+                json = JSON.parse(data);
+                theTag = new PasqualeSite.ViewModels.TagViewModel();
+                ko.mapping.merge.fromJS(theTag, json);
+                _this.Tags.push(theTag);
                 return PasqualeSite.notify("Success Adding New Tag", "success");
               },
               error: function(err) {
@@ -188,10 +193,13 @@
               if (isExistingPost) {
                 model.Model.Posts.push({});
                 model.Model.Posts.pop();
+                model.Model.SelectedPost.removeAll();
                 return PasqualeSite.notify("Success Updating Post", "success");
               } else {
                 json = JSON.parse(data);
                 post = new PasqualeSite.ViewModels.PostViewModel();
+                ko.mapping.merge.fromJS(post, json);
+                model.Model.Posts.push(post);
                 model.Model.NewPost(new PasqualeSite.ViewModels.PostViewModel());
                 return PasqualeSite.notify("Success Adding New Post", "success");
               }
@@ -254,6 +262,24 @@
             },
             error: function(err) {
               return PasqualeSite.notify("There was a problem saving the tag", "error");
+            }
+          });
+        };
+      })(this);
+      this.DeleteTag = (function(_this) {
+        return function() {
+          return $.ajax({
+            url: approot + "Admin/DeleteTag",
+            data: {
+              id: _this.Id()
+            },
+            type: "POST",
+            success: function(data) {
+              model.Model.Tags.remove(_this);
+              return PasqualeSite.notify("Success Deleting Tag", "success");
+            },
+            error: function(err) {
+              return PasqualeSite.notify("There was a problem deleting the tag", "error");
             }
           });
         };

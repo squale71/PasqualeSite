@@ -8,6 +8,8 @@ using Microsoft.WindowsAzure.Storage; // Namespace for CloudStorageAccount
 using Microsoft.WindowsAzure.Storage.Blob; // Namespace for Blob storage types
 using System.IO;
 using System.Threading.Tasks;
+using PasqualeSite.Data.Entities;
+using System.Data.Entity;
 
 namespace PasqualeSite.Services
 {
@@ -41,6 +43,8 @@ namespace PasqualeSite.Services
                 var uriBuilder = new UriBuilder(blockBlob.Uri);
                 uriBuilder.Scheme = "http";
                 fullPath = uriBuilder.ToString();
+
+                await SaveImageToDb(imageName);
                 return fullPath;
             }
 
@@ -49,6 +53,30 @@ namespace PasqualeSite.Services
                 // LOG IT
                 return fullPath;
             }          
+        }
+
+        public async Task<PostImage> SaveImageToDb(string imageName)
+        {
+            var image = await db.PostImages.Where(x => x.Name == imageName).FirstOrDefaultAsync();
+
+            if (image != null)
+            {
+                var newImage = image;
+                newImage.Name = imageName;
+                newImage.Path = "http://www.thesqualls.com/images/" + imageName;
+                db.Entry(image).CurrentValues.SetValues(newImage);
+                await db.SaveChangesAsync();
+                return newImage;
+            }
+            else
+            {
+                var newImage = new PostImage();
+                newImage.Name = imageName;
+                newImage.Path = "http://www.thesqualls.com/images/" + imageName;
+                db.PostImages.Add(newImage);
+                await db.SaveChangesAsync();
+                return newImage;
+            }        
         }
     }
 }

@@ -76,6 +76,11 @@ class PasqualeSite.ViewModels.PostsViewModel
                     data: name: @NewTag()
                     type: "POST",
                     success: (data) =>
+                        json = JSON.parse(data)
+                        theTag = new PasqualeSite.ViewModels.TagViewModel()
+                        ko.mapping.merge.fromJS(theTag, json)  
+
+                        @Tags.push(theTag)
                         PasqualeSite.notify("Success Adding New Tag", "success")
                     error: (err) =>
                         PasqualeSite.notify("There was a problem saving the tag", "error")
@@ -131,11 +136,15 @@ class PasqualeSite.ViewModels.PostViewModel
                     if isExistingPost
                         model.Model.Posts.push({})
                         model.Model.Posts.pop()
+
+                        model.Model.SelectedPost.removeAll()
                         PasqualeSite.notify("Success Updating Post", "success")
                     else
                         json = JSON.parse(data)
                         post = new PasqualeSite.ViewModels.PostViewModel()
-    
+                        ko.mapping.merge.fromJS(post, json)  
+                        
+                        model.Model.Posts.push(post)
                         model.Model.NewPost(new PasqualeSite.ViewModels.PostViewModel())
                         PasqualeSite.notify("Success Adding New Post", "success")
                 error: (err) =>
@@ -175,6 +184,18 @@ class PasqualeSite.ViewModels.TagViewModel
                     PasqualeSite.notify("Success Updating Tag", "success")
                 error: (err) =>
                     PasqualeSite.notify("There was a problem saving the tag", "error")
+            }) 
+
+        @DeleteTag = () =>
+            $.ajax({
+                url: approot + "Admin/DeleteTag"
+                data: id: @Id()
+                type: "POST",
+                success: (data) =>
+                    model.Model.Tags.remove(@)
+                    PasqualeSite.notify("Success Deleting Tag", "success")
+                error: (err) =>
+                    PasqualeSite.notify("There was a problem deleting the tag", "error")
             }) 
 
 class PasqualeSite.ViewModels.PostImageViewModel

@@ -44,9 +44,14 @@ namespace PasqualeSite.Services
 
         public async Task<Post> DeletePost(int id)
         {
-            var post = db.Posts.Where(x => x.Id == id).FirstOrDefault();
+            var post = db.Posts.Include(x => x.PostTags).Where(x => x.Id == id).FirstOrDefault();
             if (post != null)
             {
+                // Remove all relationships between post and tag.
+                foreach (var postTag in post.PostTags)
+                {
+                    db.PostTags.Remove(postTag);
+                }
                 db.Posts.Remove(post);
                 await db.SaveChangesAsync();
                 return post;

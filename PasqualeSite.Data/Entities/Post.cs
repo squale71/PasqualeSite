@@ -30,5 +30,6 @@ namespace PasqualeSite.Data.Entities
         public virtual PostImage Image { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
+        public ICollection<PostTag> PostTags { get; set; }
     }
 }

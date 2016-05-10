@@ -164,6 +164,14 @@
     <Compile Include="Migrations\201605081433027_ImageNullable.Designer.cs">
       <DependentUpon>201605081433027_ImageNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605100013323_AddedNavPostTag.cs" />
+    <Compile Include="Migrations\201605100013323_AddedNavPostTag.Designer.cs">
+      <DependentUpon>201605100013323_AddedNavPostTag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605100045366_UpdatePostImage.cs" />
+    <Compile Include="Migrations\201605100045366_UpdatePostImage.Designer.cs">
+      <DependentUpon>201605100045366_UpdatePostImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +195,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605081433027_ImageNullable.resx">
       <DependentUpon>201605081433027_ImageNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605100013323_AddedNavPostTag.resx">
+      <DependentUpon>201605100013323_AddedNavPostTag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605100045366_UpdatePostImage.resx">
+      <DependentUpon>201605100045366_UpdatePostImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

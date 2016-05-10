@@ -67,6 +67,18 @@ namespace PasqualeSite.Web.Controllers
         }
 
         [HttpPost]
+        public async Task<ActionResult> DeleteTag(int id)
+        {
+            Tag tag = new Tag();
+            using (var ts = new TagService())
+            {
+                tag = await ts.DeleteTag(id);
+            }
+
+            return Content(Newtonsoft.Json.JsonConvert.SerializeObject(tag, new Newtonsoft.Json.JsonSerializerSettings() { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore, ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore }));
+        }
+
+        [HttpPost]
         [ValidateInput(false)]
         public async Task<ActionResult> SavePost(Post newPost)
         {

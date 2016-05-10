@@ -31,5 +31,22 @@ namespace PasqualeSite.Services
             await db.SaveChangesAsync();
             return newTag;
         }
+
+        public async Task<Tag> DeleteTag(int id)
+        {
+            var tag = await db.Tags.Include(x => x.PostTags).Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (tag != null)
+            {
+                // Remove all relationships between post and tag.
+                foreach (var postTag in tag.PostTags)
+                {
+                    db.PostTags.Remove(postTag);
+                }
+                db.Tags.Remove(tag);
+                await db.SaveChangesAsync();
+                return tag;
+            }
+            return null;
+        }
     }
 }
