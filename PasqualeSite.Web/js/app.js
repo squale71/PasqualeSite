@@ -52,13 +52,13 @@
             cellClass: 'Teaser',
             headerClass: 'Teaser'
           }, {
-            field: 'DateCreated',
+            field: 'FriendlyDateCreated',
             displayName: 'Date Created'
           }, {
-            field: 'DateModified',
+            field: 'FriendlyDateModified',
             displayName: 'Date Modified'
           }, {
-            field: 'isFeatured',
+            field: 'FeaturedText',
             displayName: 'Featured'
           }, {
             field: 'Priority',
@@ -200,6 +200,33 @@
       this.IsFeatured = ko.observable();
       this.IsActive = ko.observable();
       this.Priority = ko.observable();
+      this.FriendlyDateCreated = ko.computed((function(_this) {
+        return function() {
+          var newDate;
+          if (_this.DateCreated()) {
+            newDate = Date.parse(_this.DateCreated().substr(0, 19));
+            return newDate.toString('MM/d/yyyy, hh:mm tt');
+          }
+        };
+      })(this), this);
+      this.FriendlyDateModified = ko.computed((function(_this) {
+        return function() {
+          var newDate;
+          if (_this.DateModified()) {
+            newDate = Date.parse(_this.DateModified().substr(0, 19));
+            return newDate.toString('MM/d/yyyy, hh:mm tt');
+          }
+        };
+      })(this), this);
+      this.FeaturedText = ko.computed((function(_this) {
+        return function() {
+          if (_this.IsFeatured() === true) {
+            return "Yes";
+          } else {
+            return "No";
+          }
+        };
+      })(this), this);
       this.User = ko.observable(new PasqualeSite.ViewModels.AppUser());
       this.PostImage = ko.observable(new PasqualeSite.ViewModels.PostImageViewModel());
       this.PostTags = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostTagViewModel, true);

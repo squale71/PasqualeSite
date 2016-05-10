@@ -19,7 +19,7 @@ namespace PasqualeSite.Services
 
         public async Task<List<Post>> GetAllPosts(bool includeInactive = true)
         {
-            var posts = await db.Posts.Where(x => x.IsActive || includeInactive).Include(x => x.PostTags).ToListAsync();
+            var posts = await db.Posts.Where(x => x.IsActive || includeInactive).Include(x => x.PostTags).Include(x => x.Image).ToListAsync();
             foreach (var post in posts)
             {
                 post.TagIds = new List<int>();
@@ -37,7 +37,7 @@ namespace PasqualeSite.Services
             var blogPost = await db.Posts.Where(x => x.Id == newPost.Id).FirstOrDefaultAsync();
             if (blogPost != null)
             {
-                blogPost.DateModified = DateTime.Now.ToLocalTime();
+                newPost.DateModified = DateTime.Now.ToLocalTime();
                 db.Entry(blogPost).CurrentValues.SetValues(newPost);
             }
             else

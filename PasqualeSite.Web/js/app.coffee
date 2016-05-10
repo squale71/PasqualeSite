@@ -38,9 +38,9 @@ class PasqualeSite.ViewModels.PostsViewModel
                 { field: 'Id', displayName: 'Id', width: 90 }
                 { field: 'Title', displayName: 'Title', width: 80 }
                 { field: 'Teaser', cellClass: 'Teaser', headerClass: 'Teaser' }
-                { field: 'DateCreated', displayName: 'Date Created'}
-                { field: 'DateModified', displayName: 'Date Modified'}
-                { field: 'isFeatured', displayName: 'Featured'}
+                { field: 'FriendlyDateCreated', displayName: 'Date Created'}
+                { field: 'FriendlyDateModified', displayName: 'Date Modified'}
+                { field: 'FeaturedText', displayName: 'Featured'}
                 { field: 'Priority', displayName: 'Priority'}
             ]
             enablePaging: true
@@ -135,6 +135,25 @@ class PasqualeSite.ViewModels.PostViewModel
         @IsFeatured = ko.observable()
         @IsActive = ko.observable()
         @Priority = ko.observable()
+
+        @FriendlyDateCreated = ko.computed( =>
+            if @DateCreated()
+                newDate = Date.parse(@DateCreated().substr(0,19))
+                return newDate.toString('MM/d/yyyy, hh:mm tt')
+        ,this)
+
+        @FriendlyDateModified = ko.computed( =>
+            if @DateModified()
+                newDate = Date.parse(@DateModified().substr(0,19))
+                return newDate.toString('MM/d/yyyy, hh:mm tt')
+        ,this)
+
+        @FeaturedText = ko.computed( =>
+            if @IsFeatured() == true
+                return "Yes"
+            else
+                return "No"
+        ,this)
 
         @User = ko.observable(new PasqualeSite.ViewModels.AppUser())
         @PostImage = ko.observable(new PasqualeSite.ViewModels.PostImageViewModel())
