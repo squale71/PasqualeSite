@@ -19,7 +19,15 @@ namespace PasqualeSite.Services
 
         public async Task<List<Post>> GetAllPosts(bool includeInactive = true)
         {
-            var posts = await db.Posts.Where(x => x.IsActive || includeInactive).ToListAsync();
+            var posts = await db.Posts.Where(x => x.IsActive || includeInactive).Include(x => x.PostTags).ToListAsync();
+            foreach (var post in posts)
+            {
+                post.TagIds = new List<int>();
+                foreach (var tag in post.PostTags)
+                {
+                    post.TagIds.Add(tag.TagId);
+                }
+            }
             return posts;
         }
 
@@ -39,7 +47,21 @@ namespace PasqualeSite.Services
             }
 
             await db.SaveChangesAsync();
+
+            await UpdateTags(newPost, newPost.TagIds);
             return await GetBlogPost(newPost.Id);
+        }
+
+        public async Task<List<int>> UpdateTags(Post newPost, List<int> TagIds)
+        {
+            var currentTags = await db.PostTags.Where(x => x.PostId == newPost.Id).ToListAsync();
+            db.PostTags.RemoveRange(currentTags); // Lets just refresh all the relationships.
+            foreach (var id in TagIds)
+            {
+                db.PostTags.Add(new PostTag() { PostId = newPost.Id, TagId = id }); // Add the refreshed relationships.
+            }
+            await db.SaveChangesAsync();
+            return TagIds;
         }
 
         public async Task<Post> DeletePost(int id)

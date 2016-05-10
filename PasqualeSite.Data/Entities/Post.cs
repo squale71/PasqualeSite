@@ -8,7 +8,7 @@ using System.Web;
 
 namespace PasqualeSite.Data.Entities
 {
-    public class Post
+    public partial class Post
     {
         public int Id { get; set; }
         [MaxLength(100)]
@@ -23,6 +23,9 @@ namespace PasqualeSite.Data.Entities
         public bool IsFeatured { get; set; }
         public bool IsActive { get; set; }
         public int Priority { get; set; }
+
+        [NotMapped]
+        public List<int> TagIds { get; set; }
 
         [ForeignKey("UserId")]
         public virtual AppUser User { get; set; }

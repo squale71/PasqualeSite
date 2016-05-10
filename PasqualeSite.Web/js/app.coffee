@@ -137,7 +137,10 @@ class PasqualeSite.ViewModels.PostViewModel
         @Priority = ko.observable()
 
         @User = ko.observable(new PasqualeSite.ViewModels.AppUser())
-        @Image = ko.observable(new PasqualeSite.ViewModels.PostImageViewModel())
+        @PostImage = ko.observable(new PasqualeSite.ViewModels.PostImageViewModel())
+        @PostTags = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostTagViewModel, true) 
+
+        @TagIds = ko.observableArray([])
 
         @FeaturePost = () =>
             @IsFeatured(true)
@@ -162,7 +165,8 @@ class PasqualeSite.ViewModels.PostViewModel
                 IsFeatured: @IsFeatured()
                 IsActive: @IsActive()
                 Priority: @Priority()
-                ImageId: if @Image() then @Image().Id() else null
+                TagIds: @TagIds()
+                ImageId: if @PostImage() then @PostImage().Id() else null
             $.ajax({
                 url: approot + "Admin/SavePost"
                 data: newPost: newPost
@@ -200,6 +204,10 @@ class PasqualeSite.ViewModels.PostViewModel
                     error: (err) =>
                         PasqualeSite.notify("There was a problem removing the post", "error")
                 }) 
+class PasqualeSite.ViewModels.PostTagViewModel
+    constructor: () ->
+        @Tag = ko.observable()
+
 
 class PasqualeSite.ViewModels.TagViewModel
     constructor: () ->

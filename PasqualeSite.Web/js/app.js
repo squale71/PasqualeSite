@@ -201,7 +201,9 @@
       this.IsActive = ko.observable();
       this.Priority = ko.observable();
       this.User = ko.observable(new PasqualeSite.ViewModels.AppUser());
-      this.Image = ko.observable(new PasqualeSite.ViewModels.PostImageViewModel());
+      this.PostImage = ko.observable(new PasqualeSite.ViewModels.PostImageViewModel());
+      this.PostTags = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostTagViewModel, true);
+      this.TagIds = ko.observableArray([]);
       this.FeaturePost = (function(_this) {
         return function() {
           return _this.IsFeatured(true);
@@ -235,7 +237,8 @@
             IsFeatured: _this.IsFeatured(),
             IsActive: _this.IsActive(),
             Priority: _this.Priority(),
-            ImageId: _this.Image() ? _this.Image().Id() : null
+            TagIds: _this.TagIds(),
+            ImageId: _this.PostImage() ? _this.PostImage().Id() : null
           };
           return $.ajax({
             url: approot + "Admin/SavePost",
@@ -291,6 +294,15 @@
     }
 
     return PostViewModel;
+
+  })();
+
+  PasqualeSite.ViewModels.PostTagViewModel = (function() {
+    function PostTagViewModel() {
+      this.Tag = ko.observable();
+    }
+
+    return PostTagViewModel;
 
   })();
 
