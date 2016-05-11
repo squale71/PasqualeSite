@@ -35,13 +35,13 @@ class PasqualeSite.ViewModels.PostsViewModel
         @PostGridOptions = 
             data: @Posts
             columnDefs: [
-                { field: 'Id', displayName: 'Id', width: 90 }
-                { field: 'Title', displayName: 'Title', width: 80 }
-                { field: 'Teaser', cellClass: 'Teaser', headerClass: 'Teaser' }
-                { field: 'FriendlyDateCreated', displayName: 'Date Created'}
-                { field: 'FriendlyDateModified', displayName: 'Date Modified'}
-                { field: 'FeaturedText', displayName: 'Featured'}
-                { field: 'Priority', displayName: 'Priority'}
+                { field: 'Id', displayName: 'Id', width: 50 }
+                { field: 'Title', displayName: 'Title', width: 200 }
+                { field: 'Teaser', cellClass: 'Teaser', headerClass: 'Teaser', width: 750 }
+                { field: 'FriendlyDateCreated', displayName: 'Date Created', width: 250}
+                { field: 'FriendlyDateModified', displayName: 'Date Modified', width: 250}
+                { field: 'FeaturedText', displayName: 'Featured', width: 100 }
+                { field: 'Priority', displayName: 'Priority', width: 100}
             ]
             enablePaging: true
             selectedItems: @SelectedPost
@@ -80,10 +80,10 @@ class PasqualeSite.ViewModels.PostsViewModel
         @ImageGridOptions = 
             data: @Images
             columnDefs: [
+                { field: 'Link', displayName: 'Link', width: 50 }
                 { field: 'Name', displayName: 'Name', width: 500}
                 { field: 'PathHtml', displayName: 'Path', width: 500}
-                { field: 'CopyButton', displayName: 'Copy', width: 50 }
-                { field: 'Link', displayName: 'Link', width: 50 }                
+                { field: 'CopyButton', displayName: 'Copy', width: 50 }                
             ]
             enablePaging: true
             multiSelect: false  
@@ -156,7 +156,10 @@ class PasqualeSite.ViewModels.PostViewModel
         ,this)
 
         @User = ko.observable(new PasqualeSite.ViewModels.AppUser())
-        @PostImage = ko.observable(new PasqualeSite.ViewModels.PostImageViewModel())
+        
+       
+        @ImageId = ko.observable()
+
         @PostTags = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostTagViewModel, true) 
 
         @TagIds = ko.observableArray([])
@@ -185,7 +188,7 @@ class PasqualeSite.ViewModels.PostViewModel
                 IsActive: @IsActive()
                 Priority: @Priority()
                 TagIds: @TagIds()
-                ImageId: if @PostImage() then @PostImage().Id() else null
+                ImageId: if @ImageId() then @ImageId() else null
             $.ajax({
                 url: approot + "Admin/SavePost"
                 data: newPost: newPost
@@ -274,7 +277,7 @@ class PasqualeSite.ViewModels.PostImageViewModel
         ,this)
 
         @Link = ko.computed( =>
-            return "<a target='_blank' href='" + @Path() + "'><span class='glyphicon glyphicon-picture'></span></a>"
+            return "<a class='imgLink' target='_blank' href='" + @Path() + "'><span class='glyphicon glyphicon-picture'></span></a>"
         ,this)
 
         @CopyButton = ko.computed( =>

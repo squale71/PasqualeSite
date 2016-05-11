@@ -96,6 +96,8 @@ h6, .h6 { margin-top: 0; font-family: "Californian FB", Helvetica, Arial, sans-s
     #me img { max-height: 40%; }
 .social-media { margin-bottom: 40px; margin-top: 40px; text-align: center; }
 
+.imgLink { margin-top: 10px; font-size: 23pt; }
+
 th { padding: 10px; background-color: #19153b; color: #cdddeb; }
 td { padding: 20px; }
 

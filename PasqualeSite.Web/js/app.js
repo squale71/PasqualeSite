@@ -42,27 +42,32 @@
           {
             field: 'Id',
             displayName: 'Id',
-            width: 90
+            width: 50
           }, {
             field: 'Title',
             displayName: 'Title',
-            width: 80
+            width: 200
           }, {
             field: 'Teaser',
             cellClass: 'Teaser',
-            headerClass: 'Teaser'
+            headerClass: 'Teaser',
+            width: 750
           }, {
             field: 'FriendlyDateCreated',
-            displayName: 'Date Created'
+            displayName: 'Date Created',
+            width: 250
           }, {
             field: 'FriendlyDateModified',
-            displayName: 'Date Modified'
+            displayName: 'Date Modified',
+            width: 250
           }, {
             field: 'FeaturedText',
-            displayName: 'Featured'
+            displayName: 'Featured',
+            width: 100
           }, {
             field: 'Priority',
-            displayName: 'Priority'
+            displayName: 'Priority',
+            width: 100
           }
         ],
         enablePaging: true,
@@ -116,6 +121,10 @@
         data: this.Images,
         columnDefs: [
           {
+            field: 'Link',
+            displayName: 'Link',
+            width: 50
+          }, {
             field: 'Name',
             displayName: 'Name',
             width: 500
@@ -126,10 +135,6 @@
           }, {
             field: 'CopyButton',
             displayName: 'Copy',
-            width: 50
-          }, {
-            field: 'Link',
-            displayName: 'Link',
             width: 50
           }
         ],
@@ -228,7 +233,7 @@
         };
       })(this), this);
       this.User = ko.observable(new PasqualeSite.ViewModels.AppUser());
-      this.PostImage = ko.observable(new PasqualeSite.ViewModels.PostImageViewModel());
+      this.ImageId = ko.observable();
       this.PostTags = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostTagViewModel, true);
       this.TagIds = ko.observableArray([]);
       this.FeaturePost = (function(_this) {
@@ -265,7 +270,7 @@
             IsActive: _this.IsActive(),
             Priority: _this.Priority(),
             TagIds: _this.TagIds(),
-            ImageId: _this.PostImage() ? _this.PostImage().Id() : null
+            ImageId: _this.ImageId() ? _this.ImageId() : null
           };
           return $.ajax({
             url: approot + "Admin/SavePost",
@@ -399,7 +404,7 @@
       })(this), this);
       this.Link = ko.computed((function(_this) {
         return function() {
-          return "<a target='_blank' href='" + _this.Path() + "'><span class='glyphicon glyphicon-picture'></span></a>";
+          return "<a class='imgLink' target='_blank' href='" + _this.Path() + "'><span class='glyphicon glyphicon-picture'></span></a>";
         };
       })(this), this);
       this.CopyButton = ko.computed((function(_this) {
