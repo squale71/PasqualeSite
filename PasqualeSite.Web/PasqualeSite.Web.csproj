@@ -612,6 +612,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="EmailService.cs" />
@@ -663,6 +664,7 @@
     <Content Include="Views\Shared\Partials\_UploadImage.cshtml" />
     <Content Include="Views\Shared\Partials\_TagGrid.cshtml" />
     <Content Include="js\plugins\freewall\freewall1.0.6.js" />
+    <Content Include="Views\Blog\Post.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

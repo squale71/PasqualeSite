@@ -172,6 +172,14 @@
     <Compile Include="Migrations\201605100045366_UpdatePostImage.Designer.cs">
       <DependentUpon>201605100045366_UpdatePostImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605110356332_MorePost.cs" />
+    <Compile Include="Migrations\201605110356332_MorePost.Designer.cs">
+      <DependentUpon>201605110356332_MorePost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605110410092_MorePost2.cs" />
+    <Compile Include="Migrations\201605110410092_MorePost2.Designer.cs">
+      <DependentUpon>201605110410092_MorePost2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +209,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605100045366_UpdatePostImage.resx">
       <DependentUpon>201605100045366_UpdatePostImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605110356332_MorePost.resx">
+      <DependentUpon>201605110356332_MorePost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605110410092_MorePost2.resx">
+      <DependentUpon>201605110410092_MorePost2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

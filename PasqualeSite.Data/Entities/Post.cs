@@ -15,6 +15,7 @@ namespace PasqualeSite.Data.Entities
         public string Title { get; set; }
         [MaxLength(500)]
         public string Teaser { get; set; }
+        public string Author { get; set; }
         public string PostContent { get; set; }
         public int? ImageId { get; set; }
         public string UserId { get; set; }
@@ -23,9 +24,14 @@ namespace PasqualeSite.Data.Entities
         public bool IsFeatured { get; set; }
         public bool IsActive { get; set; }
         public int Priority { get; set; }
+        public string UrlTitle { get; set; }
 
         [NotMapped]
         public List<int> TagIds { get; set; }
+        [NotMapped]
+        public string FriendlyCreateDate { get; set; }
+        [NotMapped]
+        public string FriendlyModifiedDate { get; set; }
 
         [ForeignKey("UserId")]
         public virtual AppUser User { get; set; }

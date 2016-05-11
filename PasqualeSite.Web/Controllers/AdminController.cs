@@ -94,6 +94,7 @@ namespace PasqualeSite.Web.Controllers
         public async Task<ActionResult> SavePost(Post newPost)
         {
             newPost.UserId = User.Identity.GetUserId();
+            newPost.Author = User.Identity.Name;
             Post blogPost = new Post();
             using (var bs = new BlogService())
             {

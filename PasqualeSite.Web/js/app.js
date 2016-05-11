@@ -314,6 +314,8 @@
               type: "POST",
               success: function(data) {
                 model.Model.Posts.remove(_this);
+                $('#editPost').hide();
+                $('#postGrid').show();
                 return PasqualeSite.notify("Success Removing Post", "success");
               },
               error: function(err) {

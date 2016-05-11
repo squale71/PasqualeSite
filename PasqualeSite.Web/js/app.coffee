@@ -222,6 +222,8 @@ class PasqualeSite.ViewModels.PostViewModel
                     type: "POST",
                     success: (data) =>
                         model.Model.Posts.remove(@)
+                        $('#editPost').hide()
+                        $('#postGrid').show()
                         PasqualeSite.notify("Success Removing Post", "success")
                     error: (err) =>
                         PasqualeSite.notify("There was a problem removing the post", "error")

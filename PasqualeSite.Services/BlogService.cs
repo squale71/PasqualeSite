@@ -17,6 +17,18 @@ namespace PasqualeSite.Services
             return post;
         }
 
+        public async Task<Post> GetBlogPost(int year, int month, int day, string title)
+        {
+            var post = await db.Posts.Include(x => x.PostTags.Select(y => y.Tag)).Where(x => x.UrlTitle == title && x.DateCreated.Year == year && x.DateCreated.Month == month && x.DateCreated.Day == day).FirstOrDefaultAsync();
+            return post;
+        }
+
+        public async Task<List<Post>> GetFeaturedPosts()
+        {
+            var posts = await db.Posts.Include(x => x.Image).Where(x => x.IsFeatured && x.IsFeatured).OrderByDescending(x => x.Priority).Take(6).ToListAsync();
+            return posts;
+        }
+
         public async Task<List<Post>> GetAllPosts(bool includeInactive = true)
         {
             var posts = await db.Posts.Where(x => x.IsActive || includeInactive).Include(x => x.PostTags).Include(x => x.Image).ToListAsync();
@@ -33,7 +45,8 @@ namespace PasqualeSite.Services
 
         public async Task<Post> UpdatePost(Post newPost)
         {
-            newPost.PostContent = Sanitizer.GetSafeHtmlFragment(newPost.PostContent);
+            //newPost.PostContent = Sanitizer.GetSafeHtml(newPost.PostContent); // TODO: Find better solution. This was stripping out inline styles.
+            newPost.UrlTitle = Slugify(newPost.Title);
             var blogPost = await db.Posts.Where(x => x.Id == newPost.Id).FirstOrDefaultAsync();
             if (blogPost != null)
             {
@@ -77,6 +90,21 @@ namespace PasqualeSite.Services
             }
 
             return null;
+        }
+
+        private string RemoveAccent(string txt)
+        {
+            byte[] bytes = System.Text.Encoding.GetEncoding("Cyrillic").GetBytes(txt);
+            return System.Text.Encoding.ASCII.GetString(bytes);
+        }
+
+        private string Slugify(string phrase)
+        {
+            string str = RemoveAccent(phrase).ToLower();
+            str = System.Text.RegularExpressions.Regex.Replace(str, @"[^a-z0-9\s-]", ""); // Remove all non valid chars          
+            str = System.Text.RegularExpressions.Regex.Replace(str, @"\s+", " ").Trim(); // convert multiple spaces into one space  
+            str = System.Text.RegularExpressions.Regex.Replace(str, @"\s", "-"); // //Replace spaces by dashes
+            return str;
         }
 
     }

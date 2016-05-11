@@ -1,4 +1,6 @@
-﻿<script>
+﻿@model IEnumerable<PasqualeSite.Data.Entities.Post>
+
+<script>
     $(document).ready(function () {
         var owl = $('.owl-carousel');
         var $sync1 = $("#owlArticle");
@@ -57,102 +59,30 @@
     <div id="owl" class="container">
         <div class="row">
             <div class="col-md-1 left-arrow"><span class="glyphicon glyphicon-chevron-left"></span></div>
-            <div class="col-md-10">
+            <div class="col-md-10 carousel-container">
                 <div id="owlArticle" class="owl-carousel">
-                    <div class="carousel-item">
-                        <div class="carousel-img">
-                            <img src="~/img/keyboard.jpg" />
+                    @foreach (var post in Model)
+                    {
+
+                        <div class="carousel-item">
+                            @if (post.Image != null)
+                            {
+                                <div class="carousel-img">
+                                    <img class="carouselImg img-responsive" src="@post.Image.Path" />
+                                </div>
+                            }
+                            <div class="side">
+                                <h1>@post.Title</h1>
+                                <p class="byline">by @post.Author  | Posted on @post.DateCreated.ToLongDateString() at @post.DateCreated.ToShortTimeString()</p>
+                                <hr />                             
+                                <p>@post.Teaser</p>
+                            </div>
                         </div>
-                        <div class="side">
-                            <h1>Title</h1>
-                            <p>Description</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="carousel-img">
-                            <img src="~/img/office.jpg" />
-                        </div>
-                        <div class="side">
-                            <h1>Title</h1>
-                            <p>Description</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="carousel-img">
-                            <img src="~/img/office.jpg" />
-                        </div>
-                        <div class="side">
-                            <h1>Title</h1>
-                            <p>Description</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="carousel-img">
-                            <img src="~/img/office.jpg" />
-                        </div>
-                        <div class="side">
-                            <h1>Title</h1>
-                            <p>Description</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="carousel-img">
-                            <img src="~/img/office.jpg" />
-                        </div>
-                        <div class="side">
-                            <h1>Title</h1>
-                            <p>Description</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="carousel-img">
-                            <img src="~/img/office.jpg" />
-                        </div>
-                        <div class="side">
-                            <h1>Title</h1>
-                            <p>Description</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="carousel-img">
-                            <img src="~/img/office.jpg" />
-                        </div>
-                        <div class="side">
-                            <h1>Title</h1>
-                            <p>Description</p>
-                        </div>
-                    </div>
-                </div>               
+
+                    }
+                </div>                         
             </div>
             <div class="col-md-1 right-arrow"><span class="glyphicon glyphicon-chevron-right"></span></div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-md-12">
-                <div id="owlThumb" class="owl-carousel">
-                    <div>
-                        <img src="http://placehold.it/200x200?text=Slide%200">
-                    </div>
-                    <div>
-                        <img src="http://placehold.it/200x200?text=Slide%200">
-                    </div>
-                    <div>
-                        <img src="http://placehold.it/200x200?text=Slide%200">
-                    </div>
-                    <div>
-                        <img src="http://placehold.it/200x200?text=Slide%200">
-                    </div>
-                    <div>
-                        <img src="http://placehold.it/200x200?text=Slide%200">
-                    </div>
-                    <div>
-                        <img src="http://placehold.it/200x200?text=Slide%200">
-                    </div>
-                    <div>
-                        <img src="http://placehold.it/200x200?text=Slide%200">
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

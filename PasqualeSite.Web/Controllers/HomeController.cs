@@ -1,6 +1,9 @@
-﻿using System;
+﻿using PasqualeSite.Data.Entities;
+using PasqualeSite.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,10 +11,14 @@ namespace PasqualeSite.Web.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            List<Post> FeaturedPosts = new List<Post>();
+            using (var bs = new BlogService())
+            {
+                FeaturedPosts = await bs.GetFeaturedPosts();
+            }
+            return View(FeaturedPosts);
         }
     }
 }
