@@ -1,0 +1,50 @@
+﻿@model PasqualeSite.Services.PostPagingModel
+
+@{
+    ViewBag.Title = "Index";
+    var rand = new Random();
+}
+
+
+<div class="container">
+    
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-9">
+            @foreach (var post in Model.CurrentPosts)
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img class="img-responsive" src="@(post.Image != null ? post.Image.Path : "")" />
+                            </div>
+                            <div class="col-md-10">
+                                <p class="bold">@post.DateCreated.ToShortDateString()</p>
+                                <h2>@post.Title</h2>
+                                <p class="byline"><p class="byline">by @post.Author</p>  
+                            </div>                                                  
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>@post.Teaser</p>
+                                <p class="readmore"><a href="@Url.Action("Post", "Blog", new { year = post.DateCreated.Year, month = post.DateCreated.Month, day = post.DateCreated.Day, title = post.UrlTitle  })">Read More</a></p>
+                                <p>
+                                    @foreach (var tag in post.PostTags)
+                                    {
+                                        <span class="label label-default tag-data"><span class="glyphicon glyphicon-tag"></span> @tag.Tag.Name</span>
+                                        <span>  </span>
+                                    }
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+            }
+        </div>
+    </div>
+</div>

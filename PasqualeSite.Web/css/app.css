@@ -15,15 +15,15 @@ h5, .h5,
 h6, .h6 { margin-top: 0; font-family: "Kozuka Gothic Pro", Helvetica, Arial, sans-serif; font-weight: normal; color: #333; }
 
 @media (min-width:1200px) {
-    .container { width: 1200px; }
+    .container { width: 1000px; }
 }
 
 @media (min-width:1600px) {
-    .container { width: 1500px; }
+    .container { width: 1400px; }
 }
 
 @media (min-width:1920px) {
-    .container { width: 1800px; }
+    .container { width: 1500px; }
 }
 
 /*
@@ -31,7 +31,7 @@ h6, .h6 { margin-top: 0; font-family: "Kozuka Gothic Pro", Helvetica, Arial, san
 */
 
 .top-banner { background-color: #162c69; min-height: 100px; }
-
+.logo { max-width: 300px; margin-left: 20px; margin-top: 15px; }
 .right-arrow { width: 70px; margin-top: 80px; display: none; cursor: pointer; color: #19153b; }
     .right-arrow:hover { color: #162c69; }
     .right-arrow span { font-size: 60pt; margin-right: 15px; vertical-align: middle; }
@@ -85,11 +85,10 @@ h6, .h6 { margin-top: 0; font-family: "Kozuka Gothic Pro", Helvetica, Arial, san
 
 .carousel-item { text-align: left; }
     .carousel-item .side { color: black; margin-left: 0; min-width: 100%; min-height: 100%; text-align: left; }
-.carousel-img .side p { margin-left: 40px; }
-.carousel-item .carousel-img { padding-right: 15px; float: left; }
-.carousel-img img { display: block; max-width: 400px; max-height: 400px; width: auto; height: auto; }
+.carousel-item .carousel-img { padding-right: 15px; }
+.carousel-img { float: left; }
+    .carousel-img img { float: left; max-height: 400px; }
 
-#owlThumb img { max-width: 200px; }
 .blog-main { font-size: 18px; line-height: 1.5; }
 
 
@@ -123,7 +122,9 @@ td { padding: 20px; }
     .pager > li > a { width: 140px; padding: 10px 20px; text-align: center; border-radius: 30px; }
 
 .headlines { margin-top: 100px; }
-
+.free-wall { padding: 10px; }
+.bold { font-weight: bold; }
+.readmore { font-size: 14px;}
 
 /* Registration */
 .register input { max-width: 500px; }

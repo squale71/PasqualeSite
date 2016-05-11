@@ -160,6 +160,7 @@
   <ItemGroup>
     <Compile Include="BlogService.cs" />
     <Compile Include="DisposableService.cs" />
+    <Compile Include="FeedService.cs" />
     <Compile Include="ImageService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TagService.cs" />

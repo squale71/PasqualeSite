@@ -25,13 +25,18 @@ class PasqualeSite.ViewModels.PostsViewModel
         @Posts = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostViewModel, true)  
         @Tags = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.TagViewModel, true)  
         @Images = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostImageViewModel, true) 
+        @RSSFeeds = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.RSSViewModel, true) 
 
         @SelectedPost = ko.observableArray([]).withMergeConstructor(PasqualeSite.ViewModels.PostViewModel, true)  
         @SelectedTag = ko.observableArray([]) 
         @SelectedImage = ko.observableArray([])
+        @SelectedRSS = ko.observableArray([])
 
         @NewPost = ko.observable(new PasqualeSite.ViewModels.PostViewModel())
         @NewTag = ko.observable()
+        @NewRSS = ko.observable()
+        @NewRSSFeed = ko.observable()
+
         @PostGridOptions = 
             data: @Posts
             columnDefs: [
@@ -96,6 +101,27 @@ class PasqualeSite.ViewModels.PostsViewModel
                 pageSizes: ko.observableArray([5, 10, 15])
                 totalServerItems: ko.observable(0) 
 
+        @RSSGridOptions = 
+            data: @RSSFeeds
+            columnDefs: [
+                { field: 'Id', displayName: 'ID', width: 50 }
+                { field: 'Name', displayName: 'Name', width: 500}
+                { field: 'FeedUrl', displayName: 'Feed', width: 500}
+            ]
+            enablePaging: true
+            multiSelect: false 
+            selectedItems: @SelectedRSS 
+            afterSelectionChange: =>
+                $('#rssGrid').hide()
+                $('#editRSS').show()
+            disableTextSelection: false 
+            rowHeight: 50
+            pagingOptions: 
+                currentPage: ko.observable(1)
+                pageSize: ko.observable(20)
+                pageSizes: ko.observableArray([20, 40, 60])
+                totalServerItems: ko.observable(0) 
+
         @BackToPostGrid = () =>            
             $('#editPost').hide()
             $('#postGrid').show()
@@ -103,6 +129,10 @@ class PasqualeSite.ViewModels.PostsViewModel
         @BackToTagGrid = () =>
             $('#editTag').hide()
             $('#tagGrid').show()
+
+        @BackToRSSGrid = () =>
+            $('#editRSS').hide()
+            $('#rssGrid').show()
 
         @AddTag = () =>
             if @NewTag() && @NewTag().trim() != ""
@@ -122,6 +152,25 @@ class PasqualeSite.ViewModels.PostsViewModel
                 }) 
             else 
                 PasqualeSite.notify("You need to fill in a value in order to add a tag.", "info")
+
+        @AddRSS = () =>
+            if @NewRSSFeed() && @NewRSSFeed().trim() != ""
+                $.ajax({
+                    url: approot + "Admin/AddFeed"
+                    data: name: @NewRSS(), url: @NewRSSFeed()
+                    type: "POST",
+                    success: (data) =>
+                        json = JSON.parse(data)
+                        theFeed = new PasqualeSite.ViewModels.RSSViewModel()
+                        ko.mapping.merge.fromJS(theFeed, json)  
+
+                        @RSSFeeds.push(theFeed)
+                        PasqualeSite.notify("Success Adding New RSS Feed", "success")
+                    error: (err) =>
+                        PasqualeSite.notify("There was a problem saving the feed", "error")
+                }) 
+            else 
+                PasqualeSite.notify("You need to fill in a value in order to add a feed.", "info")
 
 
 class PasqualeSite.ViewModels.PostViewModel
@@ -266,6 +315,43 @@ class PasqualeSite.ViewModels.TagViewModel
                     PasqualeSite.notify("Success Deleting Tag", "success")
                 error: (err) =>
                     PasqualeSite.notify("There was a problem deleting the tag", "error")
+            }) 
+
+class PasqualeSite.ViewModels.RSSViewModel
+    constructor: () ->
+        @Id = ko.observable()
+        @Name = ko.observable()
+        @FeedUrl = ko.observable()
+
+        @SaveRSS = () =>
+            newRSS = 
+                Id: @Id()
+                Name: @Name()
+                FeedUrl: @FeedUrl()
+            $.ajax({
+                url: approot + "Admin/SaveFeed"
+                data: newFeed: newRSS
+                type: "POST",
+                success: (data) =>
+                    model.Model.RSSFeeds.push({})
+                    model.Model.RSSFeeds.pop()
+                    model.Model.BackToRSSGrid()
+                    PasqualeSite.notify("Success Updating RSS Feed", "success")
+                error: (err) =>
+                    PasqualeSite.notify("There was a problem saving the feed", "error")
+            }) 
+
+        @DeleteRSS = () =>
+            $.ajax({
+                url: approot + "Admin/DeleteFeed"
+                data: id: @Id()
+                type: "POST",
+                success: (data) =>
+                    model.Model.RSSFeeds.remove(@)
+                    model.Model.BackToRSSGrid()
+                    PasqualeSite.notify("Success Deleting RSS Feed", "success")
+                error: (err) =>
+                    PasqualeSite.notify("There was a problem deleting the feed", "error")
             }) 
 
 class PasqualeSite.ViewModels.PostImageViewModel

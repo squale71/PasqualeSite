@@ -184,6 +184,7 @@
     <Content Include="img\me.jpg" />
     <Content Include="img\meandfriends.jpg" />
     <Content Include="img\melondon.jpg" />
+    <Content Include="img\transparentlogo.png" />
     <Content Include="js\app.coffee" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
@@ -665,6 +666,8 @@
     <Content Include="Views\Shared\Partials\_TagGrid.cshtml" />
     <Content Include="js\plugins\freewall\freewall1.0.6.js" />
     <Content Include="Views\Blog\Post.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Shared\Partials\_RSSGrid.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

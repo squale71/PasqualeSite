@@ -132,6 +132,7 @@
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Entities\PostImage.cs" />
     <Compile Include="Entities\PostTag.cs" />
+    <Compile Include="Entities\RSSFeeds.cs" />
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Entities\UserLikes.cs" />
     <Compile Include="Identity\AppRole.cs" />
@@ -180,6 +181,10 @@
     <Compile Include="Migrations\201605110410092_MorePost2.Designer.cs">
       <DependentUpon>201605110410092_MorePost2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605111842502_RSS.cs" />
+    <Compile Include="Migrations\201605111842502_RSS.Designer.cs">
+      <DependentUpon>201605111842502_RSS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605110410092_MorePost2.resx">
       <DependentUpon>201605110410092_MorePost2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605111842502_RSS.resx">
+      <DependentUpon>201605111842502_RSS.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

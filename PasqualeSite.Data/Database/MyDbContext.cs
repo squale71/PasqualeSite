@@ -18,6 +18,7 @@ namespace PasqualeSite.Data.Database
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Comment> Commments { get; set; }
         public DbSet<UserLikes> Likes { get; set; }
+        public DbSet<RSSFeeds> Feeds { get; set; }
 
         public MyDbContext() : base("MyDbConnection")
         {

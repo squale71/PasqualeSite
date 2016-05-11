@@ -9,6 +9,14 @@ using System.Web;
 
 namespace PasqualeSite.Services
 {
+    public class PostPagingModel
+    {
+        public int CurrentPage { get; set; }
+        public int PerPage { get; set; }
+        public int Total { get; set; }
+        public List<Post> CurrentPosts { get; set; }
+    }
+
     public class BlogService : DisposableService
     {
         public async Task<Post> GetBlogPost(int id)
@@ -27,6 +35,26 @@ namespace PasqualeSite.Services
         {
             var posts = await db.Posts.Include(x => x.Image).Where(x => x.IsFeatured && x.IsFeatured).OrderByDescending(x => x.Priority).Take(6).ToListAsync();
             return posts;
+        }
+
+        public async Task<PostPagingModel> GetFilteredPosts(int tagId, int perPage = 5, int page = 1)
+        {
+            var pagingModel = new PostPagingModel();
+            pagingModel.CurrentPage = page;
+            pagingModel.PerPage = perPage;
+            pagingModel.Total = await db.Posts
+                .Include(x => x.PostTags.Select(y => y.Tag))
+                .Where(x => x.IsActive && x.PostTags.Any(y => y.TagId == tagId) || tagId == 0)
+                .CountAsync();
+            pagingModel.CurrentPosts = await db.Posts
+                .Include(x => x.Image)
+                .Include(x => x.PostTags.Select(y => y.Tag))
+                .Where(x => x.IsActive && x.PostTags.Any(y => y.TagId == tagId) || tagId == 0)
+                .OrderByDescending(x => x.DateCreated)
+                .Skip(perPage * (page - 1))
+                .Take(perPage)
+                .ToListAsync();
+            return pagingModel;
         }
 
         public async Task<List<Post>> GetAllPosts(bool includeInactive = true)

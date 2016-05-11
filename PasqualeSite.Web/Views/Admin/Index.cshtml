@@ -24,10 +24,11 @@
         var deferredPosts = LoadBlogPosts();
         var deferredTags = LoadTags();
         var deferredImages = LoadImages();
+        var deferredFeeds = LoadFeeds();
 
-        var posts, tags, images;
+        var posts, tags, images, feeds;
 
-        $.when(deferredPosts, deferredTags, deferredImages).then(PopulateModel);
+        $.when(deferredPosts, deferredTags, deferredImages, deferredFeeds).then(PopulateModel);
 
         function LoadBlogPosts() {
             var res = $.ajax({
@@ -65,8 +66,20 @@
             return res;
         }
 
+        function LoadFeeds() {
+            var res = $.ajax({
+                url: approot + "Admin/GetAllFeeds",
+                type: "GET",
+                success: function (data) {
+                    feeds = JSON.parse(data);
+                }
+            })
+
+            return res;
+        }
+
         function PopulateModel() {
-            model = new PasqualeSite.KnockoutModel({ Posts: posts, Tags: tags, Images: images }, new PasqualeSite.ViewModels.PostsViewModel())
+            model = new PasqualeSite.KnockoutModel({ Posts: posts, Tags: tags, Images: images, RSSFeeds: feeds }, new PasqualeSite.ViewModels.PostsViewModel())
         }
 
     })
@@ -81,6 +94,7 @@
                 <li role="presentation"><a href="#editpost" aria-controls="editpost" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-plus"></span> Add Post</a></li>
                 <li role="presentation"><a href="#library" aria-controls="library" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-picture"></span> Library</a></li>
                 <li role="presentation"><a href="#tags" aria-controls="tags" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-tags"></span> Tags</a></li>
+                <li role="presentation"><a href="#rss" aria-controls="rss" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-fire"></span> RSS Feeds</a></li>
             </ul>
 
             <!-- Tab panes -->
@@ -96,6 +110,9 @@
                 </div>
                 <div role="tabpanel" class="tab-pane" id="tags">
                     @Html.Partial("Partials/_TagGrid")
+                </div>
+                <div role="tabpanel" class="tab-pane" id="rss">
+                    @Html.Partial("Partials/_RSSGrid")
                 </div>
             </div>
 

@@ -12,9 +12,35 @@ namespace PasqualeSite.Web.Controllers
     public class BlogController : Controller
     {
         // GET: Blog
-        public ActionResult Index()
+        public async Task<ActionResult> Index(int page = 1, string tag = null)
         {
-            return View();
+            var pagingModel = new PostPagingModel();
+            int tagId = 0;
+
+            if (tag != null)
+            {
+                using (var ts = new TagService())
+                {
+                    int? id = await ts.GetTagId(tag);
+                    if (id != null)
+                    {
+                        tagId = id.Value;
+                    }
+
+                    else
+                    {
+                        ViewBag.Information = "That tag you have entered doesn't exist.";
+                        return View("Info");
+                    }
+                }
+            }
+
+            using (var bs = new BlogService())
+            {
+                pagingModel = await bs.GetFilteredPosts(tagId, 6, page);
+            }
+
+            return View(pagingModel);
         }
 
         public async Task<ActionResult> Post(int year, int month, int day, string title)

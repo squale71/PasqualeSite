@@ -16,6 +16,12 @@ namespace PasqualeSite.Services
             return tags;
         }
 
+        public async Task<int> GetTagId(string tagName)
+        {
+            var tagId = await db.Tags.Where(x => x.Name.ToLower() == tagName.ToLower()).Select(x => x.Id).FirstOrDefaultAsync();
+            return tagId;
+        }
+
         public async Task<Tag> SaveTag(Tag newTag)
         {
             var tag = await db.Tags.Where(x => x.Id == newTag.Id).FirstOrDefaultAsync();
