@@ -43,5 +43,13 @@ namespace PasqualeSite.Services
             }
             return null;
         }
+
+        public async Task<RSSFeeds> GetRandomFeed()
+        {
+            var feeds = await db.Feeds.ToListAsync();
+            var rand = new Random();
+            var randomIndex = rand.Next(0, feeds.Count());
+            return feeds.ElementAt(randomIndex);
+        }
     }
 }

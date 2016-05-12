@@ -12,35 +12,50 @@ namespace PasqualeSite.Web.Controllers
     public class BlogController : Controller
     {
         // GET: Blog
-        public async Task<ActionResult> Index(int page = 1, string tag = null)
+        public async Task<ActionResult> Index(int page = 1, string year = null, string month = null, string tag = null)
         {
-            var pagingModel = new PostPagingModel();
-            int tagId = 0;
-
-            if (tag != null)
+            try
             {
-                using (var ts = new TagService())
-                {
-                    int? id = await ts.GetTagId(tag);
-                    if (id != null)
-                    {
-                        tagId = id.Value;
-                    }
+                var pagingModel = new PostPagingModel();
+                int tagId = 0;
 
-                    else
+                if (tag != null)
+                {
+                    using (var ts = new TagService())
                     {
-                        ViewBag.Information = "That tag you have entered doesn't exist.";
-                        return View("Info");
+                        int? id = await ts.GetTagId(tag);
+                        if (id != null)
+                        {
+                            tagId = id.Value;
+                        }
+
+                        else
+                        {
+                            ViewBag.Information = "That tag you have entered doesn't exist.";
+                            return View("Info");
+                        }
                     }
                 }
+
+                using (var bs = new BlogService())
+                {
+                    pagingModel = await bs.GetFilteredPosts(tagId, year, month, 6, page);
+                }
+                return View(pagingModel);
             }
 
-            using (var bs = new BlogService())
+            catch (FormatException ex)
             {
-                pagingModel = await bs.GetFilteredPosts(tagId, 6, page);
+                ViewBag.Error = "Uh oh. There was a problem with the URL you entered, as the page could not be found. How unfortunate";
+                return View("PageNotFound");
             }
-
-            return View(pagingModel);
+            
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Oops. Looks like something broke. Well, I'm not perfect. Try again later.";
+                return View("Error");
+            }
+            
         }
 
         public async Task<ActionResult> Post(int year, int month, int day, string title)

@@ -14,6 +14,8 @@ h4, .h4,
 h5, .h5,
 h6, .h6 { margin-top: 0; font-family: "Kozuka Gothic Pro", Helvetica, Arial, sans-serif; font-weight: normal; color: #333; }
 
+hr { color: #19153b; background-color: #19153b; border-color: #333; }
+.light-hr { border-color: #555; }
 @media (min-width:1200px) {
     .container { width: 1000px; }
 }
@@ -32,11 +34,11 @@ h6, .h6 { margin-top: 0; font-family: "Kozuka Gothic Pro", Helvetica, Arial, san
 
 .top-banner { background-color: #162c69; min-height: 100px; }
 .logo { max-width: 300px; margin-left: 20px; margin-top: 15px; }
-.right-arrow { width: 70px; margin-top: 80px; display: none; cursor: pointer; color: #19153b; }
+.right-arrow { width: 70px; margin-top: 150px; display: none; cursor: pointer; color: #19153b; }
     .right-arrow:hover { color: #162c69; }
     .right-arrow span { font-size: 60pt; margin-right: 15px; vertical-align: middle; }
 
-.left-arrow { width: 70px; margin-top: 80px; display: none; cursor: pointer; color: #19153b; }
+.left-arrow { width: 70px; margin-top: 150px; display: none; cursor: pointer; color: #19153b; }
     .left-arrow:hover { color: #162c69; }
 .left-arrow { font-size: 60pt; margin-right: 15px; }
 
@@ -87,7 +89,7 @@ h6, .h6 { margin-top: 0; font-family: "Kozuka Gothic Pro", Helvetica, Arial, san
     .carousel-item .side { color: black; margin-left: 0; min-width: 100%; min-height: 100%; text-align: left; }
 .carousel-item .carousel-img { padding-right: 15px; }
 .carousel-img { float: left; }
-    .carousel-img img { float: left; max-height: 400px; }
+    .carousel-img img { float: left; max-width: 400px; }
 
 .blog-main { font-size: 18px; line-height: 1.5; }
 
@@ -95,7 +97,7 @@ h6, .h6 { margin-top: 0; font-family: "Kozuka Gothic Pro", Helvetica, Arial, san
 #me { display: none; }
     #me img { max-height: 40%; }
 .social-media { margin-bottom: 40px; margin-top: 40px; text-align: center; }
-.byline { color: #c2b8b8; font-size: 10pt;}
+.byline { color: #a49191; font-size: 10pt;}
 .imgLink { margin-top: 10px; font-size: 23pt; }
 
 th { padding: 10px; background-color: #19153b; color: #cdddeb; }
@@ -106,6 +108,14 @@ td { padding: 20px; }
 
 #editPost { display: none; }
 #imgSelect { border-radius: 4px; font-size: 10pt; min-height: 30px; min-width: 150px; padding-left: 5px; }
+
+
+.rss { min-height: 400px; }
+.rss-head { color: #555; font-size: 20px; font-weight: bold; }
+.rss-container { display: none; }
+.rss-link-text { }
+.rss-description { font-size: 13px;}
+
 
 @media (min-width:990px) {
     #me { display: inline-block; }

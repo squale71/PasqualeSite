@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            @if (ViewBag.Error != null)
+            {
+                <p>@ViewBag.Error</p>
+            }
+            else
+            {
+                <p>Well, something unexpected went wrong. Sorry about that. Feel free to find your way back home <a src="@Url.Action("Index", "Home")">here</a>.</p>
+            }
+        </div>
+    </div>
+</div>
+

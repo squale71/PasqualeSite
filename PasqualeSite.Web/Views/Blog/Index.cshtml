@@ -5,13 +5,22 @@
     var rand = new Random();
 }
 
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "http://www.numbersapi.com/" + @Model.Total,
+            type: "GET",
+            dataType: "jsonp",
+            success: function (data) {
+                $('#postCount').append(" Here's a fun fact for you: " + data)
+            }
+        })
+    })
+</script>
+
 
 <div class="container">
-    
     <div class="row">
-        <div class="col-md-3">
-
-        </div>
         <div class="col-md-9">
             @foreach (var post in Model.CurrentPosts)
             {
@@ -45,6 +54,36 @@
                 </div>
                 <hr />
             }
+        </div>
+        <div class="col-md-3">
+            <div class="well">
+                <h4>Categories:</h4>
+                @foreach (var tag in Model.Tags)
+                {
+                    <span class="label label-default tag-data"><span class="glyphicon glyphicon-tag"></span> @tag.Name</span>
+                }
+                <hr />
+                <h4>Archive:</h4>
+                @foreach (var time in Model.BlogMonths)
+                {
+                    <span class="label label-default tag-data"><span class="glyphicon glyphicon-calendar"></span> @(System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(time.Month) + " " + time.Year)</span>
+                }
+            </div>
+            <div class="well">
+
+                @if (Model.Total == 0)
+                {
+                    <p id="postCount">No posts returned? I hope it's because of your strict filters and not because I never actually wrong anything.</p>
+                }
+                else if (Model.Total == 1)
+                {
+                    <p id="postCount">Only one post? I hope it's a good one!</p>
+                }
+                else
+                {
+                    <p id="postCount">It looks like we got back @Model.Total posts.</p>
+                }
+            </div>
         </div>
     </div>
 </div>

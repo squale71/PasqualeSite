@@ -1,0 +1,84 @@
+﻿@model PasqualeSite.Data.Entities.Post
+
+@{
+    ViewBag.Title = Model.Title;
+    var modifiedString = Model.DateModified != null ? String.Format(" | Modified on {0} at {1}", Model.DateModified.Value.ToLongDateString(), Model.DateModified.Value.ToShortTimeString()) : String.Empty;
+}
+
+<script>
+    $(document).ready(function () {
+        $container = $('.rss-container');
+        $title = $('.rss-title');
+        $description = $('.rss-description');
+        $items = $('.rss-items');
+        $.ajax({
+            url: approot + "RSS/GetRSSFeed",
+            type: "GET",
+            success: function (data) {
+                var json = JSON.parse(data);
+                $container.show()
+                $title.append("<a target='_blank' href='" + json.Link + "'>" + json.Title + "</a>");
+                $description.append(json.Description);
+                $.each(json.Items, function (i, val) {
+                    if (i == 10) {
+                        return false;
+                    }
+                    var title = "<div class='rss-link-text'><a target='_blank' href='" + val.Link + "'>" + val.Title + "</a></div>";
+                    var description = "<div class='byline'>" + val.Description + "</div></br>";
+                    $items.append(title + description);
+                })
+                console.log(json);
+            }
+        })
+    })
+</script>
+
+
+
+<div class="container">
+    <div class="col-md-7">
+        <div class="row">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        @foreach (var tag in Model.PostTags)
+                        {
+                            <span class="label label-default tag-data"><span class="glyphicon glyphicon-tag"></span> @tag.Tag.Name</span>
+                            <span>  </span>
+                        }
+                    </p>
+
+                </div>
+            </div>
+            <div class="well blog-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>@Model.Title</h2>
+                        <p class="byline">by @Model.Author | Created on @Model.DateCreated.ToLongDateString() at @Model.DateCreated.ToShortTimeString() @modifiedString </p>                      
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.Raw(Model.PostContent)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="rss well">
+            <h2 class="rss-head">What's happening?</h2>
+            <p class="byline">Your up-to-date dose of what's happening around the world of tech and video games, courtesy of: </p>
+            <div class="rss-title"></div>
+            <div class="rss-description"></div>
+            <hr />
+            <div class="rss-container">               
+                <div class="rss-items">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

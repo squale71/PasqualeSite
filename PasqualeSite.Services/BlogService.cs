@@ -15,6 +15,8 @@ namespace PasqualeSite.Services
         public int PerPage { get; set; }
         public int Total { get; set; }
         public List<Post> CurrentPosts { get; set; }
+        public List<Tag> Tags { get; set; }
+        public List<DateTime> BlogMonths { get; set; }
     }
 
     public class BlogService : DisposableService
@@ -37,23 +39,41 @@ namespace PasqualeSite.Services
             return posts;
         }
 
-        public async Task<PostPagingModel> GetFilteredPosts(int tagId, int perPage = 5, int page = 1)
+        public async Task<PostPagingModel> GetFilteredPosts(int tagId, string year = null, string month = null, int perPage = 5, int page = 1)
         {
+            int theMonth, theYear;
+
+            if (!int.TryParse(month, out theMonth))
+                theMonth = 0;
+
+            if (!int.TryParse(year, out theYear))
+                theYear = 0;
+
             var pagingModel = new PostPagingModel();
             pagingModel.CurrentPage = page;
             pagingModel.PerPage = perPage;
             pagingModel.Total = await db.Posts
                 .Include(x => x.PostTags.Select(y => y.Tag))
                 .Where(x => x.IsActive && x.PostTags.Any(y => y.TagId == tagId) || tagId == 0)
+                .Where(x => (x.DateCreated.Year == theYear && x.DateCreated.Month == theMonth) || (theYear == 0 || theMonth == 0))
                 .CountAsync();
             pagingModel.CurrentPosts = await db.Posts
                 .Include(x => x.Image)
                 .Include(x => x.PostTags.Select(y => y.Tag))
                 .Where(x => x.IsActive && x.PostTags.Any(y => y.TagId == tagId) || tagId == 0)
+                .Where(x => (x.DateCreated.Year == theYear && x.DateCreated.Month == theMonth) || (theYear == 0 || theMonth == 0))
                 .OrderByDescending(x => x.DateCreated)
                 .Skip(perPage * (page - 1))
                 .Take(perPage)
                 .ToListAsync();
+
+            pagingModel.BlogMonths = GetBlogMonths();
+
+            using (var ts = new TagService())
+            {
+                pagingModel.Tags = await ts.GetAllTags();
+            }
+
             return pagingModel;
         }
 
@@ -118,6 +138,17 @@ namespace PasqualeSite.Services
             }
 
             return null;
+        }
+
+        public List<DateTime> GetBlogMonths()
+        {
+            var yearMonths = db.Posts
+                .Select(p => new { p.DateCreated.Year, p.DateCreated.Month })
+                    .Distinct()
+                    .ToList()
+                    .Select(x => new DateTime(x.Year, x.Month, 1));
+
+            return yearMonths.ToList();
         }
 
         private string RemoveAccent(string txt)
