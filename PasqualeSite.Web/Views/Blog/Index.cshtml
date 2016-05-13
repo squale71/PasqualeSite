@@ -44,11 +44,11 @@
                     }    
                     @if (Model.Year != 0 && Model.Month != 0)
                     {
-                        <a style="float: right; margin-right: 3px;" href="@Url.Action("Index", "Blog", new { month = Model.Month, year = Model.Year })" class="label label-default tag-data"><span class="glyphicon glyphicon-calendar"></span> @(System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(Model.Month) + " " + Model.Year)</a>
+                        <a style="float: right; margin-right: 3px;" href="@Url.Action("Index", "Blog", new { month = Model.Month, year = Model.Year })" class="label label-default tag-data hvr-icon-pulse-cal">@(System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(Model.Month) + " " + Model.Year)&nbsp;</a>
                     }
                     @if (Model.Tag != null)
                     {
-                        <a style="float: right; margin-right: 3px;" href="@Url.Action("Index", "Blog", new { tag = Model.Tag })" class="label label-default tag-data"><span class="glyphicon glyphicon-tag"></span> @Model.Tag</a>
+                        <a style="float: right; margin-right: 3px;" href="@Url.Action("Index", "Blog", new { tag = Model.Tag })" class="label label-default tag-data hvr-icon-pulse">@Model.Tag</a>
                     }                                                   
                 </div>
             </div>
@@ -75,7 +75,7 @@
                                 <p>
                                     @foreach (var tag in post.PostTags)
                                     {
-                                        <a href="@Url.Action("Index", "Blog", new { tag = tag.Tag.Name })" class="label label-default tag-data"><span class="glyphicon glyphicon-tag"></span> @tag.Tag.Name</a>
+                                        <a href="@Url.Action("Index", "Blog", new { tag = tag.Tag.Name })" class="label label-default tag-data hvr-icon-pulse">@tag.Tag.Name </a>
                                         <span>  </span>
                                     }
                                 </p>
@@ -91,13 +91,13 @@
                 <h4>Categories:</h4>
                 @foreach (var tag in Model.Tags)
                 {
-                    <a href="@Url.Action("Index", "Blog", new { tag = tag.Name })" class="label label-default tag-data"><span class="glyphicon glyphicon-tag"></span> @tag.Name</a>
+                    <a href="@Url.Action("Index", "Blog", new { tag = tag.Name })" class="label label-default tag-data hvr-icon-pulse">@tag.Name </a>
                 }
                 <hr />
                 <h4>Archive:</h4>
                 @foreach (var time in Model.BlogMonths)
                 {
-                    <a href="@Url.Action("Index", "Blog", new { month = time.Month, year = time.Year })" class="label label-default tag-data"><span class="glyphicon glyphicon-calendar"></span> @(System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(time.Month) + " " + time.Year)</a>
+                    <a href="@Url.Action("Index", "Blog", new { month = time.Month, year = time.Year })" class="label label-default tag-data hvr-icon-pulse-cal">@(System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(time.Month) + " " + time.Year)&nbsp;</a>
                 }
             </div>
             <div class="well fun-fact">

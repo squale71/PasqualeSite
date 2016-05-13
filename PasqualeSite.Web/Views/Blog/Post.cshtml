@@ -44,7 +44,7 @@
                     <p>
                         @foreach (var tag in Model.PostTags)
                         {
-                            <a href="@Url.Action("Index", "Blog", new { tag = tag.Tag.Name })" class="label label-default tag-data"><span class="glyphicon glyphicon-tag"></span> @tag.Tag.Name</a>
+                            <a href="@Url.Action("Index", "Blog", new { tag = tag.Tag.Name })" class="label label-default tag-data hvr-icon-pulse">@tag.Tag.Name</a>
                             <span>  </span>
                         }
                     </p>
