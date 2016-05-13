@@ -3,10 +3,14 @@
 @{
     ViewBag.Title = "Index";
     var rand = new Random();
+
+    var pageNumber = Model.CurrentPage;
+    var maxPage = Math.Ceiling((double)Model.Total / Model.PerPage);
 }
 
 <script>
     $(document).ready(function () {
+        $('.blog_link').addClass('active');
         $.ajax({
             url: "http://www.numbersapi.com/" + @Model.Total,
             type: "GET",
@@ -22,6 +26,33 @@
 <div class="container">
     <div class="row">
         <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="blog-header">The Blog</h2>
+                    <p class="byline">Just me writing about all kinds of cool stuff in the world of tech.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @if (pageNumber > 1)
+                    {
+                        <a href="@Url.Action("Index", "Blog", new { page = pageNumber-1, year = Model.Year, month = Model.Month, tag = Model.Tag })" class="btn btn-default">Previous</a>
+                    }  
+                    @if (pageNumber < maxPage)
+                    {
+                        <a href="@Url.Action("Index", "Blog", new { page = pageNumber+1, year = Model.Year, month = Model.Month, tag = Model.Tag })" class="btn btn-default">Next</a>
+                    }    
+                    @if (Model.Year != null && Model.Month != null)
+                    {
+                        <a style="float: right; margin-right: 3px;" href="@Url.Action("Index", "Blog", new { month = Model.Month, year = Model.Year })" class="label label-default tag-data"><span class="glyphicon glyphicon-calendar"></span> @(System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(int.Parse(Model.Month)) + " " + Model.Year)</a>
+                    }
+                    @if (Model.Tag != null)
+                    {
+                        <a style="float: right; margin-right: 3px;" href="@Url.Action("Index", "Blog", new { tag = Model.Tag })" class="label label-default tag-data"><span class="glyphicon glyphicon-tag"></span> @Model.Tag</a>
+                    }                                                   
+                </div>
+            </div>
+            <hr />
             @foreach (var post in Model.CurrentPosts)
             {
                 <div class="row">
@@ -44,7 +75,7 @@
                                 <p>
                                     @foreach (var tag in post.PostTags)
                                     {
-                                        <span class="label label-default tag-data"><span class="glyphicon glyphicon-tag"></span> @tag.Tag.Name</span>
+                                        <a href="@Url.Action("Index", "Blog", new { tag = tag.Tag.Name })" class="label label-default tag-data"><span class="glyphicon glyphicon-tag"></span> @tag.Tag.Name</a>
                                         <span>  </span>
                                     }
                                 </p>
@@ -56,24 +87,24 @@
             }
         </div>
         <div class="col-md-3">
-            <div class="well">
+            <div class="side-panel">
                 <h4>Categories:</h4>
                 @foreach (var tag in Model.Tags)
                 {
-                    <span class="label label-default tag-data"><span class="glyphicon glyphicon-tag"></span> @tag.Name</span>
+                    <a href="@Url.Action("Index", "Blog", new { tag = tag.Name })" class="label label-default tag-data"><span class="glyphicon glyphicon-tag"></span> @tag.Name</a>
                 }
                 <hr />
                 <h4>Archive:</h4>
                 @foreach (var time in Model.BlogMonths)
                 {
-                    <span class="label label-default tag-data"><span class="glyphicon glyphicon-calendar"></span> @(System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(time.Month) + " " + time.Year)</span>
+                    <a href="@Url.Action("Index", "Blog", new { month = time.Month, year = time.Year })" class="label label-default tag-data"><span class="glyphicon glyphicon-calendar"></span> @(System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(time.Month) + " " + time.Year)</a>
                 }
             </div>
-            <div class="well">
+            <div class="well fun-fact">
 
                 @if (Model.Total == 0)
                 {
-                    <p id="postCount">No posts returned? I hope it's because of your strict filters and not because I never actually wrong anything.</p>
+                    <p id="postCount">No posts returned? I hope it's because of your strict filters and not because I never actually wrote anything.</p>
                 }
                 else if (Model.Total == 1)
                 {

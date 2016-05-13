@@ -1,0 +1,187 @@
+﻿
+@{
+    ViewBag.Title = "My Portfolio";
+}
+<script>
+    $(document).ready(function () {
+        $('.portfolio_link').addClass('active');
+    })
+</script>
+
+<div class="container">
+    <div class="row">       
+        <div class="col-md-12">
+        <h3>Welcome To My Portfolio</h3>
+            <p class="byline">Thank you for taking the time to get to know me better. While this isn't a comprehensive list of my skills or projects, I hope this gives provides a good overview of what I'm capable of. Feel free to contact me if you need any more information.</p>
+        </div>    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                A Little About Me
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <p>My name is Pasquale. Some people call me Squalls. That's how I decided on the domain name (well, that and the one I really wanted was already taken). I currently live in Jacksonville, Florida and I work at the University of North Florida as a Application Systems Analyst. For me, that's a fancy term for "Web Application Developer".</p>
+                            <p>When I'm not creating cool things at work, I spend my free time creating cool things at home. But, not all my my life is about web development. When I'm not writing code, I can be found playing on my Xbox One or PC or out and about with friends. I also enjoy football, and I'm going on my fifth year as a Jaguars season ticket holder. If you need proof of my patience, look no further than that.</p>
+                            <p>My dream is to work as a web developer in the video games industry, and to be very damn good at it. I know I still have a lot of learning ahead of me. In this industry it's important to realize that the learning will never stop. In a few short years, I have achieved part of my dream, and I plan to work towards the next part. I love video games, and while I'm not a game developer (maybe someday), I would love to be an active part of that world. This website and blog are meant to be expressions of that passion.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingFour">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseOne">
+                                My Education
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img class="img-responsive" src="~/img/unf.jpg" />
+                                </div>
+                                <div class="col-md-9">
+                                    <h3>University of North Florida</h3>
+                                    <ul>
+                                        <li>Jacksonville, Florida</li>
+                                        <li>August 2013 - April 2016</li>
+                                        <li>Bachelor of Science in Computing and Information Sciences</li>
+                                        <li>Graduated Summa Cum Laude</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr /> 
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img class="img-responsive" src="~/img/fsu.png" />
+                                </div>
+                                <div class="col-md-9">
+                                    <h3>Florida State University</h3>
+                                    <ul>
+                                        <li>Tallahassee, Florida</li>
+                                        <li>August 2006 - May 2010</li>
+                                        <li>Bachelor of Science in Psychology</li>
+                                    </ul>
+                                </div>
+                            </div>                                                     
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                My Skill Set
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                            <p>You're probably wondering what I'm good at. These are some of the main things I've worked with professionally for at least two years:</p>
+                            <ul>
+                                <li>ASP.NET Webforms and MVC (Primarily C#)</li>
+                                <li>JavaScript/JQuery</li>
+                                <li>Knockout JS (for client-side two way model binding)</li>
+                                <li>SQL Server</li>
+                                <li>HTML/CSS (With and without CSS frameworks like Bootstrap. C'mon, this site is obviously Bootstrap-y)</li>
+                            </ul>
+                            <p>I've also picked up on a few other things while in school, however I have not used these in any professional environment:</p>
+                            <ul>
+                                <li>PHP</li>
+                                <li>Java</li>
+                                <li>.NET Windows Forms Applications (Visual Basic)</li>
+                                <li>Android Development</li>
+                                <li>iOS Development</li>
+                                <li>Experience writing Linux Shell Scripts (Bash)</li>
+                            </ul>
+                            <p>Lastly, I've picked up a few things on my free time. Most of these are just things I've played with and I'm by no means an expert yet.</p>
+                            <ul>
+                                <li>Angular JS</li>
+                                <li>Xamarin (Native Android and iOS Development using C#)</li>
+                                <li>AndEngine (Android Game Engine)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Some Projects I've Worked On
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                            <div>
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active"><a href="#moca" aria-controls="moca" role="tab" data-toggle="tab">MOCA Rebranding</a></li>
+                                    <li role="presentation"><a href="#nwbhs" aria-controls="nwbhs" role="tab" data-toggle="tab">NWBHS Patient Case Tracker</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="moca">
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <br />
+                                                <div class="videoWrapper"><iframe width="840" height="473" src="https://www.youtube.com/embed/BFsoQnLv5-0" frameborder="0" allowfullscreen></iframe></div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <br />
+                                                <h3>MOCA Website Migration and Rebrand</h3>
+                                                <p><b>Objective:</b> To migrate UNF partner MOCA off of their unsupported CMS to UNF's current CMS, and do a complete redesign and overhaul of their website.</p>
+                                                <p><b>Description:</b> This website was one of my first major projects working as a full time web developer. For several months, we met with our clients on a weekly basis to discuss requirements. Their goal was to have a lot of the content creation automated. Out of the box, our CMS did not allow that, so 
+                                                alot of custom code was created to make it possible. This allowed them to stage content ahead of time and have it appear on the appropriate pages. We pre-built all the templates for them, and it was possible for them to go from nothing to an entire page full of content in a fraction of the time. The development team consisted of 2 people. I was the developer,
+                                                and I worked alongside our project manager and designer.</p>
+                                                <p><b>Technologies:</b></p>
+                                                <ul>
+                                                    <li>ASP.NET Webforms</li>
+                                                    <li>SQL Server Database</li>
+                                                    <li>CMS: Ektron</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="nwbhs">
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <br />
+                                                <div class="videoWrapper"><iframe width="840" height="473" src="https://www.youtube.com/embed/90HzTxR7BqY" frameborder="0" allowfullscreen></iframe></div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <br />
+                                                <h3>Northwest Behavior Health Services Patient Tracker</h3>
+                                                <p><b>Objective:</b> To create a patient/case tracking solution for our non-profit partner in order to increase operational efficiency.</p>
+                                                <p>
+                                                    <b>Description:</b> This project was done over the course of a year with a group of three other students. I was the team lead on the project, and the primary developer for much of the application.
+                                                    This project was a final project before graduation, and it's in use by the organization today. It was intended to replace their current system of tracking patient cases via an Excel Spreadsheet.
+                                                    Using this software gave them all kinds of new features, including account management, easier and custom methods of sorting cases, tracking due dates, and sharing notes with others.
+                                                </p>
+                                                <p><b>Technologies:</b></p>
+                                                <ul>
+                                                    <li>ASP.NET MVC</li>
+                                                    <li>SQL Server Database</li>
+                                                    <li>Azure Cloud Hosting of Web App and Database Servers</li>
+                                                    <li>ORM: Entity Framework</li>
+                                                    <li>Client Side: KnockoutJS</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -7,6 +7,7 @@
 
 <script>
     $(document).ready(function () {
+        $('.blog_link').addClass('active');
         $container = $('.rss-container');
         $title = $('.rss-title');
         $description = $('.rss-description');
@@ -43,7 +44,7 @@
                     <p>
                         @foreach (var tag in Model.PostTags)
                         {
-                            <span class="label label-default tag-data"><span class="glyphicon glyphicon-tag"></span> @tag.Tag.Name</span>
+                            <a href="@Url.Action("Index", "Blog", new { tag = tag.Tag.Name })" class="label label-default tag-data"><span class="glyphicon glyphicon-tag"></span> @tag.Tag.Name</a>
                             <span>  </span>
                         }
                     </p>

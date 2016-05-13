@@ -63,14 +63,14 @@
     <div class="wrapper">
         <div class="header">
             <div class="top-banner">
-                <img class="logo" src="~/img/transparentlogo.png" />
+                <div class="container container-logo"><div class="row"><img class="logo" src="~/img/transparentlogo.png" /></div></div>
             </div>
             <div class="blog-masthead">
                 <div class="container">
                     <nav class="blog-nav">
-                        <a class="blog-nav-item home_link" href="#">Home</a>
-                        <a class="blog-nav-item blog_link" href="#">Blog</a>
-                        <a class="blog-nav-item portfolio_link" href="#">Portfolio</a>
+                        <a class="blog-nav-item home_link" href="@Url.Action("Index", "Home")">Home</a>
+                        <a class="blog-nav-item blog_link" href="@Url.Action("Index", "Blog")">Blog</a>
+                        <a class="blog-nav-item portfolio_link" href="@Url.Action("Index", "Portfolio")">Portfolio</a>
                     </nav>
                 </div>
             </div> 

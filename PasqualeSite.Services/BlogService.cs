@@ -14,6 +14,9 @@ namespace PasqualeSite.Services
         public int CurrentPage { get; set; }
         public int PerPage { get; set; }
         public int Total { get; set; }
+        public string Year { get; set; }
+        public string Month { get; set; }
+        public string Tag { get; set; }
         public List<Post> CurrentPosts { get; set; }
         public List<Tag> Tags { get; set; }
         public List<DateTime> BlogMonths { get; set; }
