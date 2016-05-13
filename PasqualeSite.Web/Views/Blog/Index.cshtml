@@ -42,9 +42,9 @@
                     {
                         <a href="@Url.Action("Index", "Blog", new { page = pageNumber+1, year = Model.Year, month = Model.Month, tag = Model.Tag })" class="btn btn-default">Next</a>
                     }    
-                    @if (Model.Year != null && Model.Month != null)
+                    @if (Model.Year != 0 && Model.Month != 0)
                     {
-                        <a style="float: right; margin-right: 3px;" href="@Url.Action("Index", "Blog", new { month = Model.Month, year = Model.Year })" class="label label-default tag-data"><span class="glyphicon glyphicon-calendar"></span> @(System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(int.Parse(Model.Month)) + " " + Model.Year)</a>
+                        <a style="float: right; margin-right: 3px;" href="@Url.Action("Index", "Blog", new { month = Model.Month, year = Model.Year })" class="label label-default tag-data"><span class="glyphicon glyphicon-calendar"></span> @(System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(Model.Month) + " " + Model.Year)</a>
                     }
                     @if (Model.Tag != null)
                     {

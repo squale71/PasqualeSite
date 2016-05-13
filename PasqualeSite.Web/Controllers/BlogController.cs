@@ -42,8 +42,14 @@ namespace PasqualeSite.Web.Controllers
                     pagingModel = await bs.GetFilteredPosts(tagId, year, month, 6, page);
                 }
 
-                pagingModel.Year = year;
-                pagingModel.Month = month;
+                int theYear, theMonth;
+
+                if (int.TryParse(month, out theMonth) && int.TryParse(year, out theYear))
+                {
+                    pagingModel.Year = theYear;
+                    pagingModel.Month = theMonth;
+                }
+                
                 pagingModel.Tag = tag;
                 return View(pagingModel);
             }

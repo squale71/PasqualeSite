@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Page Not Found";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            @if (ViewBag.Error != null)
+            {
+                <p>@ViewBag.Error</p>
+            }
+            else
+            {
+                <p>Ah. The old "this page doesn't exist" situation. Either that, or you are just typing random stuff in the URL. Either way, find your way back <a href="@Url.Action("Index", "Home")">here</a>.</p>
+            }
+        </div>
+    </div>
+</div>
+
