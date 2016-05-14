@@ -122,7 +122,7 @@ namespace PasqualeSite.Web.Controllers
             return View();
         }
 
-        //[Authorize]
+        [Authorize(Roles="Admin")]
         [HttpGet]
         public ActionResult Register()
         {
@@ -137,7 +137,7 @@ namespace PasqualeSite.Web.Controllers
         }
 
         //TODO: Change back to Allow Anon when we are ready to allow other users to register.
-        //[Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> Register(RegisterModel model)
         {
