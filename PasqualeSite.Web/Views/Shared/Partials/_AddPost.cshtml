@@ -17,8 +17,9 @@
         <textarea data-bind="CKEDITOR: PostContent" class="form-control" id="addcontent" placeholder="Content"></textarea>
     </div>
     <div class="form-group">
-        <label for="tags">Tags: </label>
-        <select multiple="multiple" id="tagSelect" data-bind="options: $parent.Tags, optionsText: 'Name', optionsValue: 'Id', selectedOptions: TagIds, multiselect: true, maxHeight: 200"></select>
+        <label for="tags">Tags: </label><br />
+        <select data-bind="options: $parent.Tags, selectedOptions: TagIds, optionsText: 'Name', optionsValue: 'Id'" size="5" multiple="true"></select>
+        @*<select multiple="multiple" id="tagSelect" data-bind="options: $parent.Tags, optionsText: 'Name', optionsValue: 'Id', selectedOptions: TagIds, multiselect: true, maxHeight: 200"></select>*@
     </div>
     <div class="form-group">
         <label for="featured">Is Featured (on homepage): </label>

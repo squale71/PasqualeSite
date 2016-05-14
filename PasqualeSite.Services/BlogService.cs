@@ -118,13 +118,26 @@ namespace PasqualeSite.Services
 
         public async Task<List<int>> UpdateTags(Post newPost, List<int> TagIds)
         {
-            var currentTags = await db.PostTags.Where(x => x.PostId == newPost.Id).ToListAsync();
-            db.PostTags.RemoveRange(currentTags); // Lets just refresh all the relationships.
-            foreach (var id in TagIds)
+            try
             {
-                db.PostTags.Add(new PostTag() { PostId = newPost.Id, TagId = id }); // Add the refreshed relationships.
+                var currentTags = await db.PostTags.Where(x => x.PostId == newPost.Id).ToListAsync();
+                if (currentTags != null && currentTags.Count() > 0)
+                {
+                    db.PostTags.RemoveRange(currentTags); // Lets just refresh all the relationships.
+                }
+
+                foreach (var id in TagIds)
+                {
+                    db.PostTags.Add(new PostTag() { PostId = newPost.Id, TagId = id }); // Add the refreshed relationships.
+                }
+                await db.SaveChangesAsync();
             }
-            await db.SaveChangesAsync();
+
+            catch (Exception ex)
+            {
+                //TODO: Log
+            }
+            
             return TagIds;
         }
 

@@ -19,7 +19,7 @@ namespace PasqualeSite.Web.App_Start
             ));
 
 
-            bundles.Add(new ScriptBundle("~/bundles/workareajs").Include(
+            bundles.Add(new Bundle("~/bundles/workareajs").Include(
                         "~/js/knockout-3.4.0.js",
                         "~/js/knockout-mapping.js",
                         "~/js/knockout.mapping.merge.js",
