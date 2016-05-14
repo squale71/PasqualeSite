@@ -13,6 +13,12 @@ namespace PasqualeSite.Web.Controllers
     {
         public async Task<ActionResult> Index()
         {
+            #if !DEBUG
+                if (Request.IsSecureConnection)
+                {
+                    Response.Redirect(Request.Url.ToString().Replace("https:", "http:"));
+                }
+            #endif
             List<Post> FeaturedPosts = new List<Post>();
             using (var bs = new BlogService())
             {

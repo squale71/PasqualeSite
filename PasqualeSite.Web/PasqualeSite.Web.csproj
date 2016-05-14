@@ -193,6 +193,9 @@
     <Content Include="img\1462426362_twitter_2.png" />
     <Content Include="img\1462426377_github.png" />
     <Content Include="img\csharp.png" />
+    <Content Include="img\favicon-16x16.png" />
+    <Content Include="img\favicon-32x32.png" />
+    <Content Include="img\favicon-96x96.png" />
     <Content Include="img\fsu.png" />
     <Content Include="img\GoJags.jpg" />
     <Content Include="img\logosmall.png" />
@@ -694,6 +697,7 @@
     <Content Include="Views\Shared\PageNotFound.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Error\ServerError.cshtml" />
+    <None Include="Properties\PublishProfiles\thesqualls.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

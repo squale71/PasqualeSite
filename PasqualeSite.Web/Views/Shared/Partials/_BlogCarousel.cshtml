@@ -13,7 +13,8 @@
                 items: 1,
                 margin: 10,
                 dots: true,
-                lazyLoad: true
+                lazyLoad: true,
+                loop: true
             })
             .on('changed.owl.carousel', function (e) {
                 if (!flag) {
@@ -72,7 +73,7 @@
                                 </h3>
                             }
                             <div class="side">
-                                <h1>@post.Title</h1>
+                                <h1><a href="@Url.Action("Post", "Blog", new { year = post.DateCreated.Year, month = post.DateCreated.Month, day = post.DateCreated.Day, title = post.UrlTitle  })">@post.Title</a></h1>
                                 <p class="byline">by @post.Author  | Posted on @post.DateCreated.ToLongDateString() at @post.DateCreated.ToShortTimeString()</p>
                                 <hr />                             
                                 <p>@post.Teaser</p>

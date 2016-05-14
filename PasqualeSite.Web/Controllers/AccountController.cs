@@ -30,14 +30,27 @@ namespace PasqualeSite.Web.Controllers
         [HttpGet]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
+        #if !DEBUG
+        if (!Request.IsSecureConnection)
+        {
+            Response.Redirect(Request.Url.ToString().Replace("http:", "https:"));
+        }
+        #endif
+
+        ViewBag.ReturnUrl = returnUrl;
+        return View();
         }
 
         [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult> LogIn(LogInModel model, string returnUrl)
         {
+            #if !DEBUG
+                if (!Request.IsSecureConnection)
+                {
+                    Response.Redirect(Request.Url.ToString().Replace("http:", "https:"));
+                }
+            #endif
             if (!ModelState.IsValid)
             {
                 return View();
@@ -109,18 +122,31 @@ namespace PasqualeSite.Web.Controllers
             return View();
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public ActionResult Register()
         {
+            #if !DEBUG
+            if (!Request.IsSecureConnection)
+            {
+                Response.Redirect(Request.Url.ToString().Replace("http:", "https:"));
+            }
+            #endif
+
             return View();
         }
 
         //TODO: Change back to Allow Anon when we are ready to allow other users to register.
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         public async Task<ActionResult> Register(RegisterModel model)
         {
+            #if !DEBUG
+            if (!Request.IsSecureConnection)
+            {
+                Response.Redirect(Request.Url.ToString().Replace("http:", "https:"));
+            }
+            #endif
             if (!ModelState.IsValid)
             {
                 return View();
@@ -175,6 +201,12 @@ namespace PasqualeSite.Web.Controllers
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
+#if !DEBUG
+            if (!Request.IsSecureConnection)
+            {
+                Response.Redirect(Request.Url.ToString().Replace("http:", "https:"));
+            }
+#endif
             return View();
         }
 
@@ -182,6 +214,12 @@ namespace PasqualeSite.Web.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
+#if !DEBUG
+            if (!Request.IsSecureConnection)
+            {
+                Response.Redirect(Request.Url.ToString().Replace("http:", "https:"));
+            }
+#endif
             if (ModelState.IsValid)
             {
                 var user = await userManager.FindByNameAsync(model.User);
@@ -207,6 +245,12 @@ namespace PasqualeSite.Web.Controllers
         [AllowAnonymous]
         public ActionResult ResetPassword(string userId, string code)
         {
+#if !DEBUG
+            if (!Request.IsSecureConnection)
+            {
+                Response.Redirect(Request.Url.ToString().Replace("http:", "https:"));
+            }
+#endif
             var resetModel = new ResetPasswordViewModel();
             resetModel.userId = userId;
             resetModel.resetToken = code;
@@ -217,6 +261,12 @@ namespace PasqualeSite.Web.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel resetModel)
         {
+#if !DEBUG
+            if (!Request.IsSecureConnection)
+            {
+                Response.Redirect(Request.Url.ToString().Replace("http:", "https:"));
+            }
+#endif
             if (!ModelState.IsValid && resetModel.newPassword != resetModel.confirmPassword)
             {
                 return View();

@@ -14,6 +14,12 @@ namespace PasqualeSite.Web.Controllers
         // GET: Blog
         public async Task<ActionResult> Index(int page = 1, string year = null, string month = null, string tag = null)
         {
+            #if !DEBUG
+                if (Request.IsSecureConnection)
+                {
+                    Response.Redirect(Request.Url.ToString().Replace("https:", "http:"));
+                }
+            #endif
             try
             {
                 var pagingModel = new PostPagingModel();
@@ -70,6 +76,12 @@ namespace PasqualeSite.Web.Controllers
 
         public async Task<ActionResult> Post(int year, int month, int day, string title)
         {
+            #if !DEBUG
+                if (Request.IsSecureConnection)
+                {
+                    Response.Redirect(Request.Url.ToString().Replace("https:", "http:"));
+                }
+            #endif
             Post post = new Post();
             using (var bs = new BlogService())
             {
