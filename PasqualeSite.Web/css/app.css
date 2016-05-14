@@ -128,7 +128,6 @@ td { padding: 20px; }
 .rss-link-text { }
 .rss-description { font-size: 13px; }
 
-
 @media (min-width:990px) {
     #me { display: inline-block; }
         #me img { max-width: 400px; }

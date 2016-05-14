@@ -11,11 +11,16 @@
     <link rel="icon" type="image/png" sizes="32x32" href="~/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="~/img/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="~/img/favicon-16x16.png">
+    <meta name="description" content="A website containing reactions to the newest news in development, tech, and video games!">
+    <meta property="fb:admins" content="10105088260911193" />
+
+    @RenderSection("meta", required: false)
     <title>@ViewBag.Title</title>
 
     @Scripts.Render("~/bundles/sitejs")
     <script src="~/js/bootstrap.min.js"></script>
     @RenderSection("WorkareaJS", required: false)
+    
        
     <script src="~/js/app.min.js"></script>
 

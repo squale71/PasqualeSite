@@ -4,7 +4,6 @@
     $(document).ready(function () {
         var owl = $('.owl-carousel');
         var $sync1 = $("#owlArticle");
-        var $sync2 = $("#owlThumb");
         var flag = false;
 		var duration = 300;
 
@@ -13,15 +12,7 @@
                 items: 1,
                 margin: 10,
                 dots: true,
-                lazyLoad: true,
             })
-            .on('changed.owl.carousel', function (e) {
-                if (!flag) {
-                    flag = true;
-                    $sync2.trigger('to.owl.carousel', [e.item.index, duration, true]);
-                    flag = false;
-                }
-            });
 
         $('.right-arrow').click(function () {
             $sync1.trigger('next.owl.carousel');
@@ -32,24 +23,6 @@
             // Parameters has to be in square bracket '[]'
             $sync1.trigger('prev.owl.carousel');
         })
-
-        $sync2
-            .owlCarousel({
-                margin: 20,
-                items: 6,
-                dots: true,
-            })
-            .on('click', '.owl-item', function () {
-                $sync1.trigger('to.owl.carousel', [$(this).index(), duration, true]);
-
-            })
-            .on('changed.owl.carousel', function (e) {
-                if (!flag) {
-                    flag = true;
-                    $sync1.trigger('to.owl.carousel', [e.item.index, duration, true]);
-                    flag = false;
-                }
-            });
 
         
     });

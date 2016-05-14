@@ -5,6 +5,17 @@
     var modifiedString = Model.DateModified != null ? String.Format(" | Modified on {0} at {1}", Model.DateModified.Value.ToLongDateString(), Model.DateModified.Value.ToShortTimeString()) : String.Empty;
 }
 
+@section meta {
+    <meta property="og:title" content="@Model.Title" />
+    <meta property="og:type" content="blog" />
+    <meta property="og:image" content="@(Model.Image != null ? Model.Image.Path : "http://images.thesqualls.com/images/logo1")" />
+    <meta property="og:description" content="@Model.Teaser" />
+
+    <meta property="twitter:title" content="@Model.Title" />
+    <meta name="twitter:description" content="@Model.Teaser" />
+    <meta name="twitter:image" content="@(Model.Image != null ? Model.Image.Path : "http://images.thesqualls.com/images/logo1")" />
+}
+
 <script>
     $(document).ready(function () {
         $('.blog_link').addClass('active');
@@ -28,7 +39,6 @@
                     var description = "<div class='byline'>" + val.Description + "</div></br>";
                     $items.append(title + description);
                 })
-                console.log(json);
             }
         })
     })

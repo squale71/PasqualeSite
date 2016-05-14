@@ -1,5 +1,16 @@
 ﻿@model PasqualeSite.Services.PostPagingModel
 
+@section meta {
+    <meta property="og:title" content="thesqualls Blog" />
+    <meta property="og:type" content="blog" />
+    <meta property="og:image" content="http://images.thesqualls.com/images/logo1" />
+    <meta property="og:description" content="The latest and greatest blog posts related to tech and video games!" />
+
+    <meta property="twitter:title" content="thesqualls Blog" />
+    <meta name="twitter:description" content="The latest and greatest blog posts related to tech and video games!" />
+    <meta name="twitter:image" content="http://images.thesqualls.com/images/logo1" />
+}
+
 @{
     ViewBag.Title = "Index";
     var rand = new Random();
