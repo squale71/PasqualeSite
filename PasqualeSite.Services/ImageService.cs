@@ -69,7 +69,7 @@ namespace PasqualeSite.Services
             {
                 var newImage = image;
                 newImage.Name = imageName;
-                newImage.Path = "http://www.thesqualls.com/images/" + imageName;
+                newImage.Path = "http://images.thesqualls.com/images/" + imageName;
                 db.Entry(image).CurrentValues.SetValues(newImage);
                 await db.SaveChangesAsync();
                 return newImage;
@@ -78,7 +78,7 @@ namespace PasqualeSite.Services
             {
                 var newImage = new PostImage();
                 newImage.Name = imageName;
-                newImage.Path = "http://www.thesqualls.com/images/" + imageName;
+                newImage.Path = "http://images.thesqualls.com/images/" + imageName;
                 db.PostImages.Add(newImage);
                 await db.SaveChangesAsync();
                 return newImage;

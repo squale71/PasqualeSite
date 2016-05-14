@@ -11,7 +11,7 @@ namespace PasqualeSite.Web.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             BundleTable.EnableOptimizations = true;
-            bundles.Add(new ScriptBundle("~/bundles/sitejs").Include(
+            bundles.Add(new Bundle("~/bundles/sitejs").Include(
                         "~/js/jquery-1.9.1.min.js",
                         "~/js/plugins/jqueryui/jquery-ui.min.js",
                         "~/js/bootstrap.min.js",
