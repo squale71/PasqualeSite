@@ -151,6 +151,7 @@ td { padding: 20px; }
 .fun-fact { color: #19153b; font-weight: 200; }
 .blog-header { margin-bottom: 0px; }
 .carousel-home { min-height: 400px; }
+.blog-content p { line-height: 28px;}
 
 /* Registration */
 .register input { max-width: 500px; }

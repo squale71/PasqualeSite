@@ -32,7 +32,7 @@ namespace PasqualeSite.Services
 
         public async Task<Post> GetBlogPost(int year, int month, int day, string title)
         {
-            var post = await db.Posts.Include(x => x.PostTags.Select(y => y.Tag)).Where(x => x.UrlTitle == title && x.DateCreated.Year == year && x.DateCreated.Month == month && x.DateCreated.Day == day).FirstOrDefaultAsync();
+            var post = await db.Posts.Include(x => x.PostTags.Select(y => y.Tag)).Include(x => x.Image).Where(x => x.UrlTitle == title && x.DateCreated.Year == year && x.DateCreated.Month == month && x.DateCreated.Day == day).FirstOrDefaultAsync();
             return post;
         }
 
