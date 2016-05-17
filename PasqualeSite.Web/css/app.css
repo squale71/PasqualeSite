@@ -52,6 +52,10 @@ hr { color: #19153b; background-color: #19153b; border-color: #333; }
 .left-arrow { width: 70px; margin-top: 150px; display: none; cursor: pointer; color: #19153b; }
     .left-arrow:hover { color: #162c69; }
 .left-arrow { font-size: 60pt; margin-right: 15px; }
+.post-title { margin-top: 10px; }
+.datestamp { font-size: 13px; }
+.commentcount { font-size: 13px; }
+.author { font-size: 13px; }
 
 @media (min-width:1920px) {
     .right-arrow { display: inline-block; }

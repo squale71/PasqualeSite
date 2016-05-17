@@ -41,14 +41,60 @@
                 })
             }
         })
+
+        function filterPath(string) {
+            return string
+              .replace(/^\//, '')
+              .replace(/(index|default).[a-zA-Z]{3,4}$/, '')
+              .replace(/\/$/, '');
+        }
+        var locationPath = filterPath(location.pathname);
+        var scrollElem = scrollableElement('html', 'body');
+
+        $('a[href*=#]').each(function () {
+            var thisPath = filterPath(this.pathname) || locationPath;
+            if (locationPath == thisPath
+            && (location.hostname == this.hostname || !this.hostname)
+            && this.hash.replace(/#/, '')) {
+                var $target = $(this.hash), target = this.hash;
+                if (target) {
+                    var targetOffset = $target.offset().top - 20;
+                    $(this).click(function (event) {
+                        event.preventDefault();
+                        $(scrollElem).animate({ scrollTop: targetOffset }, 400, function () {
+                            location.hash = target;
+                        });
+                    });
+                }
+            }
+        });
+
+        // use the first element that is "scrollable"
+        function scrollableElement(els) {
+            for (var i = 0, argLength = arguments.length; i < argLength; i++) {
+                var el = arguments[i],
+                    $scrollElement = $(el);
+                if ($scrollElement.scrollTop() > 0) {
+                    return el;
+                } else {
+                    $scrollElement.scrollTop(1);
+                    var isScrollable = $scrollElement.scrollTop() > 0;
+                    $scrollElement.scrollTop(0);
+                    if (isScrollable) {
+                        return el;
+                    }
+                }
+            }
+            return [];
+        }
     })
 </script>
 
 
 
 <div class="container">
-    <div class="col-md-7">
-        <div class="row">
+    <div class="row">
+        <div class="col-md-7">
             <div class="row">
                 <div class="col-md-12">
                     <p>
@@ -65,7 +111,17 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2>@Model.Title</h2>
-                        <p class="byline">by @Model.Author | Created on @Model.DateCreated.ToLongDateString() at @Model.DateCreated.ToShortTimeString() @modifiedString </p>                      
+                        <span class="author">
+                            <span class="glyphicon glyphicon-user"></span> @Model.Author
+                        </span>
+                        &nbsp;&nbsp;
+                        <span class="datestamp">
+                            <span class="glyphicon glyphicon-time"></span> @(Model.DateCreated.ToShortDateString() + " | " + Model.DateCreated.ToLongTimeString())
+                        </span>
+                        &nbsp;&nbsp;
+                        <span class="commentcount">
+                            <span class="glyphicon glyphicon-comment"></span> <a href="#disqus_thread"><span class="disqus-comment-count" data-disqus-identifier="@Model.Id"></span></a>
+                        </span>
                     </div>
                 </div>
                 <hr />
@@ -76,20 +132,38 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="rss well">
-            <h2 class="rss-head">What's happening?</h2>
-            <p class="byline">Your up-to-date dose of what's happening around the world of tech and video games, courtesy of: </p>
-            <div class="rss-title"></div>
-            <div class="rss-description"></div>
-            <hr />
-            <div class="rss-container">               
-                <div class="rss-items">
+        <div class="col-md-4">
+            <div class="rss well">
+                <h2 class="rss-head">What's happening?</h2>
+                <p class="byline">Your up-to-date dose of what's happening around the world of tech and video games, courtesy of: </p>
+                <div class="rss-title"></div>
+                <div class="rss-description"></div>
+                <hr />
+                <div class="rss-container">
+                    <div class="rss-items">
 
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div id="disqus_thread"></div>
+        <script>
+            var disqus_config = function () {
+            this.page.url = "http://www.thesqualls.com" + "@Url.Action("Post", "Blog", new { year = Model.DateCreated.Year, month = Model.DateCreated.Month, day = Model.DateCreated.Day, title = Model.UrlTitle  })";
+            this.page.identifier = "@Model.Id"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+
+            s.src = '//thesqualls.disqus.com/embed.js';
+
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
     </div>
 </div>
 

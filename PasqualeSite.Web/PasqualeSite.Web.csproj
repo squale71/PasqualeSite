@@ -209,7 +209,6 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
-    <Content Include="fonts\Kozuka-Gothic-Pro-M_26793.ttf" />
     <Content Include="fonts\KozGoPro-Bold.otf" />
     <Content Include="fonts\KozGoPro-ExtraLight.otf" />
     <Content Include="fonts\KozGoPro-Heavy.otf" />
@@ -636,7 +635,9 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Portfolio\Index.cshtml" />
     <Content Include="Views\Shared\_DefaultLayout.cshtml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />

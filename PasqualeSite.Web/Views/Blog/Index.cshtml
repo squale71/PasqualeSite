@@ -9,6 +9,7 @@
     <meta property="twitter:title" content="thesqualls Blog" />
     <meta name="twitter:description" content="The latest and greatest blog posts related to tech and video games!" />
     <meta name="twitter:image" content="http://images.thesqualls.com/images/logo1" />
+
 }
 
 @{
@@ -73,8 +74,14 @@
                                 <img class="img-responsive" src="@(post.Image != null ? post.Image.Path : "")" />
                             </div>
                             <div class="col-md-10">
-                                <p class="bold">@post.DateCreated.ToShortDateString()</p>
-                                <h2>@post.Title</h2>
+                                <span class="datestamp">
+                                    <span class="glyphicon glyphicon-time"></span> @post.DateCreated.ToShortDateString()
+                                </span>
+                                &nbsp;&nbsp;&nbsp;
+                                <span class="commentcount">
+                                    <span class="glyphicon glyphicon-comment"></span> <span class="disqus-comment-count" data-disqus-identifier="@post.Id"></span>
+                                </span>
+                                <h2 class="post-title">@post.Title</h2>
                                 <p class="byline"><p class="byline">by @post.Author</p>  
                             </div>                                                  
                         </div>
