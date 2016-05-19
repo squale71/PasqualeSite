@@ -159,7 +159,7 @@ td { padding: 20px; }
 .fun-fact { color: #19153b; font-weight: 200; }
 .blog-header { margin-bottom: 0px; }
 .carousel-home { min-height: 400px; }
-.blog-content p { line-height: 28px;}
+.blog-content p { line-height: 28px; }
 
 /* Registration */
 .register input { max-width: 500px; }
@@ -191,6 +191,10 @@ a.label:hover { background-color: #19153b !important; }
 .hvr-icon-pulse-cal { display: inline-block; vertical-align: middle; -webkit-transform: translateZ(0); transform: translateZ(0); box-shadow: 0 0 1px rgba(0, 0, 0, 0); -webkit-backface-visibility: hidden; backface-visibility: hidden; -moz-osx-font-smoothing: grayscale; position: relative; padding-right: 2.2em; }
     .hvr-icon-pulse-cal:before { content: "\f073"; position: absolute; right: 1em; padding: 0 1px; font-family: FontAwesome; -webkit-transform: translateZ(0); transform: translateZ(0); -webkit-transition-timing-function: ease-out; transition-timing-function: ease-out; }
     .hvr-icon-pulse-cal:hover:before, .hvr-icon-pulse:focus:before, .hvr-icon-pulse:active:before { -webkit-animation-name: hvr-icon-pulse; animation-name: hvr-icon-pulse; -webkit-animation-duration: 1s; animation-duration: 1s; -webkit-animation-timing-function: linear; animation-timing-function: linear; -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite; }
+
+.hvr-icon-pulse-share { display: inline-block; vertical-align: middle; -webkit-transform: translateZ(0); transform: translateZ(0); box-shadow: 0 0 1px rgba(0, 0, 0, 0); -webkit-backface-visibility: hidden; backface-visibility: hidden; -moz-osx-font-smoothing: grayscale; position: relative; padding-right: 2.2em; }
+    .hvr-icon-pulse-share:before { content: "\f1e0"; position: absolute; right: 1em; padding: 0 1px; font-family: FontAwesome; -webkit-transform: translateZ(0); transform: translateZ(0); -webkit-transition-timing-function: ease-out; transition-timing-function: ease-out; }
+    .hvr-icon-pulse-share:hover:before, .hvr-icon-pulse:focus:before, .hvr-icon-pulse:active:before { -webkit-animation-name: hvr-icon-pulse; animation-name: hvr-icon-pulse; -webkit-animation-duration: 1s; animation-duration: 1s; -webkit-animation-timing-function: linear; animation-timing-function: linear; -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite; }
 
 /* Shrink */
 .hvr-shrink { display: inline-block; vertical-align: middle; -webkit-transform: translateZ(0); transform: translateZ(0); box-shadow: 0 0 1px rgba(0, 0, 0, 0); -webkit-backface-visibility: hidden; backface-visibility: hidden; -moz-osx-font-smoothing: grayscale; -webkit-transition-duration: 0.3s; transition-duration: 0.3s; -webkit-transition-property: transform; transition-property: transform; }

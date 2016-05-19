@@ -202,6 +202,7 @@
     <Content Include="img\me.jpg" />
     <Content Include="img\meandfriends.jpg" />
     <Content Include="img\melondon.jpg" />
+    <Content Include="img\share.png" />
     <Content Include="img\transparentlogo.png" />
     <Content Include="img\unf.jpg" />
     <Content Include="js\app.coffee" />
