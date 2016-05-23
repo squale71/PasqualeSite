@@ -4,20 +4,23 @@
     <meta property="og:title" content="thesqualls Blog" />
     <meta property="og:type" content="blog" />
     <meta property="og:image" content="http://images.thesqualls.com/images/logo1" />
-    <meta property="og:description" content="The Squall Blog To End All Blogs!" />
+    <meta property="og:description" content="The Squall Blog To End All Blogs - Tech and Gaming News, Reactions, and Reviews" />
 
     <meta property="twitter:title" content="thesqualls Blog" />
-    <meta name="twitter:description" content="The Squall Blog To End All Blogs!" />
+    <meta name="twitter:description" content="The Squall Blog To End All Blogs - Tech and Gaming News, Reactions, and Reviews" />
     <meta name="twitter:image" content="http://images.thesqualls.com/images/logo1" />
 
 }
 
 @{
-    ViewBag.Title = "The Squall Blog To End All Blogs";
+    ViewBag.Title = "The Squall Blog To End All Blogs - Tech and Gaming News, Reactions, and Reviews";
     var rand = new Random();
 
     var pageNumber = Model.CurrentPage;
     var maxPage = Math.Ceiling((double)Model.Total / Model.PerPage);
+
+    var modelYear = Model.Year != 0 ? Model.Year.ToString() : null;
+    var modelMonth = Model.Month != 0 ? Model.Month.ToString() : null;
 }
 
 <script>
@@ -48,11 +51,11 @@
                 <div class="col-md-12">
                     @if (pageNumber > 1)
                     {
-                        <a href="@Url.Action("Index", "Blog", new { page = pageNumber-1, year = Model.Year, month = Model.Month, tag = Model.Tag })" class="btn btn-default">Previous</a>
+                        <a href="@Url.Action("Index", "Blog", new { page = pageNumber-1, year = modelYear, month = modelMonth, tag = Model.Tag })" class="btn btn-default">Previous</a>
                     }  
                     @if (pageNumber < maxPage)
                     {
-                        <a href="@Url.Action("Index", "Blog", new { page = pageNumber+1, year = Model.Year, month = Model.Month, tag = Model.Tag })" class="btn btn-default">Next</a>
+                        <a href="@Url.Action("Index", "Blog", new { page = pageNumber+1, year = modelYear, month = modelMonth, tag = Model.Tag })" class="btn btn-default">Next</a>
                     }    
                     @if (Model.Year != 0 && Model.Month != 0)
                     {
@@ -89,7 +92,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <p>@post.Teaser</p>
-                                <p class="readmore"><a href="@Url.Action("Post", "Blog", new { year = post.DateCreated.Year, month = post.DateCreated.Month, day = post.DateCreated.Day, title = post.UrlTitle  })">Read More</a></p>
+                                <p class="readmore"><a href="@Url.Action("Post", "Blog", new { year = post.DateCreated.Year, month = post.DateCreated.Month, day = post.DateCreated.Day, urlTitle = post.UrlTitle  })">Read More</a></p>
                                 <p>
                                     @foreach (var tag in post.PostTags)
                                     {

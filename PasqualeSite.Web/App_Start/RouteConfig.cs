@@ -15,7 +15,7 @@ namespace PasqualeSite.Web
 
             routes.MapRoute(
                 name: "Blog",
-                url: "{year}/{month}/{day}/{title}",
+                url: "{year}/{month}/{day}/{urlTitle}",
                 defaults: new { controller = "Blog", action = "Post" }
             );
 

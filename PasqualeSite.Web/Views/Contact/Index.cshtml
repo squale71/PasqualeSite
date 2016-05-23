@@ -1,0 +1,83 @@
+﻿@model PasqualeSite.Web.Models.ContactModel
+
+@{
+    ViewBag.Title = "Contact Me!";
+}
+
+<script>
+    $(document).ready(function () {
+        $('.contact_link').addClass('active');
+    })
+</script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+        <h2>Contact Me</h2>
+            <p class="byline">This is the obligatory contact me page. Seriously though, I would love to hear any comments or criticisms that you have about the site. Feel free to offer up any suggestions you have or ask me anything you'd like. Assuming it's within reason, I will happily respond.</p>
+        </div>    
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            @if (ViewBag.Message != null)
+            {
+                if (ViewBag.Error == true)
+                {
+                    <p class="text-danger">* <i>@ViewBag.Message</i></p>
+                }
+
+                else {
+                    <p class="text-info">* <i>@ViewBag.Message</i></p>
+                }
+
+            }
+        </div>       
+    </div>  
+    
+    @if (ViewBag.SentMessage != true)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Subject) <span class="text-danger"> *</span>
+                        @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email)
+                        <p class="byline">Not required if you're just leaving a comment, but if you'd like me to contact you back, you better leave one.</p>
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Comment) <span class="text-danger"> *</span>
+                        @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { cols = 35, @rows = 10, @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <div class="editor-field">
+                            @Html.reCaptcha()
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Submit" class="btn btn-default" />
+                }
+            </div>
+        </div>
+    }
+    
+</div>
+
+
+
+

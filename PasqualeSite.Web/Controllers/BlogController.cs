@@ -1,4 +1,5 @@
-﻿using PasqualeSite.Data.Entities;
+﻿using MvcSiteMapProvider;
+using PasqualeSite.Data.Entities;
 using PasqualeSite.Services;
 using System;
 using System.Collections.Generic;
@@ -74,7 +75,7 @@ namespace PasqualeSite.Web.Controllers
             
         }
 
-        public async Task<ActionResult> Post(int year, int month, int day, string title)
+        public async Task<ActionResult> Post(int year, int month, int day, string urlTitle)
         {
             #if !DEBUG
                 if (Request.IsSecureConnection)
@@ -85,7 +86,7 @@ namespace PasqualeSite.Web.Controllers
             Post post = new Post();
             using (var bs = new BlogService())
             {
-                post = await bs.GetBlogPost(year, month, day, title);
+                post = await bs.GetBlogPost(year, month, day, urlTitle);
             }
 
             if (post != null)
