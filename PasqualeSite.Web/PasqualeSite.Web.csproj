@@ -208,6 +208,7 @@
     <Content Include="img\favicon-16x16.png" />
     <Content Include="img\favicon-32x32.png" />
     <Content Include="img\favicon-96x96.png" />
+    <Content Include="img\FB-f-Logo__blue_29.png" />
     <Content Include="img\fsu.png" />
     <Content Include="img\GoJags.jpg" />
     <Content Include="img\logosmall.png" />
@@ -216,6 +217,7 @@
     <Content Include="img\melondon.jpg" />
     <Content Include="img\share.png" />
     <Content Include="img\transparentlogo.png" />
+    <Content Include="img\twitter.png" />
     <Content Include="img\unf.jpg" />
     <Content Include="js\app.coffee" />
     <None Include="compilerconfig.json" />

@@ -41,6 +41,10 @@
         }
 
         var approot = "@Url.Content("~/")";
+
+        var popup = function (url) {
+            window.open(url, "_blank", "width=500,height=500");
+        }
     </script>
 
     @RenderSection("WorkareaCSS", required: false)
