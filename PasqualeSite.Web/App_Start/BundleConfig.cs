@@ -15,7 +15,9 @@ namespace PasqualeSite.Web.App_Start
                         "~/js/jquery-1.9.1.min.js",
                         "~/js/plugins/jqueryui/jquery-ui.min.js",
                         "~/js/bootstrap.min.js",
-                        "~/js/plugins/owl/owl.carousel.min.js"
+                        "~/js/plugins/owl/owl.carousel.min.js",
+                        "~/js/plugins/datejs/date.js",
+                        "~/js/plugins/datejs/moment.js"
             ));
 
 
@@ -25,7 +27,6 @@ namespace PasqualeSite.Web.App_Start
                         "~/js/knockout.mapping.merge.js",
                         "~/js/plugins/kogrid/koGrid-2.1.1.js",
                         "~/js/knockouthandlers.js",
-                        "~/js/plugins/datejs/date.js",
                         "~/js/plugins/notify/notify.min.js",
                         "~/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js"
             ));
