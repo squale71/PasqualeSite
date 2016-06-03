@@ -220,6 +220,7 @@
     <Content Include="img\FB-f-Logo__blue_29.png" />
     <Content Include="img\fsu.png" />
     <Content Include="img\GoJags.jpg" />
+    <Content Include="img\iptm.png" />
     <Content Include="img\logosmall.png" />
     <Content Include="img\me.jpg" />
     <Content Include="img\meandfriends.jpg" />
@@ -649,6 +650,12 @@
     <Content Include="js\plugins\kogrid\koGrid-2.1.1.debug.js" />
     <Content Include="js\plugins\kogrid\koGrid-2.1.1.js" />
     <Content Include="js\plugins\kogrid\KoGrid.css" />
+    <Content Include="js\plugins\lightbox\css\lightbox.css" />
+    <Content Include="js\plugins\lightbox\images\close.png" />
+    <Content Include="js\plugins\lightbox\images\loading.gif" />
+    <Content Include="js\plugins\lightbox\images\next.png" />
+    <Content Include="js\plugins\lightbox\images\prev.png" />
+    <Content Include="js\plugins\lightbox\js\lightbox.js" />
     <Content Include="js\plugins\notify\notify.min.js" />
     <Content Include="js\plugins\owl\assets\owl.carousel.css" />
     <Content Include="js\plugins\owl\assets\owl.theme.css" />
