@@ -38,6 +38,14 @@ hr { color: #19153b; background-color: #19153b; border-color: #333; }
     .container-logo { width: 1600px; }
 }
 
+@media (min-width: 572px) {
+    /* Active state gets a caret at the bottom */   
+    .blog-nav .active:after { position: absolute; bottom: 0; left: 50%; width: 0; height: 0; margin-left: -8px; vertical-align: middle; content: " "; border-right: 8px solid transparent; border-bottom: 8px solid; border-left: 8px solid transparent; }
+    .mobile-break { display: none; }
+}
+
+.blog-nav .active { color: #fff; }
+.projects_link:hover { cursor: pointer; }
 .panel-heading { background-color: #F3F5F9 !important; }
 
 /*
@@ -77,10 +85,6 @@ hr { color: #19153b; background-color: #19153b; border-color: #333; }
 .blog-nav-item { position: relative; display: inline-block; padding: 10px; font-weight: 500; color: #cdddeb; }
     .blog-nav-item:hover,
     .blog-nav-item:focus { color: #cdddeb; text-decoration: none; }
-
-/* Active state gets a caret at the bottom */
-.blog-nav .active { color: #fff; }
-    .blog-nav .active:after { position: absolute; bottom: 0; left: 50%; width: 0; height: 0; margin-left: -8px; vertical-align: middle; content: " "; border-right: 8px solid transparent; border-bottom: 8px solid; border-left: 8px solid transparent; }
 
 
 .container-jumbo { width: 100%; min-height: 400px; }
@@ -205,13 +209,19 @@ body { padding-bottom: 0px !important; /* Margin bottom by footer height */ }
     75% { -webkit-transform: scale(0.8); transform: scale(0.8); }
 }
 
-.dropdown { position: relative; display: inline-block; color: #cdddeb; }
+.dropdown { position: relative; display: inline-block; color: #cdddeb; min-width: 300px; }
     .dropdown hr { margin: 2px; }
     .dropdown p { margin: 4px; }
-.dropdown-content { display: none; position: absolute; background-color: #f9f9f9; min-width: 450px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); padding: 12px 16px; z-index: 100; color: #19153b; background-color: #F3F5F9; }
+.dropdown-content { right: 0; display: none; position: absolute; background-color: #f9f9f9; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); padding: 12px 16px; z-index: 100; color: #19153b; background-color: #F3F5F9; }
 
 .dropdown:hover .dropdown-content { display: block; }
-.sub-header { margin-top: 15px; margin-bottom: 5px;  }
+
+@media (max-width:800px) {
+    .dropdown-content { width: 80%; }
+    .dropdown-menu > p { white-space: normal; }
+}
+
+.sub-header { margin-top: 15px; margin-bottom: 5px; }
 
 a.label:hover { background-color: #19153b !important; }
 

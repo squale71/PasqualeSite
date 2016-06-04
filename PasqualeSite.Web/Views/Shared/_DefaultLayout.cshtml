@@ -221,9 +221,9 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
             <div class="blog-masthead">
                 <div class="container">
                     <nav class="blog-nav">
-                        <a class="blog-nav-item home_link" href="@Url.Action("Index", "Home", new { Area = string.Empty })">Home</a>
-                        <a class="blog-nav-item blog_link" href="@Url.Action("Index", "Blog", new { Area = string.Empty })">Blog</a>
-                        <a class="blog-nav-item portfolio_link" href="@Url.Action("Index", "Portfolio", new { Area = string.Empty })">Portfolio</a>
+                        <a class="blog-nav-item home_link" href="@Url.Action("Index", "Home", new { Area = string.Empty })">Home</a><br class="mobile-break" />
+                        <a class="blog-nav-item blog_link" href="@Url.Action("Index", "Blog", new { Area = string.Empty })">Blog</a><br class="mobile-break" />
+                        <a class="blog-nav-item portfolio_link" href="@Url.Action("Index", "Portfolio", new { Area = string.Empty })">Portfolio</a><br class="mobile-break" />
                         <div class="dropdown blog-nav-item projects_link">
                             <span>Projects <span class="caret"></span></span>
                             <div class="dropdown-content">
@@ -234,6 +234,9 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
                                 <hr />
                                 <p><a target="_blank" href="http://www.mocajacksonville.unf.edu">MOCA Jacksonville</a></p>
                                 <p><a target="_blank" href="http://www.unf.edu">University of North Florida</a></p>
+                                <hr />
+                                <br />
+                                <p class="byline">See my Portfolio for some demos on other projects I've built. There is more to come!</p>
                             </div>
                         </div>
                     </nav>
