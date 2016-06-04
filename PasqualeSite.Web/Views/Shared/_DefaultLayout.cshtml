@@ -173,23 +173,18 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
                 $('.twitterText').html(twitterHtml);
             });
 
-            $.getJSON("https://api.instagram.com/v1/users/search?q=squale7&client_id=e5b30d874296450ab1d3131be6a601ee&callback=?", function (data) {
-                var userId;
-                for (var i = 0; i < data.data.length; i++) {
-                    if (data.data[i].username == "squale7") {
-                        userId = data.data[i].id
-                    }
-                }
-
-                $.getJSON('https://api.instagram.com/v1/users/' + userId + "/media/recent/?client_id=e5b30d874296450ab1d3131be6a601ee&count=6&callback=?", function (json) {
-                    console.log(json)
-                    for (var i = 0; i < json.data.length; i++) {
-                        var link = json.data[i].link;
-                        var thumb = "<div class=\"thumbnail\"><a target='_blank' href=\"" + link + "\"><img src=\"" + json.data[i].images.thumbnail.url + "\" alt=\"Image\" /></a></div>"
+            $.ajax({
+                url: approot + 'api/instagram/squale7',
+                dataType: 'json',
+                success: function (json) {
+                    for (var i = 0; i < json.items.length || i <= 5; i++) {
+                        var link = json.items[i].link;
+                        var thumb = "<div class=\"thumbnail\"><a target='_blank' href=\"" + link + "\"><img src=\"" + json.items[i].images.thumbnail.url + "\" alt=\"Image\" /></a></div>"
                         $('.instagramPhotos').append(thumb);
                     }
-                });
-            });
+                }
+            })
+
         })
     </script>
 
@@ -285,6 +280,7 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
                         <hr />
                         <p><a href="@Url.Action("Index", "About")">About</a></p>
                         <p><a href="@Url.Action("Index", "Contact")">Contact</a></p>
+                        <p><a href="@Url.Action("Privacy", "About")">Privacy</a></p>
                     </div>                  
                 </div>               
             </div>    
