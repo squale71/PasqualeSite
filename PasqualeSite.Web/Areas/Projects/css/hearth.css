@@ -1,0 +1,54 @@
+h1, h2, h3, h4 { color: #777; }
+
+#deck { background-color: #F8F8F8; min-height: 800px; border: 1px solid #E7E7E7; border-radius: 5px; }
+#validation { color: red; }
+
+
+.navbar { margin-botton: 20px; }
+.img-center { margin: 0 auto; }
+
+@-webkit-keyframes hvr-bob {
+    0% { -webkit-transform: translateY(-8px); transform: translateY(-8px); }
+
+    50% { -webkit-transform: translateY(-4px); transform: translateY(-4px); }
+
+    100% { -webkit-transform: translateY(-8px); transform: translateY(-8px); }
+}
+
+@keyframes hvr-bob {
+    0% { -webkit-transform: translateY(-8px); transform: translateY(-8px); }
+
+    50% { -webkit-transform: translateY(-4px); transform: translateY(-4px); }
+
+    100% { -webkit-transform: translateY(-8px); transform: translateY(-8px); }
+}
+
+@-webkit-keyframes hvr-bob-float {
+    100% { -webkit-transform: translateY(-8px); transform: translateY(-8px); }
+}
+
+@keyframes hvr-bob-float {
+    100% { -webkit-transform: translateY(-8px); transform: translateY(-8px); }
+}
+
+.hvr-bob { display: inline-block; vertical-align: middle; -webkit-transform: translateZ(0); transform: translateZ(0); box-shadow: 0 0 1px rgba(0, 0, 0, 0); -webkit-backface-visibility: hidden; backface-visibility: hidden; -moz-osx-font-smoothing: grayscale; }
+    .hvr-bob:hover, .hvr-bob:focus, .hvr-bob:active { -webkit-animation-name: hvr-bob-float, hvr-bob; animation-name: hvr-bob-float, hvr-bob; -webkit-animation-duration: .3s, 1.5s; animation-duration: .3s, 1.5s; -webkit-animation-delay: 0s, .3s; animation-delay: 0s, .3s; -webkit-animation-timing-function: ease-out, ease-in-out; animation-timing-function: ease-out, ease-in-out; -webkit-animation-iteration-count: 1, infinite; animation-iteration-count: 1, infinite; -webkit-animation-fill-mode: forwards; animation-fill-mode: forwards; -webkit-animation-direction: normal, alternate; animation-direction: normal, alternate; }
+.hvr-bob { cursor: pointer; }
+
+.flexContainer { display: flex; flex-wrap: wrap; }
+
+.flex-item { flex: 1 1 100%; display: flex; align-items: center; justify-content: center; }
+
+.flex-img { max-width: 100%; }
+
+.classFilter { display: none; }
+
+@media(min-width: 480px) {
+    .flex-item { flex: 1 1 50%; }
+    .flex-deck { flex: 1 1 50%; }
+}
+
+@media(min-width: 640px) {
+    .flex-item { flex: 1 1 25%; }
+    .flex-deck { flex: 1 1 50%; }
+}

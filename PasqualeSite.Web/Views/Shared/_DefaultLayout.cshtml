@@ -221,10 +221,21 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
             <div class="blog-masthead">
                 <div class="container">
                     <nav class="blog-nav">
-                        <a class="blog-nav-item home_link" href="@Url.Action("Index", "Home")">Home</a>
-                        <a class="blog-nav-item blog_link" href="@Url.Action("Index", "Blog")">Blog</a>
-                        <a class="blog-nav-item portfolio_link" href="@Url.Action("Index", "Portfolio")">Portfolio</a>
-                        <a class="blog-nav-item contact_link" href="@Url.Action("Index", "Contact")">Contact</a>
+                        <a class="blog-nav-item home_link" href="@Url.Action("Index", "Home", new { Area = string.Empty })">Home</a>
+                        <a class="blog-nav-item blog_link" href="@Url.Action("Index", "Blog", new { Area = string.Empty })">Blog</a>
+                        <a class="blog-nav-item portfolio_link" href="@Url.Action("Index", "Portfolio", new { Area = string.Empty })">Portfolio</a>
+                        <div class="dropdown blog-nav-item projects_link">
+                            <span>Projects <span class="caret"></span></span>
+                            <div class="dropdown-content">
+                                <div class="sub-header">Fun Projects</div>
+                                <hr />
+                                <p><a href="@Url.Action("HearthBuilder", "Fun", new { Area = "Projects" })">Hearthstone Deck Builder</a></p>
+                                <div class="sub-header">Websites I've Worked On</div>
+                                <hr />
+                                <p><a target="_blank" href="http://www.mocajacksonville.unf.edu">MOCA Jacksonville</a></p>
+                                <p><a target="_blank" href="http://www.unf.edu">University of North Florida</a></p>
+                            </div>
+                        </div>
                     </nav>
                 </div>
             </div> 
@@ -278,9 +289,9 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
                     <div class="bottom-nav">
                         <p><b>Site Information</b></p>
                         <hr />
-                        <p><a href="@Url.Action("Index", "About")">About</a></p>
-                        <p><a href="@Url.Action("Index", "Contact")">Contact</a></p>
-                        <p><a href="@Url.Action("Privacy", "About")">Privacy</a></p>
+                        <p><a href="@Url.Action("Index", "About", new { Area = string.Empty })">About</a></p>
+                        <p><a href="@Url.Action("Index", "Contact", new { Area = string.Empty })">Contact</a></p>
+                        <p><a href="@Url.Action("Privacy", "About", new { Area = string.Empty })">Privacy</a></p>
                     </div>                  
                 </div>               
             </div>    

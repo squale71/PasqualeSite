@@ -195,6 +195,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Projects\css\hearth.css" />
+    <Content Include="img\loading.gif" />
+    <Content Include="img\manacrystal.png" />
+    <Content Include="Areas\Projects\js\hearth.js" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="css\app.css" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
@@ -230,6 +237,10 @@
     <Content Include="img\twitter.png" />
     <Content Include="img\unf.jpg" />
     <Content Include="js\app.coffee" />
+    <Content Include="Areas\Projects\Views\web.config" />
+    <Content Include="Areas\Projects\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Projects\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Projects\Views\Fun\HearthBuilder.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -662,6 +673,12 @@
     <Content Include="js\plugins\owl\owl.carousel.js" />
     <Content Include="js\plugins\owl\owl.carousel.min.js" />
     <Content Include="robots.txt" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
@@ -680,6 +697,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Projects\Controllers\FunController.cs" />
+    <Compile Include="Areas\Projects\Models\HearthCard.cs" />
+    <Compile Include="Areas\Projects\ProjectsAreaRegistration.cs" />
     <Compile Include="BlogPostDynamicNodeProvider.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -764,6 +784,7 @@
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
     <Content Include="Views\About\Privacy.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -773,6 +794,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Projects\images\" />
     <Folder Include="js\plugins\jqueryui\images\" />
     <Folder Include="Views\Image\" />
     <Folder Include="Views\RSS\" />
