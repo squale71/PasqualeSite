@@ -1,0 +1,51 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="~/Areas/Projects/js/stocks.js"></script>
+    <link href="~/Areas/Projects/css/stockStyle.css" rel="stylesheet" />
+    <title>Stock Lookup</title>
+</head>
+<body>
+    <p style="float: none; font-size: 12px;">
+        This was the first front-end, JavaScript application I've ever built, created several years ago. Other than this line of text, everything is exactly as I created it. It's not great, but it works and I learned a ton.
+        I use it to remind myself how far I've come in such a short time. It queries a stock API via AJAX, displays information about the stock, and saves the search query to the brower's local storage.
+    </p>
+    <div id="topPanel">
+        <div id="title">
+            <h2>Stock Lookup</h2>
+        </div>
+    </div>
+    <div id="mainPanel">
+        <div id="leftPanel">
+            <span class="symbolInput">
+                <label><b>Stock Symbol:</b></label>
+                <input type="text" name="Stock" id="stockSymbol" />
+            </span>
+            <span>
+                <button id="submitStock">Search</button>
+            </span>
+            <span>
+                <button id="clearHist">Clear History</button>
+            </span>
+            <div>
+                <table id="stockDetails"></table>
+            </div>
+        </div>
+        <div id="rightPanel">
+            <div class="wrap">
+                <label><b>Search History:</b></label>
+                <ul id="searchHist"></ul>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

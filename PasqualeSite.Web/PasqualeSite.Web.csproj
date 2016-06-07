@@ -195,9 +195,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Projects\css\echonest.css" />
     <Content Include="Areas\Projects\css\hearth.css" />
     <Content Include="Areas\Projects\css\hearthCalc.css" />
+    <Content Include="Areas\Projects\css\stockStyle.css" />
+    <Content Include="Areas\Projects\js\echonest.js" />
     <Content Include="Areas\Projects\js\hearthCalc.js" />
+    <Content Include="Areas\Projects\js\stocks.js" />
+    <Content Include="img\ajax-loader.gif" />
+    <Content Include="img\echoNestLogo.gif" />
+    <Content Include="img\echoNestLogo.png" />
+    <Content Include="img\eighth-note.png" />
     <Content Include="img\Hearthstone_Logo.png" />
     <Content Include="img\loading.gif" />
     <Content Include="img\manacrystal.png" />
@@ -245,6 +253,7 @@
     <Content Include="Areas\Projects\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Projects\Views\Fun\HearthBuilder.cshtml" />
     <Content Include="Areas\Projects\Views\Fun\HearthCalculator.cshtml" />
+    <Content Include="Areas\Projects\Views\Fun\Stocks.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

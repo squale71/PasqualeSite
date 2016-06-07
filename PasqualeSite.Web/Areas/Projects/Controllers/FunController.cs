@@ -21,6 +21,11 @@ namespace PasqualeSite.Web.Areas.Projects.Controllers
             return View();
         }
 
+        public ActionResult Stocks()
+        {
+            return View();
+        }
+
         [ValidateInput(enableValidation:false)]
         [HttpPost]
         public FileContentResult ExportDeck(List<HearthCard> cards)

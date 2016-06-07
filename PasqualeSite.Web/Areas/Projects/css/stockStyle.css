@@ -1,0 +1,96 @@
+* {
+    font-family:Consolas;
+}
+
+#mainPanel {
+    position:absolute;
+    display:inline-block;
+    left:-500px;
+    width:1000px;
+    padding:0 50%;
+    height:900px;
+    padding-top:15px;
+}
+
+body {
+    background-color:lightcyan;
+}
+
+#title {
+    height:50px;
+    left:-100px;
+    width:1000px;
+    margin:auto;
+    padding-bottom:15px;      
+}
+
+#title h2 {
+    text-align:center;
+   
+}
+
+#leftPanel {
+    float:left;
+    width:500px;   
+    padding:15px;
+    height:400px;        
+}
+
+.errorInput {
+    border-color: #f00;
+}
+
+#stockDetails {
+    padding-top:20px;
+}
+
+#stockDetails td:first-child {
+    width:200px;
+}
+
+#rightPanel {
+    float:left;
+    margin-left:20px;
+    padding:15px;
+    height:400px;
+    width:410px;
+}
+
+#searchHist {
+    padding:0; 
+       
+}
+
+#title, #leftPanel, #rightPanel {
+    border:1px solid lightblue;
+    border-radius:25px;
+    background-color:lightblue;
+    box-shadow:4px 4px inset;
+}
+
+.listHistory {
+    padding:3px;
+    text-transform:uppercase;
+    text-decoration:underline;
+    cursor:pointer;
+}
+
+.hoveredList {
+    font-weight:600;
+    color:blue;
+}
+
+ul
+{
+    list-style-type: none;
+}  
+        
+.selected {
+    font-weight:700;
+}
+
+#stockSymbol {
+    padding-top:3px;
+    font-family:'Times New Roman';
+}
+
