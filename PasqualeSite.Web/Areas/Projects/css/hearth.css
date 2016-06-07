@@ -37,7 +37,7 @@ h1, h2, h3, h4 { color: #777; }
 
 .flexContainer { display: flex; flex-wrap: wrap; }
 
-.flex-item { flex: 1 1 100%; display: flex; align-items: center; justify-content: center; max-width: 80px; }
+.flex-item { flex: 1 1 20%; display: flex; align-items: center; justify-content: center; max-width: 80px; }
 
 .flex-img { max-width: 100%; }
 
