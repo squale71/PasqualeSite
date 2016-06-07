@@ -8,6 +8,7 @@
 
 <div class="container">
     <h3>Hearthstone Deck Builder</h3>
+    <p class="byline">This application is best experienced on a desktop browser. It will work in mobile, but it wasn't originally designed with that in mind. Wait for version 2 :).</p>
     <div class="row">
         <div class="col-md-12">
             <form onsubmit="SubmitSearch();return false;">
@@ -26,6 +27,12 @@
         <div class="col-md-8">
             <div id="validation"></div>
             <span id="classFilter" class="label label-primary"></span>
+            <div class="text-center">
+                <ul class="pagination">
+                    <li><a onclick="decrementPage()" data-original-title="Prev" title="">Prev</a></li>
+                    <li><a onclick="incrementPage()" data-original-title="Next" title="">Next</a></li>
+                </ul>
+            </div>
             <div class="flexContainer container-fluid" id="resultSet">
             </div>
         </div>

@@ -149,6 +149,10 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
         }
 
         $(document).ready(function () {
+            $('.dropdown').click(function() {
+                $('.dropdown-content').toggle();
+            })
+
             $.getJSON(approot + "api/Twitter/squale71", function (data) {
                 var $container = $('.twitterText');
                 var count = 0;
