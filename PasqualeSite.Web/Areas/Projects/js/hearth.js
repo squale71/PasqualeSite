@@ -7,6 +7,7 @@ var deckClass = "";
 var lastResult = "";
 var query = "";
 var maxPages = 0;
+var PERPAGE = 6;
 
 // Anything within this block of code runs once the DOM is ready. 
 $(document).ready(function() {	
@@ -91,7 +92,7 @@ function onSearchSuccess(search, data, page) {
 	    	
 	});
 
-	maxPages = Math.ceil(fullResults.length / 10);
+	maxPages = Math.ceil(fullResults.length / PERPAGE);
 	fillPage();
 }
 
@@ -111,10 +112,22 @@ function decrementPage() {
 
 function fillPage() {
     var counter = 1;
+    var previousString = '<li class="paging"><a onclick="decrementPage()" data-original-title="Prev" title="">Prev</a></li>';
+    var nextString = '<li class="paging"><a onclick="incrementPage()" data-original-title="Next" title="">Next</a></li>';
+
+    $('.pagination').empty();
+    if (currentPage > 1) {
+        $('.pagination').append(previousString);
+    }
+
+    if (currentPage < maxPages) {
+        $('.pagination').append(nextString);
+    }
+    
     $('#resultSet').empty();
-    var startCard = ((currentPage - 1) * 10 + 1);
+    var startCard = ((currentPage - 1) * PERPAGE + 1);
     $.each(fullResults, function (i, value) {
-        if ((i+1) >= startCard && counter <= 10) {
+        if ((i+1) >= startCard && counter <= PERPAGE) {
             results.push(value);
             var card = "<div class='flex-item'><img id='" + value.cardId + "' onclick=\'addCard(" + (results.length - 1) + ")\' class='flex-img hvr-bob' src='" + value.img + "' /></div>";
             $('#resultSet').append(card);
@@ -159,7 +172,6 @@ function addCard(arrayIndex) {
 		currentDeck.push(newCard)
 		currentDeck = sortDeckByCost(currentDeck);
 		refreshDeck(currentDeck);
-		writeValidator("Successfully added " + newCard.name + " to your deck.", "success")	
 	}
 }
 
@@ -237,18 +249,34 @@ function refreshDeck(deck) {
 	var deckToDisplay = sortDeckByCost(deck);
 	for (var i = 0; i < deckToDisplay.length; i++) {
 		if (typeof deckToDisplay[i+1] != 'undefined' && deckToDisplay[i].cardId == deckToDisplay[i+1].cardId) {
-			var card = "<p>" + deckToDisplay[i].cost + "<img src='" + approot + "img/manacrystal.png'/>" + deckToDisplay[i].name + " <span class='label label-primary'>2</span></p><hr />";
+		    var card = "<p class='card' onclick='removeCard(\"" + deckToDisplay[i].cardId + "\")'>" + deckToDisplay[i].cost + "<img src='" + approot + "img/manacrystal.png'/>" + deckToDisplay[i].name + " <span class='label label-primary'>2</span></p><hr />";
 			i++;
 		}
 		else {
-		    var card = "<p>" + deckToDisplay[i].cost + "<img src='" + approot + "img/manacrystal.png'/>" + deckToDisplay[i].name + "</p><hr />";
+		    var card = "<p class='card' onclick='removeCard(\"" + deckToDisplay[i].cardId + "\")'>" + deckToDisplay[i].cost + "<img src='" + approot + "img/manacrystal.png'/>" + deckToDisplay[i].name + "</p><hr />";
 		}		
 		$('#cardsInDeck').append(card);	
 	}
 	$('#deckCount').text("(" + deckToDisplay.length + "/30)")
 }
 
+function removeCard(cardId) {
+    for (var i = 0; i < currentDeck.length; i++) {
+        if (currentDeck[i].cardId == cardId) {
+            currentDeck.splice(i, 1);          
+            break;
+        }
+    }
+
+    refreshDeck(currentDeck);
+}
+
 function writeValidator(message, type, position, element) {
+    var options = {
+        autoHideDelay: 2500,
+
+
+    }
 	position = position == null || typeof(position) == 'undefined' ? "top-right" : position;
 	type = type == null || typeof (position) == 'undefined' ? "success" : type;
 

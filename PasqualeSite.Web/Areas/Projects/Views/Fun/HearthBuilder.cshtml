@@ -11,6 +11,23 @@
     <p class="byline">This application is best experienced on a desktop browser. It will work in mobile, but it wasn't originally designed with that in mind. Wait for version 2 :).</p>
     <div class="row">
         <div class="col-md-12">
+            <form class="form-inline" id="classSelector">
+                <div class="form-group">
+                    <select id="deckClass" onchange="updateClass()" style="margin-top:10px;">
+                        <option value="">Select a class...</option>
+                        <option value="druid">Druid</option>
+                        <option value="hunter">Hunter</option>
+                        <option value="mage">Mage</option>
+                        <option value="paladin">Paladin</option>
+                        <option value="priest">Priest</option>
+                        <option value="rogue">Rogue</option>
+                        <option value="shaman">Shaman</option>
+                        <option value="warlock">Warlock</option>
+                        <option value="warrior">Warrior</option>
+                    </select>
+                    <button onclick="exportDeck()" id="export" class="btn btn-primary">Export Deck</button>
+                </div>
+            </form>
             <form onsubmit="SubmitSearch();return false;">
                 <p class="sub-header">Search Cards:</p>
                 <div class="input-group">                   
@@ -19,45 +36,28 @@
                         <input type="submit" value="Search" class="btn btn-default" id="searchBtn">
                     </span>
                 </div>
-            </form>
+            </form>           
         </div>
     </div>
     <hr />
-    <div class="row">
-        <div class="col-md-8">
+    <div class="row">       
+        <div class="col-md-9">
             <div id="validation"></div>
             <span id="classFilter" class="label label-primary"></span>
             <div class="text-center">
-                <ul class="pagination">
-                    <li><a onclick="decrementPage()" data-original-title="Prev" title="">Prev</a></li>
-                    <li><a onclick="incrementPage()" data-original-title="Next" title="">Next</a></li>
+                <ul class="pagination">                   
                 </ul>
             </div>
             <div class="flexContainer container-fluid" id="resultSet">
             </div>
         </div>
-        <div id="deck" class="col-md-4">
-            <div class="container-fluid">
-                <select id="deckClass" onchange="updateClass()" class="form-control" style="margin-top:10px;">
-                    <option value="">Select a class...</option>
-                    <option value="druid">Druid</option>
-                    <option value="hunter">Hunter</option>
-                    <option value="mage">Mage</option>
-                    <option value="paladin">Paladin</option>
-                    <option value="priest">Priest</option>
-                    <option value="rogue">Rogue</option>
-                    <option value="shaman">Shaman</option>
-                    <option value="warlock">Warlock</option>
-                    <option value="warrior">Warrior</option>
-                </select>
-                <button onclick="exportDeck()" id="export" class="form-control btn btn-primary">Export Deck</button>
-                <br />
+        <div id="deck" class="col-md-3 well">
+            <div class="container-fluid">                
                 <br />
                 <h4 class="text-center">My Deck <span id="deckCount">(0/30)</span></h4>
                 <hr />
                 <div id="cardsInDeck"></div>
             </div>
-
         </div>
     </div>
 </div>
