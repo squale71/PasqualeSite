@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Hearthstone Bulk Pack Opening Simulator";
+}
+
+<div class="container">
+    <div class="row">
+        <img class="center-block" src="~/img/Hearthstone_Logo.png" />
+        <h3 class="text-center">Pack Opening Simulator</h3>
+        <p class="byline">This application was created when I was trying to decide whether I wanted to spend 50 dollars for 50 packs when The Old God's expansion released. 
+        I had to justify the price, so I checked the odds of opening legendaries and epics and so forth. I then wanted to take those odds that I found over the internet and 
+        simulate opening packs in bulk. This does not simulate what card you open, only the rarity of card expected. Odds that I used in my calculations were found <a>here</a>.
+        Like the actual game, each pack will have at least one rare or better. This does not factor in the supposed "Pity Rule" where you will open a legendary if one isn't
+        opened in 40 packs or so, nor does it simulate opening a specific set.</p>
+        <p class="byline">I know there are pack opening simulators online, but I couldn't find one that would emulate opening a large number of packs at once. That's the purpose of this application.
+        To be clear, I don't think the results of this simulation should sway you one way or the other into buying packs. If you love Hearthstone and you think it's
+        given you enough enjoyment to throw money at, then you should definitely do so. I'll try to update this application as more data about pack opening odds is gathered.</p>
+        <hr />
+        <form class="form-inline" onsubmit="return false;">
+            <div class="form-group">
+                <input type="text" class="form-control" id="numberOfPacks" placeholder="Number of Packs">
+            </div>
+            <button type="button" id="btnGenerate" class="btn btn-default">Simulate Pack Opening</button>
+            <span id="validate" class="error"></span>
+        </form>
+        <hr />
+        <div id="summaryContainer" class="row" style="display: none">
+            <div class="col-md-12">
+                <div class="bs-callout bs-callout-info">
+                    <h4>Summary</h4>
+                    <ul id="summaryList"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <tr>
+                        <th>#</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                    </tr>
+                    <tbody id="deckResults"></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <p class="byline">Special Thanks to Blizzard for the amazing game. Hearthstone Logo is courtesy of Blizzard.</p>
+        </div>
+    </div>
+</div>
+
+<script src="~/Areas/Projects/js/hearthCalc.js"></script>
+<link href="~/Areas/Projects/css/hearthCalc.css" rel="stylesheet" />
